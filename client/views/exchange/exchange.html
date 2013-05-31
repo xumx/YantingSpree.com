@@ -1,0 +1,29 @@
+<template name="exchange">
+  <div class="panel hidden-sm">
+    <div class="panel-heading">Exchange Rates</div>
+
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each rates}}
+        <tr>
+          <td>{{currency}}</td>
+
+          {{#if isAdmin}}
+          <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0"></td>
+          {{else}}
+          <td>{{rate}}</td>
+          {{/if}}
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <span class="text-muted">All rates are fixed</span>
+  </div>
+</template>

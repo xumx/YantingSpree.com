@@ -1,0 +1,30 @@
+<template name="orderList">
+	{{#if myOrder.items}}
+	<div class="list-group-flush">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Size</th>
+					<th>Colour</th>
+					<th>{{merchant.currency}}</th>
+					<th>SGD</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{{#each myOrder.items}}
+				{{> orderItem}}
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+	{{else}}
+	You have not placed any orders in this spree.
+	{{/if}}
+
+	<hr>
+	{{> addOrderItem}}
+</template>

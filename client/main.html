@@ -1,0 +1,148 @@
+<head>
+	<title>yantingspree</title>
+</head>
+<body>
+
+	<div class="navbar navbar-fixed-top">
+		<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+
+		<a class="navbar-brand" href="/">yantingspree</a>
+		
+		<div class="nav-collapse collapse navbar-responsive-collapse">
+			<ul class="nav navbar-nav">
+
+			</ul>
+
+			{{loginButtons}}
+		</div>
+	</div>
+
+
+	<div class="container">
+
+		<div class="row">
+			<div id="sidebar" class="col col-lg-3">
+				{{> merchantList}}
+				{{> exchange}}          
+				
+			</div>
+			<div class="col col-lg-9">
+				<div class="container">
+					{{renderPage}}  
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+
+<template name="welcome">
+	{{> carousel}}
+</template>
+
+
+<template name="merchantList">
+
+	<div class="panel">
+		<b>Open Sprees</b> 
+		<ul class="list-group list-group-flush">
+			{{#each merchantsWithOpenSpree}}
+			<a href="{{merchantPagePath this}}" class="list-group-item">{{this}}</a>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="merchantPage">
+	<div class="panel">
+		<dl class="dl-horizontal">
+			<dt>Website</dt>
+			<dd><a href="{{merchant.url}}" target="_blank" title="">{{merchant.url}}</a></dd>
+
+			{{#if openSpree}}
+			<dt>Spree Title</dt>
+			<dd>{{merchant._id}} #{{openSpree.counter}}</dd>
+
+			<dt>Spree Cap</dt>
+			<dd>{{openSpree.cap}}</dd>
+			<dt>Closing Date</dt>
+			<dd>{{formatDate openSpree.endDate}}</dd>
+			<dt>Status</dt>
+			<dd>{{openSpree.status}}</dd>
+			{{else}}
+			There are no open Sprees for this merchant.
+			{{/if}}
+		</dl>
+	</div>
+	
+	<div class="panel">
+		<div class="panel-heading">My Shopping Cart</div>
+		{{> orderList}}
+	</div>
+</template>
+
+<template name="spreeList">
+	{{#each sprees}}
+	<div>
+		<h3>{{merchant}} #{{counter}}</h3>
+
+		{{#getMerchant merchant}}
+		Name: {{_id}} <br>
+		Web Link: {{url}} <br>
+		Shipping Speed: {{speed}} <br>
+		Shipping Cost: {{shipping}} <br>
+		{{/getMerchant}}
+
+		Statue: {{status}} <br>
+		<hr>
+
+		{{#each orders}}
+		Order ID: {{id}}
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Item Name</th>
+					<th>Item URL</th>
+					<th>Item Code</th>
+					<th>Price</th>
+					<th>Size</th>
+					<th>Color</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each items}}
+				<tr>
+					<td>{{name}}</td>
+					<td><a href="{{url}}" title="">view</a></td>
+					<td>{{code}}</td>
+					<td>{{price}}</td>
+					<td>{{size}}</td>
+					<td>{{color}}</td>
+					<td>{{quantity}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		{{/each}}
+
+	</div>
+	<hr>
+	{{/each}}
+</template>
+
+
+<template name="admin">
+	<h1>Admin Panel</h1>
+	{{> spreeList}}
+</template>
+
+<template name="404">
+	<h1>Page not found</h1>
+</template>

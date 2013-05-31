@@ -1,0 +1,75 @@
+<template name="addOrderItem">
+	
+
+	<form class="form-horizontal">
+
+		<legend class="text-center">Add an item:</legend>
+
+		<div class="row">
+			<label for="" class="col col-lg-3 control-label">Item URL</label>
+			<div class="col col-lg-8">
+				<input type="url" name="url" placeholder="http://...">
+			</div>
+		</div>
+		<div class="row">
+			<label for="inputItemName" class="col col-lg-3 control-label">Item Name</label>
+			<div class="col col-lg-8">
+				<input type="text" name="name" placeholder="Item Name">
+			</div>
+		</div>
+		<div class="row">
+			<label for="inputItemName" class="col col-lg-3 control-label hidden-sm">Item Details</label>
+			<div class="col col-lg-8 form-inline">
+				<div class="row">
+				<label class="visible-sm col">Item Code</label>
+					<div class="col col-lg-4">
+						<input type="text" name="code" placeholder="Item Code">
+					</div>
+					<label class="visible-sm col">Size</label>
+					<div class="col col-lg-4">
+						<input type="text" name="size" placeholder="Size">
+					</div>
+					<label class="visible-sm col">Color</label>
+					<div class="col col-lg-4">
+						<input type="text" name="color" placeholder="Color">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<label for="inputSize" class="col col-lg-3 control-label">Unit Price</label>
+			<div class="col col-lg-4 col-sm-7">
+				<div class="input-group">
+					<span class="input-group-addon">$</span>
+					<input type="text" name="price" placeholder="23.00">
+					
+				</div>
+				<p class="help-block">Price in Foreign Currency</p>
+			</div>
+			<label class="visible-sm col">Quantity</label>
+			<div class="col col-lg-4 col-sm-7">
+				<input type="number" name="quantity" min="1" max="10" placeholder="Quantity">
+			</div>
+		</div>		
+		
+		<div class="row">
+			<label for="inputSize" class="col col-lg-3 control-label">Alternatives</label>
+			<div class="col col-lg-8">
+				<textarea rows="3" name="alternatives"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<label for="inputSize" class="col col-lg-3 control-label">Remarks</label>
+			<div class="col col-lg-8">
+				<textarea rows="3" name="remarks"></textarea>
+			</div>
+
+			<div class="col col-lg-8 col-offset-2">
+				<button type="submit" class="btn btn-info">Add Item</button>
+			</div>
+		</div>
+		
+	</form>
+
+</template>
