@@ -1,0 +1,12 @@
+<template name="sidebar">
+	<div class="panel">
+		<b>Open Sprees</b> 
+		<ul class="list-group list-group-flush">
+			{{#each merchantsWithOpenSpree}}
+			<a href="{{merchantPagePath this}}" class="list-group-item">{{this}}</a>
+			{{/each}}
+		</ul>
+	</div>
+
+	{{> exchange}}
+</template>

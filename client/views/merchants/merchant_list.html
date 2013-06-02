@@ -1,0 +1,51 @@
+<template name="merchantList">
+	{{#each allMerchants}}
+	<div class="panel">
+		<form class="form">
+			<div class="row">
+				<label class="col col-lg-3">Merchant Name</label>
+				<div class="col col-lg-8">
+					<input type="text" name="_id" value="{{_id}}">
+				</div>
+			</div>
+			<div class="row">
+				<label class="col col-lg-3">Merchant URL</label>
+				<div class="col col-lg-8">
+					<input type="url" name="url" value="{{url}}" >
+				</div>
+			</div>
+			<div class="row">
+				<label class="col col-lg-3">Speed</label>
+				<div class="col col-lg-4 col-sm-7">
+					<input type="text" name="speed" value="{{speed}}">
+				</div>
+			</div>
+			<div class="row">
+				<label class="col col-lg-3">Shipping</label>
+				<div class="col col-lg-4 col-sm-7">
+					<input type="text" name="shipping" value="{{shipping}}">
+				</div>
+			</div>
+			<div class="row">
+				<label class="col col-lg-3">Currency</label>
+				<div class="col col-lg-4 col-sm-7">
+					<input type="text" name="currency" value="{{currency}}">
+				</div>
+
+			</div>	
+			<div class="row">
+				<label class="col col-lg-3">Remarks</label>
+				<div class="col col-lg-4">
+					<textarea rows="3" name="remarks">{{remarks}}</textarea>
+				</div>
+
+				<button type="button" class="btn btn-info col col-lg-2" name="save">Save</button>
+				{{#if open}}
+				<button type="button" class="btn btn-danger col col-lg-2" name="close">Close</button>
+				{{else}}
+				<button type="button" class="btn btn-success col col-lg-2" name="open">Open</button>
+				{{/if}}
+			</div>
+		</div>
+		{{/each}}
+	</template>

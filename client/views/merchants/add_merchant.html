@@ -1,0 +1,51 @@
+<template name="addMerchant">
+
+	<legend>Add a Merchant</legend>
+
+	<form class="form-horizontal">
+		<div class="row">
+			<label class="col col-lg-3 control-label">Merchant Name</label>
+			<div class="col col-lg-8">
+				<input type="text" name="_id" placeholder="Zara">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col col-lg-3 control-label">Merchant URL</label>
+			<div class="col col-lg-8">
+				<input type="url" name="url" placeholder="http://...">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col col-lg-3 control-label">Speed</label>
+			<div class="col col-lg-4 col-sm-7">
+				<input type="text" name="speed" placeholder="2-3 weeks">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col col-lg-3 control-label">Shipping</label>
+			<div class="col col-lg-4 col-sm-7">
+				<input type="text" name="shipping" placeholder="$3">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col col-lg-3 control-label">Currency</label>
+			<div class="col col-lg-4 col-sm-7">
+				<input type="text" name="currency" placeholder="USD">
+			</div>
+
+		</div>	
+		<div class="row">
+			<label class="col col-lg-3 control-label">Remarks</label>
+			<div class="col col-lg-8">
+				<textarea rows="3" name="remarks"></textarea>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-lg-4 col-offset-4">
+				<button type="submit" class="btn btn-primary btn-block">Add Merchant</button>
+			</div>
+		</div>
+
+	</form>
+</template>

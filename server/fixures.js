@@ -52,7 +52,8 @@ if (Merchant.find().count() === 0) {
 		url: 'http://www.forever21.com',
 		speed: '3~4 weeks',
 		shipping: '$4.20 SGD per unit',
-		currency: 'USD'
+		currency: 'USD',
+		open: true
 	});
 
 	Merchant.insert({
@@ -60,7 +61,8 @@ if (Merchant.find().count() === 0) {
 		url: 'http://www.victoriassecret.com',
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
-		currency: 'AUD'
+		currency: 'AUD',
+		open: false
 	});
 
 	Merchant.insert({
@@ -68,7 +70,8 @@ if (Merchant.find().count() === 0) {
 		url: 'http://www.coastalscents.com/',
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
-		currency: 'EUR'
+		currency: 'EUR',
+		open: false
 	});
 
 	Merchant.insert({
@@ -76,7 +79,8 @@ if (Merchant.find().count() === 0) {
 		url: 'http://www.victoriassecret.com',
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
-		currency: 'EUR'
+		currency: 'EUR',
+		open: false
 	});
 
 	Merchant.insert({
@@ -84,7 +88,8 @@ if (Merchant.find().count() === 0) {
 		url: 'http://www.victoriassecret.com',
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
-		currency: 'USD'
+		currency: 'USD',
+		open: false
 	});
 }
 
@@ -98,8 +103,6 @@ if (Spree.find().count() === 0) {
 		endDate: new Date('30 May 2013'),
 		counter: '13',
 	});
-
-
 
 	Order.insert({
 		spree: id,
