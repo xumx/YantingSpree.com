@@ -39,12 +39,14 @@
 					<textarea rows="3" name="remarks">{{remarks}}</textarea>
 				</div>
 
-				<button type="button" class="btn btn-info col col-lg-2" name="save">Save</button>
+				
 				{{#if open}}
-				<button type="button" class="btn btn-danger col col-lg-2" name="close">Close</button>
+				<button type="button" class="btn btn-danger col col-lg-1" name="close">Close</button>
 				{{else}}
-				<button type="button" class="btn btn-success col col-lg-2" name="open">Open</button>
+				<button type="button" class="btn btn-success col col-lg-1" name="open">Open</button>
 				{{/if}}
+				<button type="button" class="btn btn-info col col-lg-1" name="update">Update</button>
+				<button type="button" class="btn btn-info col col-lg-1" name="delete">Delete</button>
 			</div>
 		</div>
 		{{/each}}

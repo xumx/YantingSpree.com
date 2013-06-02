@@ -14,13 +14,12 @@ Template.merchantList.helpers({
 });
 
 Template.merchantList.events({
-	'click button[name=open]': function() {
+	'click button[name=open]': function(event) {
 		Merchant.update(this._id, {
 			$set: {
 				open: true
 			}
 		});
-
 
 		// Spree.insert({
 		// 	merchant: 'Forever 21',
@@ -52,7 +51,7 @@ Template.merchantList.events({
 			});
 		}
 	},
-	'click button[name=save]': function(event) {
+	'click button[name=update]': function(event) {
 		var id = this._id;
 		var form = $(event.target).closest('form');
 
@@ -66,6 +65,11 @@ Template.merchantList.events({
 
 		console.log(this);
 		Merchant.update(id, this);
+	},
+	'click button[name=delete]': function(event) {
+		if (confirm("Confirm Delete Merchant")) {
+			Merchant.remove(this._id);
+		}
 	}
 })
 
