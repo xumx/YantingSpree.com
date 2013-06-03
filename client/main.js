@@ -3,8 +3,6 @@ Proxino.track_errors();
 
 Meteor.subscribe('all');
 
-Session.set('isAdmin', true);
-
 Accounts.ui.config({
 	passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
 });

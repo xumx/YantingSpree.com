@@ -40,10 +40,10 @@
 			<div class="col col-lg-4 col-sm-7">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input type="text" name="price" required placeholder="23.00">
-					
+					<input type="number" name="price" step="any" min="0" required placeholder="23.00">
 				</div>
-				<p class="help-block">Price in Foreign Currency</p>
+				<p class="help-block" id="SGD">Price in Foreign Currency</p>
+				<input type="hidden" name="sgd" value="0.00">
 			</div>
 			<label class="visible-sm col">Quantity</label>
 			<div class="col col-lg-4 col-sm-7">

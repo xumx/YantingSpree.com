@@ -21,24 +21,36 @@ Template.orderItem.events({
 });
 
 Template.addOrderItem.events({
+	'change input[name=price]': function(event) {
+		var merc = Merchant.findOne(Session.get('currentMerchant'));
+		var exchange = Exchange.findOne({
+			currency: merc.currency
+		});
+		var sgd = $(event.target).val() * exchange.rate;
+		sgd = (Math.ceil(sgd*10)/10).toFixed(2);
+		$('input[name=sgd]').val(sgd);
+		$('#SGD').text('SGD$' + sgd);
+	},
 	'submit form': function(event) {
 
 		event.preventDefault();
 		console.log(this);
 
+		var form = $(event.target);
+
 		var orderItem = {
 			_id: Random.id(),
-			name: $(event.target).find('[name=name]').val(),
-			url: $(event.target).find('[name=url]').val(),
-			code: $(event.target).find('[name=code]').val(),
-			size: $(event.target).find('[name=size]').val(),
-			color: $(event.target).find('[name=color]').val(),
-			quantity: $(event.target).find('[name=quantity]').val(),
-			price: $(event.target).find('[name=price]').val(),
-			remarks: $(event.target).find('[name=remarks]').val(),
-			alternatives: $(event.target).find('[name=alternatives]').val(),
+			name: form.find('[name=name]').val(),
+			url: form.find('[name=url]').val(),
+			code: form.find('[name=code]').val(),
+			size: form.find('[name=size]').val(),
+			color: form.find('[name=color]').val(),
+			quantity: form.find('[name=quantity]').val(),
+			price: form.find('[name=price]').val(),
+			remarks: form.find('[name=remarks]').val(),
+			alternatives: form.find('[name=alternatives]').val(),
 
-			SGD: 40 //Calculate SGD
+			SGD: form.find('[name=sgd]').val()
 		}
 
 		console.log(orderItem);
