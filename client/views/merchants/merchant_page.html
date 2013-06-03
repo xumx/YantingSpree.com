@@ -4,12 +4,12 @@
 			<dt>Website</dt>
 			<dd><a href="{{merchant.url}}" target="_blank" title="">{{merchant.url}}</a></dd>
 
-			{{#if openSpree}}
+			{{#if merchant.open}}
 			<dt>Spree Title</dt>
 			<dd>{{merchant._id}} #{{openSpree.counter}}</dd>
 
 			<dt>Spree Cap</dt>
-			<dd>{{openSpree.cap}}</dd>
+			<dd>{{merchant.cap}}</dd>
 			<dt>Closing Date</dt>
 			<dd>{{formatDate openSpree.endDate}}</dd>
 			<dt>Status</dt>

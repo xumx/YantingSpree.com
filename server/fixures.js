@@ -1,13 +1,15 @@
 console.time('loadData');
 
-if (Meteor.users.find().count === 0) {
+if (Meteor.users.find({username:"admin"}).count === 0) {
 	Accounts.createUser({
-		username: "xumx",
+		username: "admin",
 		password: "admin",
 		email: "",
 		profile: {
 			name: "Max Xu"
 		}
+	}, function (msg) {
+		console.log(msg)
 	});
 }
 
@@ -53,6 +55,7 @@ if (Merchant.find().count() === 0) {
 		speed: '3~4 weeks',
 		shipping: '$4.20 SGD per unit',
 		currency: 'USD',
+		cap: '$USD 300',
 		open: true
 	});
 
@@ -62,6 +65,7 @@ if (Merchant.find().count() === 0) {
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
 		currency: 'AUD',
+		cap: '$USD 300',
 		open: false
 	});
 
@@ -71,6 +75,7 @@ if (Merchant.find().count() === 0) {
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
 		currency: 'EUR',
+		cap: '$AUD 300',
 		open: false
 	});
 
@@ -80,6 +85,7 @@ if (Merchant.find().count() === 0) {
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
 		currency: 'EUR',
+		cap: '$USD 300',
 		open: false
 	});
 
@@ -89,6 +95,7 @@ if (Merchant.find().count() === 0) {
 		speed: '2~4 weeks',
 		shipping: '$3.20 SGD per unit',
 		currency: 'USD',
+		cap: '$USD 300',
 		open: false
 	});
 }
@@ -97,11 +104,18 @@ if (Merchant.find().count() === 0) {
 if (Spree.find().count() === 0) {
 	var id = Spree.insert({
 		merchant: 'Forever 21',
-		status: 'open',
-		cap: '$USD 300',
+		status: 'close',
 		startDate: new Date('20 May 2013'),
 		endDate: new Date('30 May 2013'),
-		counter: '13',
+		counter: 11,
+	});
+
+	var id = Spree.insert({
+		merchant: 'Forever 21',
+		status: 'open',
+		startDate: new Date('20 May 2013'),
+		endDate: new Date('30 May 2013'),
+		counter: 13,
 	});
 
 	Order.insert({

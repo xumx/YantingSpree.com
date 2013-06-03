@@ -15,7 +15,7 @@
           <td>{{currency}}</td>
 
           {{#if isAdmin}}
-          <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0"></td>
+          <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0" required></td>
           {{else}}
           <td>{{rate}}</td>
           {{/if}}

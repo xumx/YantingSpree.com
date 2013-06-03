@@ -6,13 +6,13 @@
 		<div class="row">
 			<label for="" class="col col-lg-3 control-label">Item URL</label>
 			<div class="col col-lg-8">
-				<input type="url" name="url" placeholder="http://...">
+				<input type="url" name="url" required placeholder="http://...">
 			</div>
 		</div>
 		<div class="row">
 			<label for="inputItemName" class="col col-lg-3 control-label">Item Name</label>
 			<div class="col col-lg-8">
-				<input type="text" name="name" placeholder="Item Name">
+				<input type="text" name="name" required placeholder="Item Name">
 			</div>
 		</div>
 		<div class="row">
@@ -40,14 +40,15 @@
 			<div class="col col-lg-4 col-sm-7">
 				<div class="input-group">
 					<span class="input-group-addon">$</span>
-					<input type="text" name="price" placeholder="23.00">
+					<input type="text" name="price" required placeholder="23.00">
 					
 				</div>
 				<p class="help-block">Price in Foreign Currency</p>
 			</div>
 			<label class="visible-sm col">Quantity</label>
 			<div class="col col-lg-4 col-sm-7">
-				<input type="number" name="quantity" min="1" max="10" placeholder="Quantity">
+				<input type="number" name="quantity" min="1" max="15" value="1">
+				<p class="help-block hidden-sm">Quantity</p>
 			</div>
 		</div>		
 		
@@ -62,11 +63,10 @@
 			<div class="col col-lg-8">
 				<textarea rows="3" name="remarks"></textarea>
 			</div>
-
-			<div class="col col-lg-8 col-offset-2">
-				<button type="submit" class="btn btn-info">Add Item</button>
+			
+			<div class="col col-lg-4 col-offset-7" style="margin-top:5px">
+				<button type="submit" class="btn btn-info btn-block">Add Item</button>
 			</div>
 		</div>
-		
 	</form>
 </template>

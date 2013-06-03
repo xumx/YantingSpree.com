@@ -4,8 +4,11 @@
 		<form class="form">
 			<div class="row">
 				<label class="col col-lg-3">Merchant Name</label>
-				<div class="col col-lg-8">
+				<div class="col col-lg-7">
 					<input type="text" name="_id" value="{{_id}}">
+				</div>
+				<div class="col col-lg-1">
+					#{{counter}}
 				</div>
 			</div>
 			<div class="row">
@@ -31,22 +34,28 @@
 				<div class="col col-lg-4 col-sm-7">
 					<input type="text" name="currency" value="{{currency}}">
 				</div>
-
-			</div>	
+			</div>
+			<div class="row">
+				<label class="col col-lg-3">Cap</label>
+				<div class="col col-lg-4 col-sm-7">
+					<input type="text" name="cap" value="{{cap}}">
+				</div>
+			</div>			
 			<div class="row">
 				<label class="col col-lg-3">Remarks</label>
 				<div class="col col-lg-4">
 					<textarea rows="3" name="remarks">{{remarks}}</textarea>
 				</div>
 
-				
-				{{#if open}}
-				<button type="button" class="btn btn-danger col col-lg-1" name="close">Close</button>
-				{{else}}
-				<button type="button" class="btn btn-success col col-lg-1" name="open">Open</button>
-				{{/if}}
-				<button type="button" class="btn btn-info col col-lg-1" name="update">Update</button>
-				<button type="button" class="btn btn-info col col-lg-1" name="delete">Delete</button>
+				<div class="col col-lg-4">					
+					<a type="button" class="btn btn-info col col-lg-6" name="update"><span class="glyphicon glyphicon-pencil"></span> Update</a>
+					<a type="button" class="btn btn-info col col-lg-6" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+					{{#if open}}
+					<a type="button" class="btn btn-danger col col-lg-12" name="close">Close spree now</a>
+					{{else}}
+					<a type="button" class="btn btn-success col col-lg-12" name="open">Open new spree</a>
+					{{/if}}
+				</div>
 			</div>
 		</div>
 		{{/each}}
