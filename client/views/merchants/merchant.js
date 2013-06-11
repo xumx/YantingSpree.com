@@ -107,6 +107,7 @@ Template.merchantList.events({
 
 		this._id = form.find('[name=_id]').val();
 		this.url = form.find('[name=url]').val();
+		this.banner = form.find('[name=banner]').val();
 		this.speed = form.find('[name=speed]').val();
 		this.shipping = form.find('[name=shipping]').val();
 		this.currency = form.find('[name=currency]').val();
@@ -156,6 +157,7 @@ Template.addMerchant.events({
 		var newMerchant = {
 			_id: $(event.target).find('[name=_id]').val(),
 			url: $(event.target).find('[name=url]').val(),
+			banner: $(event.target).find('[name=banner]').val(),
 			speed: $(event.target).find('[name=speed]').val(),
 			shipping: $(event.target).find('[name=shipping]').val(),
 			currency: $(event.target).find('[name=currency]').val(),
