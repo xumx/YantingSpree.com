@@ -21,6 +21,20 @@ Meteor.Router.add({
 	}
 });
 
+var status = [
+		'Deleted',				//0
+		'Prepayment',			//1
+		'Payment 1 submitted',	//2
+		'Payment 1 Confirmed',	//3
+		'Order Placed',			//4
+		'Shipped from Merchant',//5
+		'Shippment Arrived',	//6
+		'Payment 2 Submitted',	//7
+		'Payment 2 Confirmed',	//8
+		'Shipped to User',		//9
+		'Completed'				//10
+];
+
 //Global Helpers
 // Handlebars.registerHelper('merchants', function() {
 // 	return Merchant.find();
@@ -65,7 +79,8 @@ Meteor.startup(function() {
 		//Set Current Order
 		Order.findOne({
 			spree: Session.get('currentSpree'),
-			user: '122'
+			user: '122', //TODO
+			status: 1 //TODO
 		}, {
 			transform: function(data) {
 				Session.set('currentOrder', data._id);
@@ -77,7 +92,7 @@ Meteor.startup(function() {
 
 	// Deps.autorun(function() {
 	// 	if (Meteor.userId() == "admin") {
-			
+
 	// 	} else {
 	// 		Session.set('isAdmin', false);
 	// 	}

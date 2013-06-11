@@ -1,0 +1,46 @@
+<template name="orderHistory">
+	
+	<div class="list-group-flush">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Size</th>
+					<th>Colour</th>
+					<th>SGD</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+
+
+			<tbody>
+				{{#each history}}
+
+				<tr style="height:40px;">
+					<td style="vertical-align: bottom;">
+						<b>{{formatDate lastUpdate}}</b>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				{{#each items}}
+				{{> historyItem}}
+				{{/each}}
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+	
+</template>
+
+<template name="historyItem">
+	<tr>
+		<td><a href="{{url}}" target="_blank" title="">{{name}}</a></td>
+		<td>{{size}}</td>
+		<td>{{color}}</td>
+		<td>${{SGD}}</td>
+		<td>{{quantity}}</td>
+	</tr>
+</template>

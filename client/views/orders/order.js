@@ -4,6 +4,39 @@ Template.orderList.helpers({
 			user: '122',
 			spree: Session.get('currentSpree')
 		});
+	},
+	sumPrice: function(order) {
+		return _.reduce(order.items, function(memo, item) {
+			return memo + item.price
+		}, 0).toFixed(2);
+	},
+	sumSGD: function(order) {
+		return _.reduce(order.items, function(memo, item) {
+			return memo + item.SGD
+		}, 0).toFixed(2);
+	},
+	getCurrency: function() {
+		return Merchant.findOne(Session.get('currentMerchant')).currency;
+	},
+	getExchangeRate: function(currency) {
+		return Exchange.findOne({
+			currency: currency
+		}).rate;
+	}
+});
+
+Template.orderHistory.helpers({
+	history: function() {
+		return Order.find({
+			//Check order = completed TODO
+			spree: Session.get('currentSpree')
+		}, {
+			limit: 10
+			//TODO Sort order?
+		});
+	},
+	formatDate: function(date) {
+		return date.toLocaleString();
 	}
 });
 
@@ -27,7 +60,7 @@ Template.addOrderItem.events({
 			currency: merc.currency
 		});
 		var sgd = $(event.target).val() * exchange.rate;
-		sgd = (Math.ceil(sgd*10)/10).toFixed(2);
+		sgd = (Math.ceil(sgd * 10) / 10).toFixed(2);
 		$('input[name=sgd]').val(sgd);
 		$('#SGD').text('SGD$' + sgd);
 	},
@@ -59,8 +92,8 @@ Template.addOrderItem.events({
 		if (orderId === undefined) {
 			orderId = Order.insert({
 				spree: Session.get('currentSpree'),
-				user: '122',
-				status: '1stPayment',
+				user: '122', //TODO USER
+				status: 1,
 				items: [orderItem]
 			});
 		} else {

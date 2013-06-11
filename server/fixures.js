@@ -120,8 +120,9 @@ if (Spree.find().count() === 0) {
 
 	Order.insert({
 		spree: id,
-		user: "123",
-		status: 'prepayment',
+		user: "122",
+		status: 1,
+		lastUpdate: new Date(),
 		items: [{
 				_id: Random.id(),
 				name: 'Forever Sexy Unforgettable Demi Top',
@@ -149,7 +150,8 @@ if (Spree.find().count() === 0) {
 	Order.insert({
 		spree: id,
 		user: '122',
-		status: 'payment2',
+		status: 1,
+		lastUpdate: new Date(),
 		items: [{
 				_id: Random.id(),
 				name: 'Forever Sexy Unforgettable Demi Top',
