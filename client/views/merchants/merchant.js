@@ -1,4 +1,15 @@
 Template.merchantList.helpers({
+	allMerchants: function() {
+		return Merchant.find({}, {
+			sort: {
+				open: -1,
+				_id: 1
+			}
+		});
+	}	
+});
+
+Template.merchantListAdmin.helpers({
 	merchantsWithOpenSpree: function() {
 		return Spree.find({
 			'status': 'open'
@@ -36,7 +47,7 @@ Template.merchantList.helpers({
 	}
 });
 
-Template.merchantList.events({
+Template.merchantListAdmin.events({
 	'click a[name=open]': function(event) {
 		Merchant.update(this._id, {
 			$set: {

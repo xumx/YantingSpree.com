@@ -2,7 +2,7 @@
   "meteor": {
     "git": "https://github.com/meteor/meteor.git",
     "branch": "master",
-    "commit": "5d736d4bf0448c7db1f9b47124dfafc34a9631bb"
+    "commit": "9bb2b5447e845c4f483df5e9b42a2c1de5ab909b"
   },
   "dependencies": {
     "basePackages": {
@@ -24,13 +24,13 @@
       },
       "accounts-ui-bootstrap-dropdown": {
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.1.0",
-        "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
+        "tag": "v0.1.3",
+        "commit": "42aa4d95070a2bd2aa200dcfd6c0edc69e3815c3"
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v0.2.3",
-        "commit": "30c848d567643b927d671dca0b856e8873f41ca3"
+        "tag": "v0.2.5",
+        "commit": "739b15b41b6dc4bed2cdbe44f5fb2978b6f4a5d2"
       },
       "accounts-ui-bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",

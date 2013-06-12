@@ -5,6 +5,7 @@
 			{{#each merchantsWithOpenSpree}}
 			<a href="{{merchantPagePath this}}" class="list-group-item">{{this}}</a>
 			{{/each}}
+			<a href="{{merchantListPath}}" class="list-group-item"><small>All Sprees</small></a>
 		</ul>
 	</div>
 
@@ -18,7 +19,12 @@
 			<a class="list-group-item" data-toggle="modal" data-target="#contact">Contact Us</a>
 		</ul>
 	</div>
-
+	
+	<div class="panel">
+		<div class="panel-heading">Bank Accounts</div>
+		POSB Savings <b>228-21866-9</b> <small>preferred</small> <br>
+		UOB TX <b>366-379-359-2</b>
+	</div>
 	{{> exchange}}
 
 	{{> modals}}

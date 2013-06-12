@@ -14,25 +14,27 @@ Meteor.Router.add({
 		to: 'merchantPage',
 		and: function(id) {
 			Session.set('currentMerchant', id);
+			console.log(Session.get('currentMerchant'))
 		}
 	},
+	'/merchants/': 'merchantList',
 	'/*': {
 		to: '404'
 	}
 });
 
 var status = [
-		'Deleted',				//0
-		'Prepayment',			//1
-		'Payment 1 submitted',	//2
-		'Payment 1 Confirmed',	//3
-		'Order Placed',			//4
-		'Shipped from Merchant',//5
-		'Shippment Arrived',	//6
-		'Payment 2 Submitted',	//7
-		'Payment 2 Confirmed',	//8
-		'Shipped to User',		//9
-		'Completed'				//10
+	'Deleted', //0
+	'Prepayment', //1
+	'Payment 1 submitted', //2
+	'Payment 1 Confirmed', //3
+	'Order Placed', //4
+	'Shipped from Merchant', //5
+	'Shippment Arrived', //6
+	'Payment 2 Submitted', //7
+	'Payment 2 Confirmed', //8
+	'Shipped to User', //9
+	'Completed' //10
 ];
 
 //Global Helpers
@@ -64,7 +66,7 @@ Template.sidebar.helpers({
 Meteor.startup(function() {
 	Deps.autorun(function() {
 		//Set Current Spree
-		Spree.findOne({
+		var spree = Spree.findOne({
 			'merchant': Session.get('currentMerchant'),
 			'status': 'open'
 		}, {
