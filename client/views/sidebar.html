@@ -1,31 +1,33 @@
 <template name="sidebar">
-	<div class="panel">
-		<b>Open Sprees</b> 
-		<ul class="list-group list-group-flush">
-			{{#each merchantsWithOpenSpree}}
-			<a href="{{merchantPagePath this}}" class="list-group-item">{{this}}</a>
-			{{/each}}
-			<a href="{{merchantListPath}}" class="list-group-item"><small>All Sprees</small></a>
-		</ul>
-	</div>
 
-	<div class="panel">
-		<ul class="list-group list-group-flush">
-			<a class="list-group-item" data-toggle="modal" data-target="#aboutus">About Us</a>
-			<a class="list-group-item" data-toggle="modal" data-target="#howto">How to Spree</a>
-			<a class="list-group-item" data-toggle="modal" data-target="#faq">FAQ</a>
-			<a class="list-group-item" data-toggle="modal" data-target="#privacy">Privacy Policy</a>
-			<a class="list-group-item" data-toggle="modal" data-target="#terms">Terms & Conditions</a>
-			<a class="list-group-item" data-toggle="modal" data-target="#contact">Contact Us</a>
-		</ul>
-	</div>
-	
-	<div class="panel">
-		<div class="panel-heading">Bank Accounts</div>
-		POSB Savings <b>228-21866-9</b> <small>preferred</small> <br>
-		UOB TX <b>366-379-359-2</b>
-	</div>
-	{{> exchange}}
+	<ul class="nav nav-list">
+		<li class="nav-header">Open Sprees</li>
+		{{#each merchantsWithOpenSpree}}
+		<li><a href="{{merchantPagePath this}}">{{this}}</a></li>
+		{{/each}}
+		<li><a href="{{merchantListPath}}">All Sprees</a></li>
+	</ul>
+
+
+	<ul class="nav nav-list">
+		<li class="nav-header">Information</li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#aboutus">About Us</a></li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#howto">How to Spree</a></li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#faq">FAQ</a></li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#privacy">Privacy Policy</a></li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#terms">Terms & Conditions</a></li>
+		<li><a class="list-group-item" data-toggle="modal" data-target="#contact">Contact Us</a></li>
+
+		<li class="divider"></li>
+		<li class="nav-header">Bank Accounts</li>
+		<li><small>POSB Savings <b>228-21866-9</b></small></li>
+		<li><small>UOB TX <b>366-379-359-2</b></small></li>
+
+
+		<li class="divider"></li>
+		
+		{{> exchange}}
+	</ul>
 
 	{{> modals}}
 </template>

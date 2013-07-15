@@ -1,21 +1,21 @@
 <template name="merchantList">
 	{{#each allMerchants}}
-	<div class="panel">
-		<img src="{{banner}}" alt="">
-		<hr>
-		<a href="{{merchantPagePath this}}">{{_id}}</a>
-		{{speed}}
-		{{shipping}}
-		{{currency}}
-		{{cap}}
-		{{remarks}}
-		#{{counter}}
+	
+	<img src="{{banner}}" alt="">
+	<hr>
+	<a href="{{merchantPagePath this}}">{{_id}}</a>
+	{{speed}}
+	{{shipping}}
+	{{currency}}
+	{{cap}}
+	{{remarks}}
+	#{{counter}}
 
-		{{#if open}}
-		Status: Open
-		{{else}}
-		Status: Closed
-		{{/if}}
-	</div>
+	{{#if open}}
+	Status: Open
+	{{else}}
+	Status: Closed
+	{{/if}}
+	
 	{{/each}}
 </template>

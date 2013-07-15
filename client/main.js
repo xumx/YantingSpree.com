@@ -1,5 +1,5 @@
-Proxino.key = "zLtTh21LnAkdc9JjxFX9DA";
-Proxino.track_errors();
+// Proxino.key = "zLtTh21LnAkdc9JjxFX9DA";
+// Proxino.track_errors();
 
 Meteor.subscribe('all');
 
@@ -9,7 +9,7 @@ Accounts.ui.config({
 
 Meteor.Router.add({
 	'/': 'welcome',
-	'/admin': 'admin',
+	'/admin2': 'admin2',
 	'/merchants/:_id': {
 		to: 'merchantPage',
 		and: function(id) {
@@ -64,10 +64,10 @@ Template.sidebar.helpers({
 })
 
 Template.sidebar.events({
-	'submit #contact-form': function(e) {
+	'click #submit-contact-form': function(e) {
 		e.preventDefault();
 
-		var form = $(event.target).closest('form');
+		var form = $('#contact-form');
 
 		var name = form.find('[name=name]').val();
 		var email = form.find('[name=email]').val();
@@ -121,7 +121,7 @@ Meteor.startup(function() {
 	// 	if (Meteor.userId() == "admin") {
 
 	// 	} else {
-	// 		Session.set('isAdmin', false);
+			// Session.set('isAdmin', true);
 	// 	}
 	// });
 });

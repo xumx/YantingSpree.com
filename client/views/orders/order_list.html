@@ -1,31 +1,30 @@
 <template name="orderList">
 	{{#if myOrder.items}}
-	<div class="list-group-flush">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Size</th>
-					<th>Colour</th>
-					<th>Price</th>
-					<th>SGD</th>
-					<th></th>
-				</tr>
-			</thead>
 
-			<tbody>
-				{{#each myOrder.items}}
-				{{> orderItem}}
-				{{/each}}
-			</tbody>
-		</table>
-	</div>
-	<br>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Colour</th>
+				<th>Price</th>
+				<th>SGD</th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each myOrder.items}}
+			{{> orderItem}}
+			{{/each}}
+		</tbody>
+	</table>
+	
 	<div class="row">
-		<div class="col col-lg-3 col-offset-9" style="text-align:right; ">
+		<div class="span4 offset8" style="text-align:right; ">
 			<b>Total Price:</b> {{sumPrice myOrder}} {{getCurrency}}<br>
-			<b>Exchange Rate:</b> x {{getExchangeRate getCurrency}}
+			<b>Exchange Rate:</b> X {{getExchangeRate getCurrency}}
 			<hr style="margin-top: 2px; margin-bottom: 5px;">
 			<b>Total Payment:</b> {{sumSGD myOrder}} SGD
 			
@@ -36,5 +35,4 @@
 	{{else}}
 	You have not placed any orders in this spree.
 	{{/if}}
-	
 </template>

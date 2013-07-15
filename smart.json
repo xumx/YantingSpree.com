@@ -15,6 +15,7 @@
     "bootstrap-datepicker": {},
     "flash-messages": {},
     "spin": {},
-    "z-mongo-admin": {}
+    "z-mongo-admin": {},
+    "bootstrap-jasny": {}
   }
 }

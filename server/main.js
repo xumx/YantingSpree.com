@@ -8,7 +8,7 @@ Meteor.startup(function() {
 
 Meteor.methods({
 	sendMail: function(from, subject, body) {
-		check([to, from, subject, text], [String]);
+		check([from, subject, body], [String]);
 
 		// Let other method calls from the same client start running,
 		// without waiting for the email sending to complete.

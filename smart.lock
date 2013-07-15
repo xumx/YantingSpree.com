@@ -17,7 +17,8 @@
       "bootstrap-datepicker": {},
       "flash-messages": {},
       "spin": {},
-      "z-mongo-admin": {}
+      "z-mongo-admin": {},
+      "bootstrap-jasny": {}
     },
     "packages": {
       "router": {
@@ -79,6 +80,11 @@
         "git": "https://github.com/gterrono/meteor-admin-ui.git",
         "tag": "v0.1.1",
         "commit": "e43f000cbbab16ed4f67f95e5ca8b100235c07e7"
+      },
+      "bootstrap-jasny": {
+        "git": "https://github.com/limeyd/meteor-bootstrap-jasny.git",
+        "tag": "v1.1.0",
+        "commit": "8ef08074dbfb60c462432c50957604cbef3e976d"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

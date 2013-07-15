@@ -4,16 +4,14 @@
 <body>
 	{{> navbar}}
 	
-	<div class="container">
+	<div class="container-fluid">
 		{{> meteorMessages}}
-		<div class="row">
-			<div id="sidebar" class="col col-lg-3">
+		<div class="row-fluid">
+			<div id="sidebar" class="span3">
 				{{> sidebar}}
 			</div>
-			<div class="col col-lg-9">
-				<div class="container">
-					{{renderPage}}  
-				</div>
+			<div class="span9">
+				{{renderPage}}  
 			</div>
 		</div>
 	</div>

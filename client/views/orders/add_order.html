@@ -1,71 +1,65 @@
 <template name="addOrderItem">
 	<form class="form-horizontal">
 
-		<legend class="text-center">Add an item:</legend>
+		<legend>Add an item:</legend>
 
-		<div class="row">
-			<label for="" class="col col-lg-3 control-label">Item URL</label>
-			<div class="col col-lg-8">
-				<input type="url" name="url" required placeholder="http://...">
+		<div class="control-group">
+			<label class="control-label">Item URL</label>
+			<div class="controls">
+				<input class="span6" type="url" name="url" required placeholder="http://...">
+			</div>
+			<label class="control-label">Item Name</label>
+			<div class="controls">
+				<input class="span6" type="text" name="name" required placeholder="Item Name">
 			</div>
 		</div>
-		<div class="row">
-			<label for="inputItemName" class="col col-lg-3 control-label">Item Name</label>
-			<div class="col col-lg-8">
-				<input type="text" name="name" required placeholder="Item Name">
+		
+		<div class="control-group">
+			<label class="control-label">Item Code</label>
+			<div class="controls">
+				<input class="span6" type="text" name="code" placeholder="Item Code">
 			</div>
-		</div>
-		<div class="row">
-			<label for="inputItemName" class="col col-lg-3 control-label hidden-sm">Item Details</label>
-			<div class="col col-lg-8 form-inline">
-				<div class="row">
-				<label class="visible-sm col">Item Code</label>
-					<div class="col col-lg-4">
-						<input type="text" name="code" placeholder="Item Code">
-					</div>
-					<label class="visible-sm col">Color</label>
-					<div class="col col-lg-4">
-						<input type="text" name="color" placeholder="Color">
-					</div>
-					<label class="visible-sm col">Size</label>
-					<div class="col col-lg-4">
-						<input type="text" name="size" placeholder="Size">
-					</div>
-				</div>
+			<label class="control-label">Color</label>
+			<div class="controls">
+				<input class="span6" type="text" name="color" placeholder="Color">
+			</div>
+			<label class="control-label">Size</label>
+			<div class="controls">
+				<input class="span6" type="text" name="size" placeholder="Size">
 			</div>
 		</div>
 
-		<div class="row">
-			<label for="inputSize" class="col col-lg-3 control-label">Unit Price</label>
-			<div class="col col-lg-4 col-sm-7">
-				<div class="input-group">
-					<span class="input-group-addon">$</span>
+		<div class="control-group">
+			<label class="control-label">Unit Price</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on">$</span>
 					<input type="number" name="price" step="any" min="0" required placeholder="23.00">
 				</div>
-				<p class="help-block" id="SGD">Price in Foreign Currency</p>
 				<input type="hidden" name="sgd" value="0.00">
 			</div>
-			<label class="visible-sm col">Quantity</label>
-			<div class="col col-lg-4 col-sm-7">
-				<input type="number" name="quantity" min="1" max="15" value="1">
-				<p class="help-block hidden-sm">Quantity</p>
+		</div>	
+		<div class="control-group">
+			<label class="control-label">Quantity</label>
+			<div class="controls">
+				<input class="span6" type="number" name="quantity" min="1" max="15" value="1">
 			</div>
-		</div>		
-		
-		<div class="row">
-			<label for="inputSize" class="col col-lg-3 control-label">Alternatives</label>
-			<div class="col col-lg-8">
-				<textarea rows="3" name="alternatives"></textarea>
+		</div>	
+
+		<div class="control-group">
+			<label class="control-label">Alternatives</label>
+			<div class="controls">
+				<textarea rows="3" name="alternatives" class="span6"></textarea>
 			</div>
 		</div>
-		<div class="row">
-			<label for="inputSize" class="col col-lg-3 control-label">Remarks</label>
-			<div class="col col-lg-8">
-				<textarea rows="3" name="remarks"></textarea>
+		<div class="control-group">
+			<label class="control-label">Remarks</label>
+			<div class="controls">
+				<textarea rows="3" name="remarks" class="span6"></textarea>
 			</div>
-			
-			<div class="col col-lg-4 col-offset-7" style="margin-top:5px">
-				<button type="submit" class="btn btn-info btn-block">Add Item</button>
+
+			<div class="controls col-offset-7" style="margin-top:5px">
+				<button type="submit" class="btn">Add Item</button>
 			</div>
 		</div>
 	</form>

@@ -1,23 +1,25 @@
 <template name="navbar">
-	<div class="navbar navbar-fixed-top">
-		<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+	<div class="navbar navbar-static-top navbar-inverse">
+		<div class="navbar-inner">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
 
-		<a class="navbar-brand" href="/">yantingspree</a>
+			<a class="brand" href="/">yantingspree</a>
 
-		<div class="nav-collapse collapse navbar-responsive-collapse">
-			<ul class="nav navbar-nav">
-				{{#if loggedIn}}
-				<li><a href="{{userPagePath}}" title="">My Orders</a></li>
-				{{/if}}
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					{{#if loggedIn}}
+					<li><a href="{{userPagePath}}">My Orders</a></li>
+					{{/if}}
 
-				<li><a href="/admin" title="">Admin Panel</a></li>
-			</ul>
-			{{loginButtons}}
+					<li><a href="/admin">Admin Panel</a></li>
+					<li><a href="/admin2">Admin Custom</a></li>
+				</ul>
+				{{loginButtons}}
+			</div>
 		</div>
 	</div>
 </template>
