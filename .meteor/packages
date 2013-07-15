@@ -16,4 +16,4 @@ accounts-admin-ui
 accounts-ui-bootstrap-dropdown
 bootstrap
 flash-messages
-z-mongo-admin
+bootboxjs
