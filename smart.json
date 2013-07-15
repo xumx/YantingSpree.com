@@ -12,6 +12,9 @@
     "accounts-admin-ui": {},
     "proxino": {},
     "cron": {},
-    "bootstrap-datepicker": {}
+    "bootstrap-datepicker": {},
+    "flash-messages": {},
+    "spin": {},
+    "z-mongo-admin": {}
   }
 }

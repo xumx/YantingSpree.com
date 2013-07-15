@@ -6,6 +6,24 @@ Meteor.startup(function() {
 	});
 });
 
+Meteor.methods({
+	sendMail: function(from, subject, body) {
+		check([to, from, subject, text], [String]);
+
+		// Let other method calls from the same client start running,
+		// without waiting for the email sending to complete.
+		this.unblock();
+
+		Email.send({
+			from: from,
+			to: 'deepthought@gmail.com',
+			cc: 'ffortunata.2011@sis.smu.edu.sg',
+			// to: 'yanting_spree@hotmail.com',
+			subject: 'Email from YantingSpree.com',
+			html: body
+		}, callback);
+	}
+});
 
 new Meteor.Cron({
 	events: {

@@ -63,6 +63,31 @@ Template.sidebar.helpers({
 	}
 })
 
+Template.sidebar.events({
+	'submit #contact-form': function(e) {
+		e.preventDefault();
+
+		var form = $(event.target).closest('form');
+
+		var name = form.find('[name=name]').val();
+		var email = form.find('[name=email]').val();
+		var body = form.find('[name=body]').val();
+
+		console.log('Sending Email..');
+
+		var r = Meteor.call('sendMail', email, 'Dummy Subject', body);
+
+		$('#contact').modal('hide');
+		form[0].reset();
+
+		Meteor.Messages.sendSuccess('Thank you for contacting us! We will respond shortly');
+
+		setTimeout(function() {
+			Meteor.Messages.clear();
+		}, 5000);
+	}
+})
+
 Meteor.startup(function() {
 	Deps.autorun(function() {
 		//Set Current Spree
