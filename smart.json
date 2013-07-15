@@ -16,6 +16,7 @@
     "flash-messages": {},
     "spin": {},
     "z-mongo-admin": {},
-    "bootstrap-jasny": {}
+    "bootstrap-jasny": {},
+    "bootboxjs": {}
   }
 }

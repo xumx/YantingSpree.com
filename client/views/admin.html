@@ -1,8 +1,9 @@
 <template name="admin2">
 	<h1>Admin Panel</h1>
-	
+	{{#if isInRole 'admin'}}
 	{{> merchantListAdmin}}
 	{{> addMerchant}}
+	{{/if}}
 </template>
 
 <template name="404">

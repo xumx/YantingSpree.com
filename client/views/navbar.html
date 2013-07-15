@@ -11,12 +11,15 @@
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					{{#if loggedIn}}
+					{{#if isInRole 'user'}}
 					<li><a href="{{userPagePath}}">My Orders</a></li>
 					{{/if}}
 
-					<li><a href="/admin">Admin Panel</a></li>
+					<!-- <li><a href="/admin">Admin Panel</a></li> -->
+
+					{{#if isInRole 'admin'}}
 					<li><a href="/admin2">Admin Custom</a></li>
+					{{/if}}
 				</ul>
 				{{loginButtons}}
 			</div>

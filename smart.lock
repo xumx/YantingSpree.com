@@ -18,7 +18,8 @@
       "flash-messages": {},
       "spin": {},
       "z-mongo-admin": {},
-      "bootstrap-jasny": {}
+      "bootstrap-jasny": {},
+      "bootboxjs": {}
     },
     "packages": {
       "router": {
@@ -85,6 +86,11 @@
         "git": "https://github.com/limeyd/meteor-bootstrap-jasny.git",
         "tag": "v1.1.0",
         "commit": "8ef08074dbfb60c462432c50957604cbef3e976d"
+      },
+      "bootboxjs": {
+        "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
+        "tag": "v3.2.0",
+        "commit": "6088b5b6ec13304457394cd358cbdc5f3def1a1c"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

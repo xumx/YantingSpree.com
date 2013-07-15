@@ -1,15 +1,46 @@
 console.time('loadData');
 
-if (Meteor.users.find({username:"admin"}).count === 0) {
-	Accounts.createUser({
-		username: "admin",
-		password: "admin",
-		email: "",
-		profile: {
-			name: "Max Xu"
+var normalUser;
+
+if (Meteor.users.find().count() === 0) {
+	var users = [{
+		name: "Normal User",
+		email: "normal@example.com",
+		roles: ['user']
+	}, {
+		name: "View-Secrets User",
+		email: "view@example.com",
+		roles: ['view-secrets']
+	}, {
+		name: "Manage-Users User",
+		email: "manage@example.com",
+		roles: ['manage-users']
+	}, {
+		name: "Admin User",
+		email: "admin@example.com",
+		roles: ['admin']
+	}];
+
+	_.each(users, function(user) {
+		var id;
+
+		id = Accounts.createUser({
+			email: user.email,
+			password: "apple1",
+			profile: {
+				name: user.name
+			}
+		});
+
+		if(user.name == "Normal User") {
+			normalUser = id;
 		}
-	}, function (msg) {
-		console.log(msg)
+
+		console.log("Create ", id);
+
+		if (user.roles.length > 0) {
+			Roles.addUsersToRoles(id, user.roles);
+		}
 	});
 }
 
@@ -120,7 +151,7 @@ if (Spree.find().count() === 0) {
 
 	Order.insert({
 		spree: id,
-		user: "122",
+		user: normalUser,
 		status: 1,
 		lastUpdate: new Date(),
 		items: [{
@@ -143,35 +174,6 @@ if (Spree.find().count() === 0) {
 				quantity: 1,
 				price: 14,
 				SGD: 50
-			}
-		]
-	});
-
-	Order.insert({
-		spree: id,
-		user: '122',
-		status: 1,
-		lastUpdate: new Date(),
-		items: [{
-				_id: Random.id(),
-				name: 'Forever Sexy Unforgettable Demi Top',
-				url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-				code: '',
-				size: '38C',
-				color: 'Coral Pink',
-				quantity: 1,
-				price: 24,
-				SGD: 12
-			}, {
-				_id: Random.id(),
-				name: 'Forever Top',
-				url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-				code: '',
-				size: '32',
-				color: 'Coral Blue',
-				quantity: 1,
-				price: 14,
-				SGD: 12
 			}
 		]
 	});

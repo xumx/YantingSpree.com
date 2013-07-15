@@ -1,9 +1,15 @@
 Meteor.startup(function() {
+	// createUserAdminRoles();
 	Meteor.publish('all', function() {
 		return [Exchange.find(), Spree.find(), Merchant.find(), Order.find({
-			user: '122'
+			user: this.userId
 		})];
 	});
+
+	// Meteor.publish("userData", function () {
+	// 	return Meteor.users.find({_id: this.userId},
+	// 		{fields: {'other': 1, 'things': 1}});
+	// });
 });
 
 Meteor.methods({

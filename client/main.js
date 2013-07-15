@@ -3,13 +3,12 @@
 
 Meteor.subscribe('all');
 
-Accounts.ui.config({
-	passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
-});
-
 Meteor.Router.add({
 	'/': 'welcome',
-	'/admin2': 'admin2',
+	'/admin2': { to: 'admin2', before: function () {
+		if(!Roles.userIsInRole(Meteor.user(), ['admin']))
+			this.redirect("/");
+	} },
 	'/merchants/:_id': {
 		to: 'merchantPage',
 		and: function(id) {
@@ -35,7 +34,7 @@ var status = [
 	'Payment 2 Confirmed', //8
 	'Shipped to User', //9
 	'Completed' //10
-];
+	];
 
 //Global Helpers
 // Handlebars.registerHelper('merchants', function() {
@@ -106,7 +105,7 @@ Meteor.startup(function() {
 		//Set Current Order
 		Order.findOne({
 			spree: Session.get('currentSpree'),
-			user: '122', //TODO
+			user: Meteor.userId(),
 			status: 1 //TODO
 		}, {
 			transform: function(data) {
@@ -115,13 +114,4 @@ Meteor.startup(function() {
 			}
 		})
 	});
-
-
-	// Deps.autorun(function() {
-	// 	if (Meteor.userId() == "admin") {
-
-	// 	} else {
-			// Session.set('isAdmin', true);
-	// 	}
-	// });
 });
