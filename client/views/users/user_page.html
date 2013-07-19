@@ -1,3 +1,156 @@
-<template name="userPage">
+<template name="userCart">
+	{{#each orders}}
+
+	<div class="well">
+		{{#getSpree spree}}
+		Spree: {{merchant}} <br>
+		Run: #{{counter}} <br>
+		End Date: {{dateFormat endDate}}
+		{{/getSpree}}
+		<br>
+		Current Status: {{getStatus}}
+		<br>
+	</div>
+
+	{{#if stageOne status}}
+
+	Requires Payment: S${{sumSGD}}
+	<div>
+		<input type="text" name="payment-one-amount" placeholder="$25">
+		<input type="text" name="payment-one-transaction-number" placeholder="transaction number">
+		<a class="btn btn-primary" style="margin-bottom: 10px;" id="make-payment-one">Make Payment</a>
+	</div>
+	{{/if}}
+
+
+	<table class="table table-striped table-bordered table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Quantity</th>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Colour</th>
+				<th>SGD</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			{{#each items}}
+			<tr>
+				<td>{{quantity}}x</td>
+				<td><a href="{{url}}" target="_blank" title="">{{name}}</a></td>
+				<td>{{size}}</td>
+				<td>{{color}}</td>
+				<td>${{SGD}}</td>
+				<td><button type="button" class="close">&times;</button></td>
+			</tr>
+
+			{{/each}}
+		</tbody>
+	</table>
+	<div><small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:MM"}}</small></div>
+	
+	{{else}}
+	
+	<h4>You have not placed any orders. <a data-toggle="modal" data-target="#howto">start shopping now!</a>
+	</h4>
+
+	{{/each}}
+</template>
+
+
+
+
+<template name="userProfile">
+	<form class="form-horizontal offset1 span8">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Edit Profile</legend>
+
+			<!-- Profile Picture
+ 			<div>
+				<img src="" class="img-polaroid">
+			</div> -->
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="profilename">Name</label>
+				<div class="controls">
+					<input id="profilename" name="profilename" type="text" placeholder="648921" class="input-block-level" required value="{{currentUser.profile.name}}">
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="postalcode">Postal Code</label>
+				<div class="controls">
+					<input id="postalcode" name="postalcode" type="text" placeholder="648921" class="input-block-level" required value="{{currentUser.profile.postalcode}}">
+					<input name="street" type="hidden">
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="unitnumber">Unit Number</label>
+				<div class="controls">
+					<input id="unitnumber" name="unitnumber" type="text" placeholder="#03-12" class="input-block-level" value="{{currentUser.profile.unitnumber}}">
+				</div>
+			</div>
+
+			<!-- Textarea -->
+			<div class="control-group">
+				<label class="control-label" for="address">Full Shipping Address</label>
+				<div class="controls">                     
+					<textarea rows="4" id="address" name="address" class="input-block-level" required>{{currentUser.profile.address}}</textarea>
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="phone">Phone Number</label>
+				<div class="controls">
+					<input id="phone" name="phone" type="tel" autocomplete="on" placeholder="8288 8398" class="input-block-level" required="" value="{{currentUser.profile.phone}}">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="email">Email Address</label>
+				<div class="controls">
+					<input id="email" name="profile-email" type="text" placeholder="jane@gmail.com" class="input-block-level" required="" value="{{currentUser.profile.email}}">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="bank">Bank Account</label>
+				<div class="controls">
+					<input id="bank" name="bank" type="text" placeholder="optional" class="input-block-level" value="{{currentUser.profile.bank}}">
+				</div>
+			</div>
+
+			<!-- Select Basic -->
+		<!-- 	<div class="control-group">
+				<label class="control-label" for="preferred">Preferred</label>
+				<div class="controls">
+					<select id="preferred" name="preferred" class="input-block-level">
+						<option>Option one</option>
+						<option>Option two</option>
+					</select>
+				</div>
+			</div> -->
+
+			<!-- Button -->
+			<div class="control-group">
+				<label class="control-label" for="singlebutton"></label>
+				<div class="controls">
+					<button name="singlebutton" class="btn btn-default offset6 span6">Save</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
 
 </template>

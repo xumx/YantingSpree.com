@@ -62,9 +62,9 @@ Template.merchantListAdmin.events({
 				counter: -1
 			},
 			transform: function(data) {
-				return data.counter ? data.counter + 1 : 1;
+				return data.counter + 1;
 			}
-		});
+		}) || 1;
 
 		Spree.insert({
 			merchant: this._id,
@@ -80,7 +80,7 @@ Template.merchantListAdmin.events({
 				var top = ele.position().top - 70;
 				$(window).scrollTop(top);
 			}
-		})($(event.target).closest('.panel')), 50);
+		})($(event.target).closest('.well')), 50);
 
 	},
 	'click a[name=close]': function(event) {

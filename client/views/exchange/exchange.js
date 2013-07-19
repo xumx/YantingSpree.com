@@ -1,9 +1,6 @@
 Template.exchange.helpers({
 	rates: function() {
 		return Exchange.find({},{sort:{_id:1}});
-	},
-	isAdmin: function() {
-		return Session.get('isAdmin');
 	}
 });
 

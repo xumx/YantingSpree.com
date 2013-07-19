@@ -1,22 +1,7 @@
 {
-  "meteor": {
-    "git": "https://github.com/meteor/meteor.git",
-    "branch": "master"
-  },
   "packages": {
-    "router": {},
-    "accounts-ui-bootstrap-dropdown": {},
-    "bootstrap-3": {},
-    "accounts-ui-bootstrap-3": {},
-    "roles": {},
-    "accounts-admin-ui": {},
-    "proxino": {},
-    "cron": {},
-    "bootstrap-datepicker": {},
-    "flash-messages": {},
-    "spin": {},
     "z-mongo-admin": {},
-    "bootstrap-jasny": {},
-    "bootboxjs": {}
+    "event-hooks": {},
+    "momentjs": {}
   }
 }

@@ -1,29 +1,29 @@
 <template name="exchange">
 
-    <!-- <div class="panel-heading">Exchange Rates</div> -->
-    <li class="nav-header">Exchange Rates</li>
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>Currency</th>
-          <th>Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each rates}}
-        <tr>
-          <td>{{currency}}</td>
+  <!-- <div class="panel-heading">Exchange Rates</div> -->
+  <li class="nav-header">Exchange Rates</li>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rates}}
+      <tr>
+        <td>{{currency}}</td>
 
-          {{#if isAdmin}}
-          <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0" required></td>
-          {{else}}
-          <td>{{rate}}</td>
-          {{/if}}
-        </tr>
-        {{/each}}
-      </tbody>
-      <span class="muted">All rates are fixed</span>
-    </table>
-    
+        {{#if isInRole 'admin'}}
+        <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0" required></td>
+        {{else}}
+        <td>{{rate}}</td>
+        {{/if}}
+      </tr>
+      {{/each}}
+    </tbody>
+    <span class="muted">All rates are fixed</span>
+  </table>
+  
   <!-- </div> -->
 </template>

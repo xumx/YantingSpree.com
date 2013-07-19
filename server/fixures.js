@@ -4,20 +4,10 @@ var normalUser;
 
 if (Meteor.users.find().count() === 0) {
 	var users = [{
-		name: "Normal User",
-		email: "normal@example.com",
-		roles: ['user']
+		username: "user",
+		roles: []
 	}, {
-		name: "View-Secrets User",
-		email: "view@example.com",
-		roles: ['view-secrets']
-	}, {
-		name: "Manage-Users User",
-		email: "manage@example.com",
-		roles: ['manage-users']
-	}, {
-		name: "Admin User",
-		email: "admin@example.com",
+		username: "admin",
 		roles: ['admin']
 	}];
 
@@ -25,14 +15,14 @@ if (Meteor.users.find().count() === 0) {
 		var id;
 
 		id = Accounts.createUser({
-			email: user.email,
+			username: user.username,
 			password: "apple1",
 			profile: {
-				name: user.name
+				name: user.username
 			}
 		});
 
-		if(user.name == "Normal User") {
+		if (user.username == "user") {
 			normalUser = id;
 		}
 
@@ -155,27 +145,26 @@ if (Spree.find().count() === 0) {
 		status: 1,
 		lastUpdate: new Date(),
 		items: [{
-				_id: Random.id(),
-				name: 'Forever Sexy Unforgettable Demi Top',
-				url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-				code: '',
-				size: '38C',
-				color: 'Coral Pink',
-				quantity: 1,
-				price: 24.20,
-				SGD: 40
-			}, {
-				_id: Random.id(),
-				name: 'Forever Top',
-				url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-				code: '',
-				size: '32a',
-				color: 'Coral Blue',
-				quantity: 1,
-				price: 14,
-				SGD: 50
-			}
-		]
+			_id: Random.id(),
+			name: 'Forever Sexy Unforgettable Demi Top',
+			url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
+			code: '',
+			size: '38C',
+			color: 'Coral Pink',
+			quantity: 1,
+			price: 24.20,
+			SGD: 40
+		}, {
+			_id: Random.id(),
+			name: 'Forever Top',
+			url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
+			code: '',
+			size: '32a',
+			color: 'Coral Blue',
+			quantity: 1,
+			price: 14,
+			SGD: 50
+		}]
 	});
 }
 

@@ -30,16 +30,14 @@
 		</dl>
 	</div>
 	
-	<!-- <div class="panel"> -->
-		<!-- <div class="panel-heading">My Shopping Cart</div> -->
-		<legend>Shopping Cart</legend>
-		{{> orderList}}
-		{{> addOrderItem}}
-	<!-- </div> -->
 
-	<!-- <div class="panel"> -->
-		<!-- <div class="panel-heading">What others are ordering</div> -->
-		<legend>What others are ordering</legend>
-		{{> orderHistory}}
-	<!-- </div> -->
+	{{#if merchant.open}}
+	<legend>Shopping Cart</legend>
+	{{> orderList}}
+	{{> addOrderItem}}
+	{{/if}}
+
+	
+	<legend>What others are ordering</legend>
+	{{> orderHistory}}
 </template>

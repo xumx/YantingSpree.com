@@ -1,10 +1,23 @@
 Meteor.startup(function() {
 	// createUserAdminRoles();
 	Meteor.publish('all', function() {
-		return [Exchange.find(), Spree.find(), Merchant.find(), Order.find({
-			user: this.userId
-		})];
+
+		if (Roles.userIsInRole(this.userId, ['admin'])) {
+
+			return [Exchange.find(), Spree.find(), Merchant.find(), Order.find(), Payment.find()]
+
+		} else {
+
+			return [Exchange.find(), Spree.find(), Merchant.find(), Order.find({
+				user: this.userId
+			}), Payment.find({
+				user: this.userId
+			})];
+			return;
+
+		}
 	});
+
 
 	// Meteor.publish("userData", function () {
 	// 	return Meteor.users.find({_id: this.userId},
@@ -28,6 +41,17 @@ Meteor.methods({
 			subject: 'Email from YantingSpree.com',
 			html: body
 		}, callback);
+	},
+	resolvePostalCode: function(postalcode) {
+		var code = _.find(POSTALCODE, function(row) {
+			return (row[0] == parseInt(postalcode));
+		});
+
+		if (code) {
+			return code[1];
+		} else {
+			return '';
+		}
 	}
 });
 
@@ -38,4 +62,4 @@ new Meteor.Cron({
 			// Spree.find({status:"open"}).fetch();
 		}
 	}
-})
+});

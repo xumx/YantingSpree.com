@@ -1,6 +1,10 @@
 <template name="admin2">
 	<h1>Admin Panel</h1>
 	{{#if isInRole 'admin'}}
+	
+	
+	{{> verifyPayment}}
+
 	{{> merchantListAdmin}}
 	{{> addMerchant}}
 	{{/if}}
@@ -8,4 +12,25 @@
 
 <template name="404">
 	<h1>Page not found</h1>
+</template>
+
+<template name="verifyPayment">
+	<legend>Payment Verification</legend>
+	<table class="table table-striped table-bordered table-hover table-condensed">
+		<thead>
+			
+			<th>Transaction Number</th><th>Amount in SGD</th><th></th><th></th>
+			
+		</thead>
+		<tbody>
+			{{#each payments}}
+			<tr>
+				<td>{{transaction}}</td>
+				<td>{{amount}}</td>
+				<td><a class="btn btn-success btn-small btn-block" name="verify-payment">Verify</a></td>
+				<td><a class="btn btn-danger btn-small btn-block" name="reject-payment">Reject</a></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
 </template>
