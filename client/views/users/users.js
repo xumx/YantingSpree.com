@@ -11,12 +11,15 @@ Template.userCart.helpers({
 	getSpree: function(_id, options) {
 		return options.fn(Spree.findOne(_id));
 	},
-	stageOne: function(status) {
-		return (status === 1);
+	stage: function(s) {
+		return (this.status === s);
 	},
 	sumSGD: function() {
 		if (this.items) {
 			return _.reduce(this.items, function(memo, item) {
+				if (typeof item.SGD != 'number') {
+					return 0;
+				}
 				return memo + item.SGD
 			}, 0).toFixed(2);
 		}
@@ -24,52 +27,39 @@ Template.userCart.helpers({
 });
 
 Template.userCart.events({
-	'click button.close': function(e) {
+	'click a.delete-item': function(e) {
 		//Delete
 		e.preventDefault();
 
-		var orderId = Order.findOne({
+		var order = Order.findOne({
 			'items._id': this._id
-		})._id;
-
-		Order.update(orderId, {
-			$pull: {
-				items: {
-					'_id': this._id
-				}
-			}
 		});
 
-		//If item list is empty, delete order
-		if (Order.findOne(orderId).items.length === 0) {
-			Order.remove(orderId);
-			Session.set('currentOrder', undefined);
-		} else {
+		if (order.status === 1) {
+			var orderId = order._id;
+
 			Order.update(orderId, {
-				$set: {
-					lastUpdate: new Date()
+				$pull: {
+					items: {
+						'_id': this._id
+					}
 				}
 			});
-		}
-	},
-	'click #make-payment-one': function() {
-		var payment = {
-			amount: $('input[name="payment-one-amount"]').val(),
-			transaction: $('input[name="payment-one-transaction-number"]').val(),
-			verified: false,
-			user: Meteor.userId(),
-			order: this._id
-		}
 
-		console.log(payment);
-
-		Payment.insert(payment);
-
-		Order.update(this._id, {
-			$set: {
-				status: 2
+			//If item list is empty, delete order
+			if (Order.findOne(orderId).items.length === 0) {
+				Order.remove(orderId);
+				Session.set('currentOrder', undefined);
+			} else {
+				Order.update(orderId, {
+					$set: {
+						lastUpdate: new Date()
+					}
+				});
 			}
-		});
+		} else {
+			Meteor.Messages.sendError("This order is currently in progress. You cannot delete any item at this stage. For assistance, please email info@yantingspree.com")
+		}
 	}
 });
 

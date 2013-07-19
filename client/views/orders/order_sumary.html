@@ -1,0 +1,27 @@
+<template name="orderSummary">
+	<div style="text-align:right; ">
+		<b>Total Price:</b> {{sumPrice}} {{getCurrency}}<br>
+		<b>Exchange Rate:</b> X {{getExchangeRate getCurrency}}
+		<hr style="margin-top: 2px; margin-bottom: 5px;">
+		<b>Total Payment:</b> {{sumSGD}} SGD
+
+		<br><br>
+
+		{{#if stage 1}}
+		<a class="btn btn-info btn-block" id="checkout">Checkout</a>
+
+		<div id="payment-form" style="text-align:left;" class="hide">
+			<p>
+				Make your transfers to either <br>
+				<span>POSB Savings <em>228-21866-9</em> (prefered)</span> or <br>
+				<span>UOB TX <em>366-379-359-2</em> </span> <br>
+
+				Enter the transaction number below for verification
+			</p>
+			<input type="text" class="input-block-level" name="payment-amount" placeholder="$25">
+			<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="transaction number">
+			<a class="btn btn-primary btn-block" style="margin-bottom: 10px;" id="make-payment">Verify Payment</a>
+		</div>
+		{{/if}}
+	</div>
+</template>

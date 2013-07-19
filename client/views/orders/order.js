@@ -4,31 +4,64 @@ Template.orderList.helpers({
 			user: Meteor.userId(),
 			spree: Session.get('currentSpree')
 		});
+	}
+});
+
+Template.orderSummary.helpers({
+	stage: function (s) {
+		return (this.status == s);
 	},
-	sumPrice: function(order) {
-		if (order.items) {
-			return _.reduce(order.items, function(memo, item) {
+	sumPrice: function() {
+		if (this.items) {
+			return _.reduce(this.items, function(memo, item) {
 				return memo + item.price
 			}, 0).toFixed(2);
 		}
 	},
-	sumSGD: function(order) {
-		if (order.items) {
-			return _.reduce(order.items, function(memo, item) {
+	sumSGD: function() {
+		if (this.items) {
+			return _.reduce(this.items, function(memo, item) {
 				console.log(item.SGD)
 				return memo + item.SGD
 			}, 0).toFixed(2);
 		}
 	},
 	getCurrency: function() {
-		return Merchant.findOne(Session.get('currentMerchant')).currency;
+		return Merchant.findOne(Spree.findOne(this.spree).merchant).currency;
 	},
 	getExchangeRate: function(currency) {
 		return Exchange.findOne({
 			currency: currency
 		}).rate;
 	}
-});
+})
+
+Template.orderSummary.events({
+	'click #checkout': function() {
+		$('#payment-form').toggleClass('hide animated bounceInDown');
+	},
+	'click #make-payment': function() {
+		var payment = {
+			amount: $('input[name="payment-amount"]').val(),
+			transaction: $('input[name="payment-transaction-number"]').val(),
+			verified: false,
+			user: Meteor.userId(),
+			order: this._id
+		}
+
+		console.log(payment);
+
+		Payment.insert(payment);
+
+		Order.update(this._id, {
+			$inc: {
+				status: 1
+			}
+		});
+
+		Meteor.Messages.sendSuccess('Payment has been submitted for verification.');
+	}
+})
 
 Template.orderHistory.helpers({
 	history: function() {
@@ -42,9 +75,6 @@ Template.orderHistory.helpers({
 			]
 			//TODO Sort order?
 		});
-	},
-	formatDate: function(date) {
-		return date.toLocaleString();
 	}
 });
 

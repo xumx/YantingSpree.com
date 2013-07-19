@@ -5,6 +5,8 @@
 	
 	{{> verifyPayment}}
 
+	{{> orderManagement}}
+
 	{{> merchantListAdmin}}
 	{{> addMerchant}}
 	{{/if}}
@@ -18,18 +20,62 @@
 	<legend>Payment Verification</legend>
 	<table class="table table-striped table-bordered table-hover table-condensed">
 		<thead>
-			
-			<th>Transaction Number</th><th>Amount in SGD</th><th></th><th></th>
-			
+			<tr>
+			<th class="span2">ID</th>
+			<th>Transaction Number</th><th>Amount in SGD</th><th>Action</th>
+			</tr>
 		</thead>
 		<tbody>
 			{{#each payments}}
 			<tr>
+				<td>{{_id}}</td>
 				<td>{{transaction}}</td>
-				<td>{{amount}}</td>
-				<td><a class="btn btn-success btn-small btn-block" name="verify-payment">Verify</a></td>
-				<td><a class="btn btn-danger btn-small btn-block" name="reject-payment">Reject</a></td>
+				<td>${{amount}}</td>
+				<td><a class="btn btn-success btn-small" name="verify-payment">Verify</a>
+				<a class="btn btn-danger btn-small" name="reject-payment">Reject</a></td>
 			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="orderManagement">
+	<legend>Orders Management</legend>
+	<table class="order-admin-table">
+		<thead>
+			<tr>
+				<th class="span2">ID</th>
+				<th>Spree</th>
+				<th>User</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each orders}}
+			<tr>
+				<td>{{_id}}</td>
+				<td>{{spreeName spree}}</td>
+				<td><a href="mailto:{{userEmail user}}" target="_blank">{{userName user}}</a></td>
+				<td>{{statusName status}}</td>
+				<td>
+					<a class="status-dec btn btn-small"><i class="icon-backward"></i></a>
+					<a class="status-inc btn btn-small"><i class="icon-forward"></i></a>
+
+					<a target="_blank" class="email-update btn btn-small"><i class="icon-envelope"></i></a>
+				</td>
+			</tr>
+
+			<!-- 
+			{{#each items}}
+			<tr>
+				<td>{{quantity}}</td>
+				<td><a href="{{url}}" target="_blank" title="">{{name}}</a></td>
+				<td>{{size}}</td>
+				<td>{{color}}</td>
+			</tr>
+			{{/each}} -->
+			
 			{{/each}}
 		</tbody>
 	</table>

@@ -6,7 +6,7 @@ Template.merchantList.helpers({
 				_id: 1
 			}
 		});
-	}	
+	}
 });
 
 Template.merchantListAdmin.helpers({
@@ -102,14 +102,6 @@ Template.merchantListAdmin.events({
 				}
 			});
 		}
-
-		setTimeout((function(ele) {
-			return function() {
-				console.log(ele.position().top);
-				var top = ele.position().top - 70;
-				$(window).scrollTop(top);
-			}
-		})($(event.target).closest('.panel')), 50)
 	},
 	'click a[name=update]': function(event) {
 		var id = this._id;
@@ -130,6 +122,25 @@ Template.merchantListAdmin.events({
 	},
 	'click a[name=delete]': function(event) {
 		if (confirm("Confirm Delete Merchant")) {
+			Merchant.update(this._id, {
+				$set: {
+					open: false
+				}
+			});
+
+			var spree = Spree.findOne({
+				'merchant': this._id,
+				'status': 'open'
+			});
+
+			if (spree) {
+				Spree.update(spree._id, {
+					$set: {
+						status: 'close'
+					}
+				});
+			}
+
 			Merchant.remove(this._id);
 		}
 	}
@@ -148,7 +159,7 @@ Template.merchantPage.helpers({
 	formatDate: function(date) {
 		if (date) {
 			monthNames = ["January", "February", "March", "April", "May", "June",
-					"July", "August", "September", "October", "November", "December"
+				"July", "August", "September", "October", "November", "December"
 			]
 			return date.getDate() + ' ' + monthNames[date.getMonth()] + ' ' + date.getFullYear();
 		} else {

@@ -17,30 +17,21 @@ Meteor.startup(function() {
 
 		}
 	});
-
-
-	// Meteor.publish("userData", function () {
-	// 	return Meteor.users.find({_id: this.userId},
-	// 		{fields: {'other': 1, 'things': 1}});
-	// });
 });
 
 Meteor.methods({
-	sendMail: function(from, subject, body) {
-		check([from, subject, body], [String]);
+	sendMail: function(to, subject, body, from) {
+		from = from || 'service@yantingspree.com';
 
-		// Let other method calls from the same client start running,
-		// without waiting for the email sending to complete.
 		this.unblock();
 
 		Email.send({
 			from: from,
-			to: 'deepthought@gmail.com',
-			cc: 'ffortunata.2011@sis.smu.edu.sg',
-			// to: 'yanting_spree@hotmail.com',
-			subject: 'Email from YantingSpree.com',
-			html: body
-		}, callback);
+			to: to,
+			subject: subject,
+			html: body,
+			cc: 'ffortunata.2011@sis.smu.edu.sg'
+		});
 	},
 	resolvePostalCode: function(postalcode) {
 		var code = _.find(POSTALCODE, function(row) {

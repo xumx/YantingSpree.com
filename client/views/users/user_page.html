@@ -1,28 +1,6 @@
 <template name="userCart">
 	{{#each orders}}
 
-	<div class="well">
-		{{#getSpree spree}}
-		Spree: {{merchant}} <br>
-		Run: #{{counter}} <br>
-		End Date: {{dateFormat endDate}}
-		{{/getSpree}}
-		<br>
-		Current Status: {{getStatus}}
-		<br>
-	</div>
-
-	{{#if stageOne status}}
-
-	Requires Payment: S${{sumSGD}}
-	<div>
-		<input type="text" name="payment-one-amount" placeholder="$25">
-		<input type="text" name="payment-one-transaction-number" placeholder="transaction number">
-		<a class="btn btn-primary" style="margin-bottom: 10px;" id="make-payment-one">Make Payment</a>
-	</div>
-	{{/if}}
-
-
 	<table class="table table-striped table-bordered table-condensed table-hover">
 		<thead>
 			<tr>
@@ -43,14 +21,40 @@
 				<td>{{size}}</td>
 				<td>{{color}}</td>
 				<td>${{SGD}}</td>
-				<td><button type="button" class="close">&times;</button></td>
+				<td>
+				<a class="btn delete-item">Delete</a>
+				</td>
 			</tr>
 
 			{{/each}}
 		</tbody>
 	</table>
-	<div><small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:MM"}}</small></div>
+	<small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:mm"}}</small>
 	
+
+	<div class="row-fluid">
+		<div class="well span5">
+			Order ID:<b> {{_id}} </b> <br>
+
+			{{#getSpree spree}}
+			Spree: {{merchant}} <br>
+			Run: #{{counter}} <br>
+			End Date: {{dateFormat endDate}}
+			{{/getSpree}}
+			<br>
+			Current Status: {{getStatus}}
+			<br>
+		</div>
+
+
+		{{#if stage 1}}
+
+		<div class="span4 offset3">
+			{{> orderSummary this}}
+		</div>
+		{{/if}}
+	</div>
+
 	{{else}}
 	
 	<h4>You have not placed any orders. <a data-toggle="modal" data-target="#howto">start shopping now!</a>

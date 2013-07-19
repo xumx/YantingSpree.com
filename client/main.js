@@ -72,21 +72,16 @@ Template.sidebar.events({
 		var form = $('#contact-form');
 
 		var name = form.find('[name=name]').val();
-		var email = form.find('[name=email]').val();
+		var from = form.find('[name=email]').val();
 		var body = form.find('[name=body]').val();
 
 		console.log('Sending Email..');
 
-		var r = Meteor.call('sendMail', email, 'Dummy Subject', body);
+		var r = Meteor.call('sendMail', 'deepthought@gmail.com', '[Customer Enquiry]', body, from);//Replace with Yanting's email
 
 		$('#contact').modal('hide');
 		form[0].reset();
-
-		Meteor.Messages.sendSuccess('Thank you for contacting us! We will respond shortly');
-
-		setTimeout(function() {
-			Meteor.Messages.clear();
-		}, 5000);
+		Meteor.Messages.sendSuccess('Thank you for contacting us! We will respond to you shortly');
 	}
 })
 

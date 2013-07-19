@@ -2,6 +2,7 @@
   "packages": {
     "z-mongo-admin": {},
     "event-hooks": {},
-    "momentjs": {}
+    "momentjs": {},
+    "animate-css": {}
   }
 }
