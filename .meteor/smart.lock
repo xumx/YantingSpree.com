@@ -1,0 +1,42 @@
+{
+  "meteor": {
+    "git": "https://github.com/meteor/meteor.git",
+    "branch": "master",
+    "commit": "2e78d0d110443ac6fb9471e6be1c136f15f03fd2"
+  },
+  "dependencies": {
+    "basePackages": {
+      "cron": {},
+      "spin": {},
+      "roles": {},
+      "router": {}
+    },
+    "packages": {
+      "cron": {
+        "git": "https://github.com/alexsuslov/Meteor.cron.git",
+        "tag": "v0.0.1",
+        "commit": "5216d14472fee7b692e8371aadc9f35f54ba9bb0"
+      },
+      "spin": {
+        "git": "https://github.com/SachaG/meteor-spin.git",
+        "tag": "v0.2.0",
+        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
+      },
+      "roles": {
+        "git": "https://github.com/alanning/meteor-roles.git",
+        "tag": "v1.0.5",
+        "commit": "a6e0ce33f8dc69a816165c458b138c2acb30ad0e"
+      },
+      "router": {
+        "git": "https://github.com/tmeasday/meteor-router.git",
+        "tag": "v0.5.3",
+        "commit": "7bd3a1bdd1099625bb8b49406d9b8f961d6f4a17"
+      },
+      "page-js-ie-support": {
+        "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
+        "tag": "v1.3.5",
+        "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
+      }
+    }
+  }
+}
