@@ -1,15 +1,18 @@
-Proxino.key = "zLtTh21LnAkdc9JjxFX9DA";
-Proxino.track_errors();
-
+// Proxino.key = "zLtTh21LnAkdc9JjxFX9DA";
+// Proxino.track_errors();
 Meteor.subscribe('all');
 
 Accounts.ui.config({
-	passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+	passwordSignupFields: 'USERNAME_ONLY'
 });
 
 Meteor.Router.add({
 	'/': 'welcome',
-	'/admin': 'admin',
+	'/admin2': 'admin2',
+	'/users/self': 'userProfile',
+	'/users/cart': 'userCart',
+	'/users/all': 'manageUsers',
+	'/merchants/': 'merchantList',
 	'/merchants/:_id': {
 		to: 'merchantPage',
 		and: function(id) {
@@ -17,40 +20,39 @@ Meteor.Router.add({
 			console.log(Session.get('currentMerchant'))
 		}
 	},
-	'/merchants/': 'merchantList',
 	'/*': {
 		to: '404'
 	}
 });
 
-var status = [
-	'Deleted', //0
-	'Prepayment', //1
-	'Payment 1 submitted', //2
-	'Payment 1 Confirmed', //3
-	'Order Placed', //4
-	'Shipped from Merchant', //5
-	'Shippment Arrived', //6
-	'Payment 2 Submitted', //7
-	'Payment 2 Confirmed', //8
-	'Shipped to User', //9
-	'Completed' //10
-];
-
-//Global Helpers
-// Handlebars.registerHelper('merchants', function() {
-// 	return Merchant.find();
-// });
-Template.navbar.helpers({
-	loggedIn: function() {
-		return Meteor.user();
+Meteor.Router.filters({
+	'checkLoggedIn': function(page) {
+		if (Meteor.user()) {
+			return page;
+		} else {
+			//Change URL TODO
+			return 'welcome';
+		}
 	},
-	isAdmin: function() {
-		return Session.get('isAdmin');
+	'checkAdmin': function(page) {
+		if (Roles.userIsInRole(Meteor.user(), ['admin'])) {
+			return page;
+		} else {
+			//Change URL TODO
+			return 'welcome'
+		}
 	}
 });
 
+Meteor.Router.filter('checkLoggedIn', {
+	only: ['userProfile','userCart']
+});
 
+Meteor.Router.filter('checkAdmin', {
+	only: ['admin2', 'db_view', 'collection_view', 'document_view']
+});
+
+//Global Helpers
 Template.sidebar.helpers({
 	merchantsWithOpenSpree: function() {
 		return Spree.find({
@@ -63,32 +65,21 @@ Template.sidebar.helpers({
 	}
 })
 
-Template.sidebar.events({
-	'submit #contact-form': function(e) {
-		e.preventDefault();
-
-		var form = $(event.target).closest('form');
-
-		var name = form.find('[name=name]').val();
-		var email = form.find('[name=email]').val();
-		var body = form.find('[name=body]').val();
-
-		console.log('Sending Email..');
-
-		var r = Meteor.call('sendMail', email, 'Dummy Subject', body);
-
-		$('#contact').modal('hide');
-		form[0].reset();
-
-		Meteor.Messages.sendSuccess('Thank you for contacting us! We will respond shortly');
-
-		setTimeout(function() {
-			Meteor.Messages.clear();
-		}, 5000);
-	}
-})
-
 Meteor.startup(function() {
+	Hooks.init();
+
+	Hooks.onLoggedIn = function () {
+		var profile = Meteor.user().profile;
+		if(!(profile && profile.email && profile.phone && profile.address)) {
+			Meteor.Router.to('/users/self');
+		}
+	}
+
+	Hooks.onLoggedOut = function () {
+		Session.set('currentOrder', undefined);
+		Meteor.Router.to('/');
+	}
+
 	Deps.autorun(function() {
 		//Set Current Spree
 		var spree = Spree.findOne({
@@ -104,24 +95,21 @@ Meteor.startup(function() {
 
 	Deps.autorun(function() {
 		//Set Current Order
-		Order.findOne({
+		var id = Order.findOne({
 			spree: Session.get('currentSpree'),
-			user: '122', //TODO
+			user: Meteor.userId(),
 			status: 1 //TODO
 		}, {
 			transform: function(data) {
 				Session.set('currentOrder', data._id);
 				console.log('set currentOrder: %s', data._id);
+				return data;
 			}
-		})
+		});
+
+		if (!id) {
+			console.log('No currentOrder');
+			Session.set('currentOrder', undefined);
+		}
 	});
-
-
-	// Deps.autorun(function() {
-	// 	if (Meteor.userId() == "admin") {
-
-	// 	} else {
-	// 		Session.set('isAdmin', false);
-	// 	}
-	// });
 });

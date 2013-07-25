@@ -1,11 +1,11 @@
 <template name="merchantPage">
 	{{#if merchant.banner}}
-	<div class="panel merchant-banner">
-		<img src="{{merchant.banner}}" alt="">
+	<div class="merchant-banner">
+		<a href="{{merchant.url}}" target="_blank" title=""><img src="{{merchant.banner}}" alt=""></a>
 	</div>
 	{{/if}}
 
-	<div class="panel">
+	<div class="well">
 		<dl class="dl-horizontal">
 			<dt>Website</dt>
 			<dd><a href="{{merchant.url}}" target="_blank" title="">{{merchant._id}}</a></dd>
@@ -30,16 +30,16 @@
 		</dl>
 	</div>
 	
-	<div class="panel">
-		<div class="panel-heading">My Shopping Cart</div>
-		{{> orderList}}
 
-		<hr>
-		{{> addOrderItem}}
-	</div>
+	{{#if merchant.open}}
+	{{> addOrderItem}}
+	
+	<br>
+	
+	{{> orderList}}
+	{{/if}}
 
-	<div class="panel">
-		<div class="panel-heading">What others are ordering</div>
-		{{> orderHistory}}
-	</div>
+	<br><br>
+
+	{{> orderHistory}}
 </template>

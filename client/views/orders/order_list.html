@@ -1,40 +1,36 @@
 <template name="orderList">
+	<legend>Shopping Cart</legend>
+	
 	{{#if myOrder.items}}
-	<div class="list-group-flush">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Size</th>
-					<th>Colour</th>
-					<th>Price</th>
-					<th>SGD</th>
-					<th></th>
-				</tr>
-			</thead>
 
-			<tbody>
-				{{#each myOrder.items}}
-				{{> orderItem}}
-				{{/each}}
-			</tbody>
-		</table>
-	</div>
-	<br>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Colour</th>
+				<th>Price</th>
+				<th>SGD</th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each myOrder.items}}
+			{{> orderItem}}
+			{{/each}}
+		</tbody>
+	</table>
+	
 	<div class="row">
-		<div class="col col-lg-3 col-offset-9" style="text-align:right; ">
-			<b>Total Price:</b> {{sumPrice myOrder}} {{getCurrency}}<br>
-			<b>Exchange Rate:</b> x {{getExchangeRate getCurrency}}
-			<hr style="margin-top: 2px; margin-bottom: 5px;">
-			<b>Total Payment:</b> {{sumSGD myOrder}} SGD
-			
-			<br><br>
-			<a class="btn btn-info btn-block">Checkout</a>
+		<div class="offset8">
+			{{> orderSummary myOrder}}
 		</div>
 	</div>
+	
+
 	{{else}}
 	You have not placed any orders in this spree.
 	{{/if}}
-	
 </template>

@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "cron": {},
+    "spin": {},
+    "roles": {},
+    "router": {}
+  }
+}

@@ -1,74 +1,71 @@
 <template name="merchantListAdmin">
 	{{#each allMerchants}}
-	<div class="panel">
+	<div class="span5">
 		<form class="form">
-			<div class="row">
-				<div class="col col-lg-8">
-					<div class="row">
-						<label class="col col-lg-4">Merchant Name</label>
-						<div class="col col-lg-8">
-							<input class="input-small" type="text" name="_id" value="{{_id}}">
-						</div>
-
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Merchant URL</label>
-						<div class="col col-lg-8">
-							<input class="input-small" type="url" name="url" value="{{url}}" >
-						</div>
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Banner URL</label>
-						<div class="col col-lg-8">
-							<input class="input-small" type="url" name="banner" value="{{banner}}" >
-						</div>
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Speed</label>
-						<div class="col col-lg-8 col-sm-7">
-							<input class="input-small" type="text" name="speed" value="{{speed}}">
-						</div>
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Shipping</label>
-						<div class="col col-lg-8 col-sm-7">
-							<input class="input-small" type="text" name="shipping" value="{{shipping}}">
-						</div>
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Currency</label>
-						<div class="col col-lg-8 col-sm-7">
-							<input class="input-small" type="text" name="currency" value="{{currency}}">
-						</div>
-					</div>
-					<div class="row">
-						<label class="col col-lg-4">Cap</label>
-						<div class="col col-lg-8 col-sm-7">
-							<input class="input-small" type="text" name="cap" value="{{cap}}">
-						</div>
-					</div>			
-					<div class="row">
-						<label class="col col-lg-4">Remarks</label>
-						<div class="col col-lg-8">
-							<textarea rows="3" name="remarks">{{remarks}}</textarea>
-						</div>
-					</div>
-				</div>
-				<div class="col col-lg-4">
-
-					<b>Counter: #{{counter}}</b>
-
-					<br>
-					<a type="button" class="btn btn-info col col-lg-6" name="update"><span class="glyphicon glyphicon-pencil"></span> Update</a>
-					<a type="button" class="btn btn-info col col-lg-6" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-					{{#if open}}
-					<a type="button" class="btn btn-danger col col-lg-12" name="close">Close spree now</a>
-					{{else}}
-					<a type="button" class="btn btn-success col col-lg-12" name="open">Open new spree</a>
-					{{/if}}
+			
+			<div class="row-fluid">
+				<label class="span4">Merchant Name</label>
+				<div class="span8">
+					<input class="input-large" type="text" name="_id" value="{{_id}}">
 				</div>
 			</div>
-		</div>
-	</form>
+			<div class="row-fluid">
+				<label class="span4">Merchant URL</label>
+				<div class="span8">
+					<input class="input-large" type="url" name="url" value="{{url}}" >
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Banner URL</label>
+				<div class="span8">
+					<input class="input-large" type="url" name="banner" value="{{banner}}" >
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Speed</label>
+				<div class="span8">
+					<input class="input-large" type="text" name="speed" value="{{speed}}">
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Shipping</label>
+				<div class="span8">
+					<input class="input-large" type="text" name="shipping" value="{{shipping}}">
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Currency</label>
+				<div class="span8">
+					<input class="input-large" type="text" name="currency" value="{{currency}}">
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Cap</label>
+				<div class="span8">
+					<input class="input-large" type="text" name="cap" value="{{cap}}">
+				</div>
+			</div>			
+			<div class="row-fluid">
+				<label class="span4">Remarks</label>
+				<div class="span8">
+					<textarea rows="3" name="remarks">{{remarks}}</textarea>
+				</div>
+			</div>
+
+			<b>Counter: #{{counter}}</b>
+
+			<div class="row-fluid">
+				<a type="button" class="btn btn-info span6" name="update"><span class="glyphicon glyphicon-pencil"></span> Update</a>
+				<a type="button" class="btn btn-info span6" name="delete"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+			</div>
+			<div class="row-fluid">
+				{{#if open}}
+				<a type="button" class="btn btn-danger btn-block" name="close">Close spree now</a>
+				{{else}}
+				<a type="button" class="btn btn-success btn-block" name="open">Open new spree</a>
+				{{/if}}
+			</div>
+		</form>
+	</div>
 	{{/each}}
 </template>

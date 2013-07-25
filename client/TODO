@@ -1,0 +1,97 @@
+User Statistics
+Per Spree Download CSV Report
+Weight for each item/order
+
+
+
+- check out. all the payment and status viewing.
+ currently it will be shown at the individual page. what if i want to buy across brands?
+
+ SPREE DETAILS
+7. Cart
+- As a user, she will be able to:
+o View the unpaid order 
+o Delete the unpaid order
+o Check out for payment (point 9)
+8. First and Second Payment
+- As a user, she will be able to:
+o View the tabulated for total order with auto round up.
+o Update the payment details with the following attributes
+❧ Payment method – ATM Transfer or I-Banking
+❧ Transaction reference #
+❧ Account number / I-Banking Name
+❧ Date of Transfer
+❧ Transfer amount
+o Alert the user for the option of combined shipping if the previous order has not yet arrived.
+o Apply coupon code to get discount
+o Receive confirmation that her order has been submitted
+- As an admin, she will be able to:
+o Filter by payment status
+o Edit the amount charged to user
+9. Check Status
+- As a user, she will be able to:
+o View the current and past orders that have been made with the following attributes:
+❧ Merchant name
+❧ Date submitted
+❧ Status, such as 1st payment/ Order placed/ Shipped from merchant / Shipped from agent/ arrival /2nd payment / completed
+❧ Last updated status date
+❧ Mailing date and tracking number
+❧ Details
+- As an admin, she will be able to:
+o Change the details status
+o Filter status
+10. Delivery 
+- As a user, she will be able to:
+o Select delivery method such as:
+❧ Normal mail with price
+❧ Registered post with price (check-box)
+❧ Opting for bubble wrap and carton box at fixed price
+o View the default shipping address
+o Change the shipping address
+o Proceed to Second payment (point 9)
+- As an admin, she will be able to:
+o Change the price for each delivery method accordingly (postage rates and handling fee)
+o Get notification when a user change the address
+
+minor adjustment and improvement
+
+Side Bar
+-          The side bar fields need her account information
+
+POSB Savings 228-21866-9 (preferred) or UOB TX 366-379-359-2
+-          All spree bar where the upcoming spree are also listed. Not just "Ongoing Spree" but also "All spree". Can link with the admin page?
+
+
+Spree page
+-          For individual spree page need this information together with the website etc:
+
+1st payment – Item
+2nd payment – Top-up for Shipping + Postage + Handling fee
+-          Need to auto calculate the exchange rate to sgd based on the exchange rate specified in the admin panel. So admin need to be able to change the currency as well
+
+-          View other orders separated by date. Then shows the item name, URL, Size, Colour, quantity. Are we able to display the image directly (as a smaller version)? http://www.oouii.com.sg/index.php?route=spree/orderform&order_id=31
+
+ 
+
+Admin panel:
+-          How to spree and all should be editable when it is in admin panel. Currently it is not
+
+-          Contact Us- The box is bigger. Cant scroll down.
+
+-          Unable to change the exchange rate
+
+-          Admin needs to change the currency for each spree. Some may be pounds, some may be dollar
+
+-         View all registered users based on the date of joining, method (fb or email), total purchase (now all 0$), and link to detail of all purchases.
+
+ 
+User:
+-          Forget password is not working yet
+
+-          Separate admin and user panel. As admin, I should not be able to see the “Come in” at the right side. As a user, I should not be able to see the admin panel at the left.
+
+-          After the short email and password fill in. User must be able to  enter more information such as postal code and mailing address and phone number. Need to update this on admin panel to view the user details.
+
+ 
+Contact Us
+-          Need a form type text box. Probably same field, first name, email, subject, category, enquiry: http://www.oouii.com.sg/index.php?route=information/contact. Need to ensure that the admin email gets the question posted
