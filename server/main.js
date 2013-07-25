@@ -1,3 +1,5 @@
+var cheerio = Npm.require('cheerio');
+
 Meteor.startup(function() {
 	// createUserAdminRoles();
 	Meteor.publish('all', function() {
@@ -42,6 +44,37 @@ Meteor.methods({
 			return code[1];
 		} else {
 			return '';
+		}
+	},
+	fetchImage: function(url) {
+		var supportedSites = ['forever21.com', 'asos.com'];
+		var matches = url.match(/^https?\:\/\/w*\.?([^\/:?#]+)(?:[\/:?#]|$)/i);
+		var domain = matches && matches[1];
+		var result = {};
+
+		console.log(domain);
+
+		if (_.contains(supportedSites, domain)) {
+			$ = cheerio.load(Meteor.http.get(url).content);
+			switch (domain) {
+				case 'forever21.com':
+					result.thumbnail = $('#ctl00_MainContent_productZoomLink').attr('href');
+					result.name = $('.product-title').text();
+					result.price = parseFloat($('.product-price').text().match(/\d+\.?\d*/));
+					result.code = $('#product_overview').text().match(/Product Code\D+(\d+)/i)[1];
+					break;
+				case 'asos.com':
+					result.thumbnail = $('#ctl00_ContentMainPage_imgMainImage').attr('src');
+					result.name = $('.product_title').text();
+
+					//Price in SGD?
+					result.price = parseFloat($('.product_price_details').text().match(/\d+\.?\d*/));
+					break;
+			}
+			return result;
+		} else {
+			console.log('not supported');
+			return;
 		}
 	}
 });

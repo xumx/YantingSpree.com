@@ -114,6 +114,35 @@ Template.addOrderItem.helpers({
 });
 
 Template.addOrderItem.events({
+	'click .box-header': function (e) {
+		$(e.target).next().slideToggle();
+	},
+	'change input[name=url]': function(e) {
+
+		$('#scraperSpinner').toggleClass('icon-spin icon-refresh');
+		var url = $(e.target).val();
+		Meteor.call("fetchImage", url, function(error, result) {
+			$('#scraperSpinner').toggleClass('icon-spin icon-refresh');
+			console.log(result);
+
+			if (result.thumbnail) {
+				$('#scrapedItemThumbnail').attr('src', result.thumbnail);
+				$('#scrapedItemThumbnail-box').toggleClass('hidden animated bounceInLeft')
+			}
+
+			if (result.name) {
+				$('input[name=name]').val(result.name).css('color', '#78cd51');
+			}
+
+			if (result.price) {
+				$('input[name=price]').val(result.price).css('color', '#78cd51');
+			}
+
+			if (result.code) {
+				$('input[name=code]').val(result.code).css('color', '#78cd51');
+			}
+		});
+	},
 	'change input[name=price]': function(event) {
 		var merc = Merchant.findOne(Session.get('currentMerchant'));
 		var exchange = Exchange.findOne({
@@ -140,7 +169,8 @@ Template.addOrderItem.events({
 			price: parseFloat(form.find('[name=price]').val()),
 			remarks: form.find('[name=remarks]').val(),
 			alternatives: form.find('[name=alternatives]').val(),
-			SGD: parseFloat(form.find('[name=sgd]').val())
+			SGD: parseFloat(form.find('[name=sgd]').val()),
+			thumbnail: form.find('#scrapedItemThumbnail').attr('src') || undefined
 		}
 
 		console.log(orderItem);

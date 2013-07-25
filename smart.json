@@ -4,6 +4,7 @@
     "event-hooks": {},
     "momentjs": {},
     "animate-css": {},
-    "observatory": {}
+    "observatory": {},
+    "cron": {}
   }
 }

@@ -32,7 +32,7 @@
 						<th>Size</th>
 						<th>Colour</th>
 						<th>SGD</th>
-						<th></th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,7 +45,7 @@
 						<td>{{color}}</td>
 						<td>${{SGD}}</td>
 						<td>
-							<a class="btn delete-item">Delete</a>
+							<a class="btn btn-danger delete-item"><i class="icon-trash icon-white"></i></a>
 						</td>
 					</tr>
 
@@ -126,7 +126,7 @@
 			<div class="control-group">
 				<label class="control-label" for="email">Email Address</label>
 				<div class="controls">
-					<input id="email" name="profile-email" type="text" placeholder="jane@gmail.com" class="input-block-level" required="" value="{{currentUser.profile.email}}">
+					<input id="email" name="profile-email" type="email" placeholder="jane@gmail.com" class="input-block-level" required="" value="{{currentUser.profile.email}}">
 
 				</div>
 			</div>

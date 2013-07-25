@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"slide",
+				"slideToggle	jQuery"
+			],
+			[
+				"btn-s",
+				"btn-success	BootstrapClass"
+			],
+			[
+				"reul",
+				"result"
+			],
+			[
+				"reu",
+				"result"
+			],
+			[
+				"suppo",
+				"supportedSites"
+			],
+			[
+				"undefin",
+				"undefined"
+			],
+			[
+				"toggle",
+				"toggleClass	jQuery"
+			],
+			[
+				"resul",
+				"result"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"ba",
+				"background-image"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"colla",
+				"collapse	BootstrapClass"
+			],
+			[
+				"collap",
+				"collapse"
+			],
+			[
+				"right",
+				"pull-right	BootstrapClass"
+			],
+			[
+				"navba",
+				"navbar-inverse	BootstrapClass"
+			],
+			[
 				"set",
 				"set"
 			],
@@ -122,10 +194,6 @@
 			[
 				"app",
 				"append"
-			],
-			[
-				"padd",
-				"padding"
 			],
 			[
 				"appe",
@@ -436,10 +504,6 @@
 				"simulationController"
 			],
 			[
-				"back",
-				"background-color"
-			],
-			[
 				"Tor",
 				"TorqueOptions"
 			],
@@ -450,70 +514,6 @@
 			[
 				"DS",
 				"DS_ge"
-			],
-			[
-				"ini",
-				"initializeEarth"
-			],
-			[
-				"con",
-				"console"
-			],
-			[
-				"init",
-				"init"
-			],
-			[
-				"quer",
-				"query_y"
-			],
-			[
-				"kml",
-				"kmlString"
-			],
-			[
-				"poi",
-				"pointArray"
-			],
-			[
-				"se",
-				"segment"
-			],
-			[
-				"lo",
-				"loc2"
-			],
-			[
-				"ds",
-				"DS_path"
-			],
-			[
-				"l",
-				"length"
-			],
-			[
-				"sql",
-				"sql_statement"
-			],
-			[
-				"inter",
-				"interaction"
-			],
-			[
-				"layer",
-				"LayerOption"
-			],
-			[
-				"stop",
-				"stopsLayer"
-			],
-			[
-				"valu",
-				"values"
-			],
-			[
-				"def",
-				"def	def … end"
 			]
 		]
 	},
@@ -523,12 +523,76 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 87.0,
+		"height": 387.0,
 		"selected_items":
 		[
 			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
 				"form",
 				"Format: Javascript"
+			],
+			[
+				"for",
+				"Format: Javascript"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"idenn",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pic",
+				"Color picker"
+			],
+			[
+				"pick",
+				"Color picker"
+			],
+			[
+				"colo",
+				"Color picker"
+			],
+			[
+				"color",
+				"Color picker"
+			],
+			[
+				"inen",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"enable",
+				"Package Control: Enable Package"
+			],
+			[
+				"idnen",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"idne",
+				"Indentation: Reindent Lines"
 			],
 			[
 				"css",
@@ -539,31 +603,11 @@
 				"Package Control: Install Package"
 			],
 			[
-				"for",
-				"Format: Javascript"
-			],
-			[
-				"wrap",
-				"Word Wrap: Toggle"
-			],
-			[
-				"inden",
-				"Indentation: Reindent Lines"
-			],
-			[
 				"fo",
 				"Format: Javascript"
 			],
 			[
 				"ine",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"inen",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"inde",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -627,14 +671,6 @@
 				"Generate UUID v4"
 			],
 			[
-				"pic",
-				"Color picker"
-			],
-			[
-				"color",
-				"Color picker"
-			],
-			[
 				"run",
 				"Run JavaScript in the browser"
 			],
@@ -653,14 +689,6 @@
 			[
 				"web",
 				"Web Inspector"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"remove",
@@ -725,18 +753,6 @@
 			[
 				"fomr",
 				"Format: Javascript"
-			],
-			[
-				"idnen",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"idne",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"idenn",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"lin",
@@ -841,10 +857,6 @@
 			[
 				"FORM",
 				"Format: Javascript"
-			],
-			[
-				"pa",
-				"Package Control: Install Package"
 			],
 			[
 				"conver",
@@ -1007,7 +1019,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 467.0
+		"width": 537.0
 	},
 	"console":
 	{
@@ -1027,37 +1039,45 @@
 	},
 	"file_history":
 	[
-		"/Users/Max/Dropbox/code/yanting/server/main.js",
-		"/Users/Max/Dropbox/code/yanting/client/main.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/admin.html",
-		"/Users/Max/Dropbox/code/yanting/client/main.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/admin.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/navbar.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/order.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_history.html",
+		"/Users/Max/Dropbox/code/yanting/client/good.css",
 		"/Users/Max/Dropbox/code/yanting/client/views/orders/add_order.html",
-		"/Users/Max/Dropbox/code/yanting/client/TODO",
-		"/Users/Max/Dropbox/code/yanting/server/fixures.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant_page.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_list.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_history.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/admin.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/sidebar.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/users/user_page.html",
+		"/Users/Max/Dropbox/code/yanting/server/main.js",
+		"/Users/Max/Dropbox/code/yanting/client/TODO",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_sumary.html",
+		"/Users/Max/Dropbox/code/yanting/client/lib/tablecloth.css",
+		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/admin.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/carousel.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/navbar.html",
+		"/Users/Max/Dropbox/code/yanting/client/main.html",
+		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/bootstrap-jasny/css/bootstrap.css",
+		"/Users/Max/Dropbox/code/yanting/client/main.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/modals.html",
+		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_single.html",
+		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dialogs.html",
+		"/Users/Max/Dropbox/code/yanting/client/yanting.css",
+		"/Users/Max/Dropbox/code/yanting/lib/util.js",
+		"/Users/Max/Dropbox/code/yanting/server/fixures.js",
 		"/Users/Max/Dropbox/code/yanting/collections/collections.js",
 		"/Users/Max/Dropbox/code/yanting/client/global.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/users/users.js",
-		"/Users/Max/Dropbox/code/yanting/client/yanting.css",
-		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_single.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dropdown.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/packages/accounts-facebook/facebook_login_button.css",
-		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_item.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/z-mongo-admin/client/router.coffee",
 		"/Users/Max/Dropbox/code/yanting/client/views/sprees/spree_list.js",
 		"/Users/Max/Dropbox/code/yanting/server/postalcode.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/server/server.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/modals.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/sprees/spree_list.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant_list.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant_list_admin.html",
@@ -1091,7 +1111,6 @@
 		"/Users/Max/Dropbox/code/yanting/client/views/users.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/client/main.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/add_merchant.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/sidebar.html",
 		"/Users/Max/Dropbox/Rockets Working Folder/Client Side/public/index.html",
 		"/Users/Max/Dropbox/Rockets Working Folder/Client Side/public/js/main.js",
 		"/Users/Max/Dropbox/code/spring/data.js",
@@ -1136,7 +1155,6 @@
 		"/Users/Max/Downloads/Keynotopia Twitter Bootstrap Templates/Keynotopia Readme.txt",
 		"/Users/Max/Desktop/group-essential-t1369591909.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/client/views/orders/order_list.js",
-		"/Users/Max/Dropbox/code/yanting/lib/util.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_list.js",
 		"/Users/Max/Dropbox/code/yanting/client/Exchange.html",
 		"/Users/Max/Dropbox/code/yanting/client/yanting.js",
@@ -1148,13 +1166,7 @@
 		"/Users/Max/Dropbox/code/yanting/client/admin.html",
 		"/Users/Max/Dropbox/code/xumx.me/captaincv/stylesheets/style.css",
 		"/Users/Max/Dropbox/SMU/Final Year Project/2013/ReadMe KMSnano.txt",
-		"/Volumes/OFFICE.15.0.4420.1017.X64/updates/readme.txt",
-		"/Users/Max/Dropbox/SMU/Final Year Project/2013/SetupComplete.cmd",
-		"/Volumes/Data/Windows 8/installation.txt",
-		"/Users/Max/Downloads/Parallels.Desktop.8.0.18354.823166.MacOSX/Parallels Desktop 8 Reset v1.0/Instructions.txt",
-		"/Users/Max/Dropbox/code/mirror-api/mirror_api_server/utils.py",
-		"/Users/Max/Dropbox/code/mirror-api/mirror_api_server/service/service.py",
-		"/Users/Max/Dropbox/code/mirror-api/mirror_api_server/service/auth.py"
+		"/Volumes/OFFICE.15.0.4420.1017.X64/updates/readme.txt"
 	],
 	"find":
 	{
@@ -1165,6 +1177,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/Max/Dropbox/code/yanting/client/views/style",
 			"/Users/Max/Dropbox/code/yanting",
 			"/Users/Max/Dropbox/code/yanting/public/img",
 			"<open folders>",
@@ -1180,6 +1193,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"span6",
+			"addClass('darkGreen')",
+			"price",
+			"em",
+			"navbar",
+			"paddin",
+			"notes",
+			"input-large",
+			"remark",
+			"07",
+			"625em",
+			"05",
+			"625em",
+			"nav-header",
+			"0px",
+			"hover",
+			"exc",
+			"collapse",
+			"collapse\"><a",
+			"mobile",
+			"<spa",
+			"n",
+			"2285BB",
+			"nav",
+			"info",
+			"header",
+			"2d323d",
+			"sidebar",
+			"white",
+			"collapse",
+			"nav-collapse",
+			"av-collaps",
+			"<li",
+			" nav-collapse",
+			"class=\"btn\"",
+			"table",
+			"nav nav-list",
+			"#sidebar",
+			"class=\"list-group-item\" ",
 			"itemIndex",
 			"e",
 			"gala",
@@ -1268,46 +1320,7 @@
 			"faceb",
 			"loginWithFacebook",
 			"signup",
-			"signup\\(\\)",
-			"currentorder",
-			"setCurrentOrder",
-			"setCurrent",
-			"currentOrder",
-			"histor",
-			"lastip",
-			"order",
-			"list",
-			"'122'",
-			"\"122\"",
-			"122\"",
-			"122",
-			"user",
-			"sumPrice",
-			"currentorder",
-			"122",
-			"todo",
-			"userid",
-			"122",
-			"'normal@example.com'",
-			"122",
-			"bouncenon",
-			"bounceuser",
-			"bounce",
-			" col-sm-7",
-			"col-",
-			"col ",
-			"col col",
-			"input",
-			"<div class=\"span8\">",
-			"<div class=\"span4\">",
-			"<div class=\"row-fluid\">",
-			"row",
-			"col col-lg-8",
-			"col col-lg-4 col-sm-7",
-			"col col-lg-3",
-			"col col-lg-12",
-			"col col-lg-6",
-			"input-small"
+			"signup\\(\\)"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1353,6 +1366,11 @@
 			"sheets":
 			[
 			]
+		},
+		{
+			"sheets":
+			[
+			]
 		}
 	],
 	"incremental_find":
@@ -1372,11 +1390,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -1402,16 +1427,116 @@
 		"selected_items":
 		[
 			[
+				"orderlist",
+				"client/views/orders/order_list.html"
+			],
+			[
+				"order",
+				"client/views/orders/order.js"
+			],
+			[
+				"history",
+				"client/views/orders/order_history.html"
+			],
+			[
+				"orderhi",
+				"client/views/orders/order_history.html"
+			],
+			[
+				"mercha",
+				"client/views/merchants/merchant_page.html"
+			],
+			[
+				"good",
+				"client/good.css"
+			],
+			[
+				"merch",
+				"client/views/merchants/merchant.js"
+			],
+			[
+				"add",
+				"client/views/orders/add_order.html"
+			],
+			[
 				"main",
 				"server/main.js"
 			],
 			[
-				"main.",
-				"client/main.html"
+				"ordersu",
+				"client/views/orders/order_sumary.html"
+			],
+			[
+				"userpage",
+				"client/views/users/user_page.html"
+			],
+			[
+				"todo",
+				"client/TODO"
+			],
+			[
+				"user",
+				"client/views/users/user_page.html"
+			],
+			[
+				"css",
+				"client/good.css"
+			],
+			[
+				"exch",
+				"client/views/exchange/exchange.html"
+			],
+			[
+				"bootstra",
+				".meteor/meteorite/packages/bootstrap-jasny/css/bootstrap.css"
 			],
 			[
 				"admin",
 				"client/views/admin.js"
+			],
+			[
+				"tablec",
+				"client/lib/tablecloth.css"
+			],
+			[
+				"modal",
+				"client/views/modals.html"
+			],
+			[
+				"login",
+				".meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dialogs.html"
+			],
+			[
+				"sideb",
+				"client/views/sidebar.html"
+			],
+			[
+				"",
+				"client/good.css"
+			],
+			[
+				"table",
+				"client/lib/tablecloth.css"
+			],
+			[
+				"caro",
+				"client/views/carousel.html"
+			],
+			[
+				"nav",
+				"client/views/navbar.html"
+			],
+			[
+				"sidebar",
+				"client/views/sidebar.html"
+			],
+			[
+				"util",
+				"lib/util.js"
+			],
+			[
+				"main.",
+				"client/main.html"
 			],
 			[
 				"fixr",
@@ -1422,16 +1547,8 @@
 				"client/views/orders/order_history.html"
 			],
 			[
-				"history",
-				"client/views/orders/order_history.html"
-			],
-			[
 				"userp",
 				"client/views/users/user_page.html"
-			],
-			[
-				"orderlist",
-				"client/views/orders/order_list.html"
 			],
 			[
 				"merchang",
@@ -1442,20 +1559,8 @@
 				"client/views/orders/order.js"
 			],
 			[
-				"nav",
-				"client/views/navbar.html"
-			],
-			[
 				"orer",
 				"client/views/orders/order.js"
-			],
-			[
-				"add",
-				"client/views/orders/add_order.html"
-			],
-			[
-				"todo",
-				"client/TODO"
 			],
 			[
 				"glo",
@@ -1464,10 +1569,6 @@
 			[
 				"collec",
 				"collections/collections.js"
-			],
-			[
-				"user",
-				"client/views/users/user_page.html"
 			],
 			[
 				"loginbu",
@@ -1482,20 +1583,12 @@
 				".meteor/local/build/static_cacheable/packages/accounts-facebook/facebook_login_button.css"
 			],
 			[
-				"order",
-				"client/views/orders/order.js"
-			],
-			[
 				"merchat",
 				"client/views/merchants/merchant_page.html"
 			],
 			[
 				"fix",
 				"server/fixures.js"
-			],
-			[
-				"mercha",
-				"client/views/merchants/merchant.js"
 			],
 			[
 				"f",
@@ -1528,10 +1621,6 @@
 			[
 				"mainjs",
 				"client/main.js"
-			],
-			[
-				"modal",
-				"client/views/modals.html"
 			],
 			[
 				"merchanl",
@@ -1622,10 +1711,6 @@
 				".meteor/local/build/static_cacheable/packages/accounts-facebook/facebook_client.js"
 			],
 			[
-				"login",
-				".meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dropdown.js"
-			],
-			[
 				"addmer",
 				"client/views/merchants/add_merchant.html"
 			],
@@ -1650,10 +1735,6 @@
 				"client/views/sprees/spree_list.html"
 			],
 			[
-				"css",
-				"client/yanting.css"
-			],
-			[
 				"exchange",
 				"client/views/exchange/exchange.html"
 			],
@@ -1668,10 +1749,6 @@
 			[
 				"viewsjs",
 				"client/views/merchants/merchant.js"
-			],
-			[
-				"",
-				"server/main.js"
 			],
 			[
 				"client/main",
@@ -1768,10 +1845,6 @@
 			[
 				"merchanpage",
 				"client/views/merchants/merchant_page.html"
-			],
-			[
-				"exch",
-				"client/views/exchange/exchange.html"
 			],
 			[
 				"merchal",

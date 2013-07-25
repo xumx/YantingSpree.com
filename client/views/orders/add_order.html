@@ -1,66 +1,76 @@
 <template name="addOrderItem">
-	<form class="form-horizontal">
-
-		<legend>Add an item:</legend>
-
-		<div class="control-group">
-			<label class="control-label">Item URL</label>
-			<div class="controls">
-				<input class="span6" type="url" name="url" required placeholder="http://...">
+	<div class="row-fluid">
+		<div class="span5 box hide" id="scrapedItemThumbnail-box">
+			<div class="box-header">
+				<h2>Preview</h2>
 			</div>
-			<label class="control-label">Item Name</label>
-			<div class="controls">
-				<input class="span6" type="text" name="name" required placeholder="Item Name">
+			<div class="box-content">
+				<img id="scrapedItemThumbnail" src="http://www.forever21.com/images/zoom_main_productpg/27705049-05.jpg">
 			</div>
 		</div>
-		
-		<div class="control-group">
-			<label class="control-label">Item Code</label>
-			<div class="controls">
-				<input class="span6" type="text" name="code" placeholder="Item Code">
+		<div class="span7 box">
+			<div class="box-header">
+				<h2>Add an item:</h2>
 			</div>
-			<label class="control-label">Color</label>
-			<div class="controls">
-				<input class="span6" type="text" name="color" placeholder="Color">
-			</div>
-			<label class="control-label">Size</label>
-			<div class="controls">
-				<input class="span6" type="text" name="size" placeholder="Size">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label">Item URL</label>
+						<div class="controls">
+							<input class="input-block-level" type="url" name="url" required placeholder="http://..."><span class="help-inline"><i id="scraperSpinner"></i></span>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">Color</label>
+						<div class="controls">
+							<input class="input-block-level" type="text" name="color" placeholder="Color">
+						</div>
+						<label class="control-label">Size</label>
+						<div class="controls">
+							<input class="input-block-level" type="text" name="size" placeholder="Size">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label">Item Name</label>
+						<div class="controls">
+							<input class="input-block-level" type="text" name="name" required placeholder="Item Name">
+						</div>
+						<label class="control-label">Item Code</label>
+						<div class="controls">
+							<input class="input-block-level" type="text" name="code" placeholder="Item Code">
+						</div>
+						<label class="control-label">Unit Price</label>
+						<div class="controls">
+							<div class="input-prepend">
+								<span class="add-on">{{getCurrency}}</span>
+								<input type="number" name="price" step="any" min="0" required placeholder="23.00">
+							</div>
+							<input type="hidden" name="sgd" value="0.00">
+						</div>
+						<label class="control-label">Quantity</label>
+						<div class="controls">
+							<input class="input-block-level" type="number" name="quantity" min="1" max="15" value="1">
+						</div>
+					</div>	
+
+					<div class="control-group">
+						<label class="control-label">Alternatives</label>
+						<div class="controls">
+							<textarea rows="3" name="alternatives" class="input-block-level"></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Remarks</label>
+						<div class="controls">
+							<textarea rows="3" name="remarks" class="input-block-level"></textarea>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-large btn-primary pull-right">Add Item</button>
+					<br><br>
+				</form>
 			</div>
 		</div>
-
-		<div class="control-group">
-			<label class="control-label">Unit Price</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<span class="add-on">{{getCurrency}}</span>
-					<input type="number" name="price" step="any" min="0" required placeholder="23.00">
-				</div>
-				<input type="hidden" name="sgd" value="0.00">
-			</div>
-		</div>	
-		<div class="control-group">
-			<label class="control-label">Quantity</label>
-			<div class="controls">
-				<input class="span6" type="number" name="quantity" min="1" max="15" value="1">
-			</div>
-		</div>	
-
-		<div class="control-group">
-			<label class="control-label">Alternatives</label>
-			<div class="controls">
-				<textarea rows="3" name="alternatives" class="span6"></textarea>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Remarks</label>
-			<div class="controls">
-				<textarea rows="3" name="remarks" class="span6"></textarea>
-			</div>
-
-			<div class="controls col-offset-7" style="margin-top:5px">
-				<button type="submit" class="btn">Add Item</button>
-			</div>
-		</div>
-	</form>
+	</div>
 </template>

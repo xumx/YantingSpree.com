@@ -34,12 +34,14 @@ Template.verifyPayment.events({
 
 
 Template.orderManagement.rendered = function() {
-	$('table').tablecloth({
-		theme: "paper",
-		bordered: true,
-		condensed: true,
-		sortable: true,
-		clean: true
+	_.defer(function function_name(argument) {
+		$('table').tablecloth({
+			theme: "paper",
+			bordered: true,
+			condensed: true,
+			sortable: true,
+			clean: true
+		});
 	});
 };
 

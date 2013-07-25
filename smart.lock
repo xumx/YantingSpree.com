@@ -10,7 +10,8 @@
       "event-hooks": {},
       "momentjs": {},
       "animate-css": {},
-      "observatory": {}
+      "observatory": {},
+      "cron": {}
     },
     "packages": {
       "z-mongo-admin": {
@@ -37,6 +38,11 @@
         "git": "https://github.com/jhoxray/observatory.git",
         "tag": "v0.2.1",
         "commit": "3a3302c086fc9e9c59adf9dfc01e88d746f6c501"
+      },
+      "cron": {
+        "git": "https://github.com/alexsuslov/Meteor.cron.git",
+        "tag": "v0.0.1",
+        "commit": "5216d14472fee7b692e8371aadc9f35f54ba9bb0"
       },
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
