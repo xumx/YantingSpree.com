@@ -1,28 +1,25 @@
 <template name="navbar">
-	<div class="navbar navbar-static-top">
+	<div class="navbar">
 		<div class="navbar-inner">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!-- 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</a>
+			</a> -->
 
-			<a class="brand" href="/"><img src="/img/logo.png" alt="" height="30px"></a>
-
-			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li><a href="{{userProfilePath}}">My Profile</a></li>
-					<li><a href="{{userCartPath}}">Shopping Cart</a></li>
-
-					<!-- <li><a href="/admin">Admin Panel</a></li> -->
-
-					{{#if isInRole 'admin'}}
-					<li><a href="/admin">Data View</a></li>
-					<li><a href="/admin2">Administrative Panel</a></li>
-					{{/if}}
-				</ul>
-				{{loginButtons}}
-			</div>
+			<!-- <div class="nav-collapse collapse"> -->
+			{{loginButtons}}
+			{{#if currentUser}}
+			<ul class="nav pull-right">
+				{{#if isInRole 'admin'}}
+				<!-- <li><a href="/admin">Data View</a></li> -->
+				<li><a href="/admin2" ><i class="icon-adjust"></i><span class="hidden-phone">Admin Panel</span></a></li>
+				{{/if}}
+				<li><a href="{{userProfilePath}}"><i class="icon-user"></i> <span class="hidden-phone">My Profile</span></a></li>
+				<li><a href="{{userCartPath}}"><i class="icon-shopping-cart"></i> <span class="hidden-phone">Shopping Cart</span></a></li>
+			</ul>
+			{{/if}}
+			<!-- </div> -->
 		</div>
 	</div>
 </template>

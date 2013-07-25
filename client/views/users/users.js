@@ -1,3 +1,52 @@
+Template.userProfile.events({
+	'keyup #postalcode': function(event) {
+		var postalcode = $(event.target).val();
+
+		if (postalcode.length == 6) {
+			Meteor.call('resolvePostalCode', postalcode, function(err, street) {
+				if (!err) {
+					var addressText = postalcode + '\n';
+					addressText += street + ', ';
+					addressText += $('input[name="unitnumber"]').val();
+
+					$('textarea[name="address"]').val(addressText);
+				}
+			});
+		}
+	},
+	'keyup #unitnumber': function() {
+		var addressText = $('input[name="postalcode"]').val() + '\n';
+		addressText += $('input[name="street"]').val() + ', ';
+		addressText += $('input[name="unitnumber"]').val();
+
+		$('textarea[name="address"]').text(addressText);
+	},
+	'submit form': function(event) {
+		event.preventDefault();
+
+		var profile = {
+			postalcode: $('input[name="postalcode"]').val(),
+			unitnumber: $('input[name="unitnumber"]').val(),
+			address: $('textarea[name="address"]').val(),
+			phone: $('input[name="phone"]').val(),
+			bank: $('input[name="bank"]').val(),
+			email: $('input[name="profile-email"]').val(),
+			name: $('input[name="profilename"]').val(),
+		}
+
+		profile = _.extend(Meteor.user().profile, profile);
+		Meteor.users.update({
+			_id: Meteor.user()._id
+		}, {
+			$set: {
+				"profile": profile
+			}
+		});
+
+		Meteor.Messages.sendSuccess('User Profile Saved');
+	}
+});
+
 Template.userCart.helpers({
 	orders: function() {
 		return Order.find({
@@ -60,52 +109,5 @@ Template.userCart.events({
 		} else {
 			Meteor.Messages.sendError("This order is currently in progress. You cannot delete any item at this stage. For assistance, please email info@yantingspree.com")
 		}
-	}
-});
-
-Template.userProfile.events({
-	'keyup #postalcode': function(event) {
-		var postalcode = $(event.target).val();
-
-		if (postalcode.length == 6) {
-			Meteor.call('resolvePostalCode', postalcode, function(err, street) {
-				if (!err) {
-					var addressText = postalcode + '\n';
-					addressText += street + ', ';
-					addressText += $('input[name="unitnumber"]').val();
-
-					$('textarea[name="address"]').val(addressText);
-				}
-			});
-		}
-	},
-	'keyup #unitnumber': function() {
-		var addressText = $('input[name="postalcode"]').val() + '\n';
-		addressText += $('input[name="street"]').val() + ', ';
-		addressText += $('input[name="unitnumber"]').val();
-
-		$('textarea[name="address"]').text(addressText);
-	},
-	'submit form': function(event) {
-		event.preventDefault();
-
-		var profile = {
-			postalcode: $('input[name="postalcode"]').val(),
-			unitnumber: $('input[name="unitnumber"]').val(),
-			address: $('textarea[name="address"]').val(),
-			phone: $('input[name="phone"]').val(),
-			bank: $('input[name="bank"]').val(),
-			email: $('input[name="profile-email"]').val(),
-			name: $('input[name="profilename"]').val(),
-		}
-
-		profile = _.extend(Meteor.user().profile, profile);
-		Meteor.users.update({
-			_id: Meteor.user()._id
-		}, {
-			$set: {
-				"profile": profile
-			}
-		});
 	}
 });

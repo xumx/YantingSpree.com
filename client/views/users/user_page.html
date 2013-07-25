@@ -1,66 +1,69 @@
 <template name="userCart">
 	{{#each orders}}
 
-	<table class="table table-striped table-bordered table-condensed table-hover">
-		<thead>
-			<tr>
-				<th>Quantity</th>
-				<th>Name</th>
-				<th>Size</th>
-				<th>Colour</th>
-				<th>SGD</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			
-			{{#each items}}
-			<tr>
-				<td>{{quantity}}x</td>
-				<td><a href="{{url}}" target="_blank" title="">{{name}}</a></td>
-				<td>{{size}}</td>
-				<td>{{color}}</td>
-				<td>${{SGD}}</td>
-				<td>
-				<a class="btn delete-item">Delete</a>
-				</td>
-			</tr>
-
-			{{/each}}
-		</tbody>
-	</table>
-	<small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:mm"}}</small>
-	
-
 	<div class="row-fluid">
-		<div class="well span5">
-			Order ID:<b> {{_id}} </b> <br>
+		<div class="well">
+			
 
-			{{#getSpree spree}}
-			Spree: {{merchant}} <br>
-			Run: #{{counter}} <br>
-			End Date: {{dateFormat endDate}}
-			{{/getSpree}}
-			<br>
-			Current Status: {{getStatus}}
-			<br>
-		</div>
-
-
-		{{#if stage 1}}
-
-		<div class="span4 offset3">
-			{{> orderSummary this}}
-		</div>
-		{{/if}}
-	</div>
-
-	{{else}}
+			<div class="span5">
+				Order ID: <span class="label label-info">{{_id}}</span> <br>
+				Order Status: <span class="label label-success">{{getStatus}}</span> <br>
 	
-	<h4>You have not placed any orders. <a data-toggle="modal" data-target="#howto">start shopping now!</a>
-	</h4>
+				{{#getSpree spree}}
+				Spree: <span class="label label-info">{{merchant}} #{{counter}}</span>
+				End Date: {{dateFormat endDate}}
+				{{/getSpree}}
+			</div>
 
-	{{/each}}
+
+			{{#if stage 1}}
+
+			<div class="span4 offset3">
+				{{> orderSummary this}}
+			</div>
+			{{/if}}
+			
+
+			<table class="table table-striped table-bordered table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>Quantity</th>
+						<th>Name</th>
+						<th>Size</th>
+						<th>Colour</th>
+						<th>SGD</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{{#each items}}
+					<tr>
+						<td>{{quantity}}x</td>
+						<td><a href="{{url}}" target="_blank" title="">{{name}}</a></td>
+						<td>{{size}}</td>
+						<td>{{color}}</td>
+						<td>${{SGD}}</td>
+						<td>
+							<a class="btn delete-item">Delete</a>
+						</td>
+					</tr>
+
+					{{/each}}
+				</tbody>
+			</table>
+			<small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:mm"}}</small>
+
+		</div>
+	</div>
+</div>
+
+{{else}}
+
+<h4>You have not placed any orders. <a data-toggle="modal" data-target="#howto">start shopping now!</a>
+</h4>
+
+{{/each}}
 </template>
 
 
@@ -81,7 +84,7 @@
 			<div class="control-group">
 				<label class="control-label" for="profilename">Name</label>
 				<div class="controls">
-					<input id="profilename" name="profilename" type="text" placeholder="648921" class="input-block-level" required value="{{currentUser.profile.name}}">
+					<input id="profilename" name="profilename" type="text" class="input-block-level" required value="{{currentUser.profile.name}}">
 				</div>
 			</div>
 
@@ -136,17 +139,6 @@
 				</div>
 			</div>
 
-			<!-- Select Basic -->
-		<!-- 	<div class="control-group">
-				<label class="control-label" for="preferred">Preferred</label>
-				<div class="controls">
-					<select id="preferred" name="preferred" class="input-block-level">
-						<option>Option one</option>
-						<option>Option two</option>
-					</select>
-				</div>
-			</div> -->
-
 			<!-- Button -->
 			<div class="control-group">
 				<label class="control-label" for="singlebutton"></label>
@@ -156,5 +148,4 @@
 			</div>
 		</fieldset>
 	</form>
-
 </template>

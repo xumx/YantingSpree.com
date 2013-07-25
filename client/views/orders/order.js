@@ -2,13 +2,14 @@ Template.orderList.helpers({
 	myOrder: function() {
 		return Order.findOne({
 			user: Meteor.userId(),
-			spree: Session.get('currentSpree')
+			spree: Session.get('currentSpree'),
+			status: 1
 		});
 	}
 });
 
 Template.orderSummary.helpers({
-	stage: function (s) {
+	stage: function(s) {
 		return (this.status == s);
 	},
 	sumPrice: function() {
@@ -66,7 +67,9 @@ Template.orderSummary.events({
 Template.orderHistory.helpers({
 	history: function() {
 		return Order.find({
-			//Check order = completed TODO
+			status: {
+				$not: 1
+			},
 			spree: Session.get('currentSpree')
 		}, {
 			limit: 10,
@@ -101,6 +104,12 @@ Template.orderItem.events({
 				}
 			});
 		}
+	}
+});
+
+Template.addOrderItem.helpers({
+	getCurrency: function() {
+		return Merchant.findOne(Session.get('currentMerchant')).currency;
 	}
 });
 

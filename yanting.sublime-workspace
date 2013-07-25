@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"set",
+				"set"
+			],
+			[
+				"orer",
+				"orderId"
+			],
+			[
+				"inde",
+				"itemIndex"
+			],
+			[
+				"_",
+				"_id"
+			],
+			[
+				"selee",
+				"selectedOrder"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
 				"ver",
 				"verified"
 			],
@@ -202,10 +226,6 @@
 			[
 				"inser",
 				"insertCard"
-			],
-			[
-				"set",
-				"setTimeout"
 			],
 			[
 				"auth",
@@ -494,26 +514,6 @@
 			[
 				"def",
 				"def	def … end"
-			],
-			[
-				"if",
-				"ife	if … else … end"
-			],
-			[
-				"wr",
-				"writerow"
-			],
-			[
-				"val",
-				"vals"
-			],
-			[
-				"cartod",
-				"cartodb-gmapsv3"
-			],
-			[
-				"minu",
-				"minute_hand"
 			]
 		]
 	},
@@ -531,6 +531,22 @@
 				"Format: Javascript"
 			],
 			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"for",
+				"Format: Javascript"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
 				"inden",
 				"Indentation: Reindent Lines"
 			],
@@ -539,20 +555,24 @@
 				"Format: Javascript"
 			],
 			[
-				"fr",
-				"Format: Javascript"
+				"ine",
+				"Indentation: Reindent Lines"
 			],
 			[
-				"for",
-				"Format: Javascript"
+				"inen",
+				"Indentation: Reindent Lines"
 			],
 			[
 				"inde",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"wrap",
-				"HTML: Wrap Selection With Tag"
+				"iden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"fr",
+				"Format: Javascript"
 			],
 			[
 				"f",
@@ -581,10 +601,6 @@
 			[
 				"package",
 				"Package Control: Install Package"
-			],
-			[
-				"inen",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"inn",
@@ -741,10 +757,6 @@
 			[
 				"update",
 				"Package Control: Upgrade/Overwrite All Packages"
-			],
-			[
-				"iden",
-				"Indentation: Reindent Lines"
 			],
 			[
 				"lorem",
@@ -1015,31 +1027,34 @@
 	},
 	"file_history":
 	[
-		"/Users/Max/Dropbox/code/yanting/client/views/users/user_page.html",
-		"/Users/Max/Dropbox/code/yanting/collections/collections.js",
 		"/Users/Max/Dropbox/code/yanting/server/main.js",
-		"/Users/Max/Dropbox/code/yanting/client/global.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/users/users.js",
+		"/Users/Max/Dropbox/code/yanting/client/main.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/admin.html",
+		"/Users/Max/Dropbox/code/yanting/client/main.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/admin.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/navbar.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_history.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/add_order.html",
+		"/Users/Max/Dropbox/code/yanting/client/TODO",
+		"/Users/Max/Dropbox/code/yanting/server/fixures.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant_page.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_list.html",
+		"/Users/Max/Dropbox/code/yanting/client/views/users/user_page.html",
+		"/Users/Max/Dropbox/code/yanting/collections/collections.js",
+		"/Users/Max/Dropbox/code/yanting/client/global.js",
+		"/Users/Max/Dropbox/code/yanting/client/views/users/users.js",
 		"/Users/Max/Dropbox/code/yanting/client/yanting.css",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_single.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dropdown.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons.html",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/packages/accounts-facebook/facebook_login_button.css",
-		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant_page.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/order.js",
-		"/Users/Max/Dropbox/code/yanting/server/fixures.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/merchant.js",
-		"/Users/Max/Dropbox/code/yanting/client/main.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_item.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_list.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/exchange/exchange.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/meteorite/packages/z-mongo-admin/client/router.coffee",
 		"/Users/Max/Dropbox/code/yanting/client/views/sprees/spree_list.js",
-		"/Users/Max/Dropbox/code/yanting/client/main.html",
 		"/Users/Max/Dropbox/code/yanting/server/postalcode.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/server/server.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/modals.html",
@@ -1074,11 +1089,9 @@
 		"/Users/Max/Dropbox/Rockets Working Folder/Inject/scinject.js",
 		"/Users/Max/Dropbox/Rockets Working Folder/Client Side/public/template/section1.json",
 		"/Users/Max/Dropbox/code/yanting/client/views/users.html",
-		"/Users/Max/Dropbox/code/yanting/client/TODO",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/client/main.js",
 		"/Users/Max/Dropbox/code/yanting/client/views/merchants/add_merchant.html",
 		"/Users/Max/Dropbox/code/yanting/client/views/sidebar.html",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/add_order.html",
 		"/Users/Max/Dropbox/Rockets Working Folder/Client Side/public/index.html",
 		"/Users/Max/Dropbox/Rockets Working Folder/Client Side/public/js/main.js",
 		"/Users/Max/Dropbox/code/spring/data.js",
@@ -1118,7 +1131,6 @@
 		"/Volumes/Data/GeoPC_SG.sql",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/static_cacheable/client/views/orders/order.js",
 		"/Users/Max/Dropbox/code/yanting/.meteor/local/build/app/server/fixures.js",
-		"/Users/Max/Dropbox/code/yanting/client/views/orders/order_history.html",
 		"/Users/Max/Dropbox/code/captaincv/public/index.html",
 		"/Users/Max/Dropbox/code/captaincv/client/index.html",
 		"/Users/Max/Downloads/Keynotopia Twitter Bootstrap Templates/Keynotopia Readme.txt",
@@ -1168,6 +1180,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"itemIndex",
+			"e",
+			"gala",
+			"name=\"1\"",
+			" value=\"",
+			" value=\"1\"",
+			"statusIcon",
+			" label-danger",
+			"order-admin-table",
+			"email",
+			"currentMer",
 			"small",
 			"td",
 			"input",
@@ -1284,18 +1307,7 @@
 			"col col-lg-3",
 			"col col-lg-12",
 			"col col-lg-6",
-			"input-small",
-			"row",
-			"col col-lg-4",
-			"col col-lg-8",
-			"\n		\n		\n		",
-			"\n		\n		",
-			"\n		\n		\n",
-			"\n		\n",
-			"			",
-			"		",
-			"			</div><!-- /.modal-content -->\n		</div><!-- /.modal-dalog -->",
-			"<div class=\"modal-content\">"
+			"input-small"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1390,20 +1402,64 @@
 		"selected_items":
 		[
 			[
-				"nav",
-				"client/views/navbar.html"
-			],
-			[
 				"main",
 				"server/main.js"
 			],
 			[
-				"glo",
-				"client/global.js"
+				"main.",
+				"client/main.html"
 			],
 			[
 				"admin",
-				"client/views/admin.html"
+				"client/views/admin.js"
+			],
+			[
+				"fixr",
+				"server/fixures.js"
+			],
+			[
+				"histo",
+				"client/views/orders/order_history.html"
+			],
+			[
+				"history",
+				"client/views/orders/order_history.html"
+			],
+			[
+				"userp",
+				"client/views/users/user_page.html"
+			],
+			[
+				"orderlist",
+				"client/views/orders/order_list.html"
+			],
+			[
+				"merchang",
+				"client/views/merchants/merchant_page.html"
+			],
+			[
+				"oder",
+				"client/views/orders/order.js"
+			],
+			[
+				"nav",
+				"client/views/navbar.html"
+			],
+			[
+				"orer",
+				"client/views/orders/order.js"
+			],
+			[
+				"add",
+				"client/views/orders/add_order.html"
+			],
+			[
+				"todo",
+				"client/TODO"
+			],
+			[
+				"glo",
+				"client/global.js"
 			],
 			[
 				"collec",
@@ -1570,14 +1626,6 @@
 				".meteor/meteorite/packages/accounts-ui-bootstrap-dropdown/login_buttons_dropdown.js"
 			],
 			[
-				"orderlist",
-				"client/views/orders/order_list.html"
-			],
-			[
-				"main.",
-				"server/main.js"
-			],
-			[
 				"addmer",
 				"client/views/merchants/add_merchant.html"
 			],
@@ -1588,10 +1636,6 @@
 			[
 				"merchantli",
 				"client/views/merchants/merchant_list.html"
-			],
-			[
-				"add",
-				"client/views/orders/add_order.html"
 			],
 			[
 				"addo",
@@ -1684,10 +1728,6 @@
 			[
 				"respon",
 				"css/bootstrap-responsive.css"
-			],
-			[
-				"histo",
-				"client/views/orders/order_history.html"
 			],
 			[
 				"order.js",
@@ -1838,7 +1878,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 302.0,
 	"status_bar_visible": true,
 	"template_settings":

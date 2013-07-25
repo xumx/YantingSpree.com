@@ -1,33 +1,37 @@
 <template name="sidebar">
+	<div class="brand">
+		<a href="/">
+			<img src="/img/logo.png">
+		</a>
+	</div>
+	<div class="sidebar-nav">
+		<ul class="nav nav-tabs nav-stacked main-menu">
+			<li class="nav-header" data-toggle="collapse" data-target=".collapse-spree">Open Sprees</li>
+			{{#each merchantsWithOpenSpree}}
+			<li class="collapse-spree in collapse"><a href="{{merchantPagePath this}}">{{this}}</a></li>
+			{{/each}}
+			<li class="collapse-spree in collapse"><a href="{{merchantListPath}}">All Sprees</a></li>
+			
+			<li class="nav-header" data-toggle="collapse" data-target=".collapse-info">Information</li>
+			<li class="collapse-info in collapse"><a data-toggle="modal" data-target="#aboutus">About Us</a></li>
+			<li class="collapse-info in collapse"><a data-toggle="modal" data-target="#howto">How to Spree</a></li>
+			<li class="collapse-info in collapse"><a data-toggle="modal" data-target="#faq">FAQ</a></li>
+			<li class="collapse-info in collapse"><a data-toggle="modal" data-target="#privacy">Privacy Policy</a></li>
+			<li class="collapse-info in collapse"><a data-toggle="modal" data-target="#terms">Terms & Conditions</a></li>
+			<li class="collapse-info in collapse">
+				<!-- A link to launch the Classic Widget -->
+				<a href="javascript:void(0)" data-uv-lightbox="classic_widget" data-uv-mode="feedback" data-uv-primary-color="#cc6d00" data-uv-link-color="#007cbf" data-uv-forum-id="216186">Feedback</a>
+			</li>
+			<li class="collapse-info in collapse">
+				<!-- A link to launch the Classic Widget -->
+				<a href="javascript:void(0)" data-uv-lightbox="classic_widget" data-uv-mode="support" data-uv-primary-color="#cc6d00" data-uv-link-color="#007cbf" data-uv-forum-id="216186">Support</a>
+			</li>
+			<li class="nav-header" data-toggle="collapse" data-target=".collapse-bank">Bank Accounts</li>
+			<li class="collapse-bank in collapse"><a><small>POSB Savings <b>228-21866-9</b></small></a></li>
+			<li class="collapse-bank in collapse"><a><small>UOB TX <b>366-379-359-2</b></small></a></li>
 
-	<ul class="nav nav-list">
-		<li class="nav-header">Open Sprees</li>
-		{{#each merchantsWithOpenSpree}}
-		<li><a href="{{merchantPagePath this}}">{{this}}</a></li>
-		{{/each}}
-		<li><a href="{{merchantListPath}}">All Sprees</a></li>
-	</ul>
-
-
-	<ul class="nav nav-list">
-		<li class="nav-header">Information</li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#aboutus">About Us</a></li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#howto">How to Spree</a></li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#faq">FAQ</a></li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#privacy">Privacy Policy</a></li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#terms">Terms & Conditions</a></li>
-		<li><a class="list-group-item" data-toggle="modal" data-target="#contact">Contact Us</a></li>
-
-		<li class="divider"></li>
-		<li class="nav-header">Bank Accounts</li>
-		<li><small>POSB Savings <b>228-21866-9</b></small></li>
-		<li><small>UOB TX <b>366-379-359-2</b></small></li>
-
-
-		<li class="divider"></li>
-		
-		{{> exchange}}
-	</ul>
-
+			{{> exchange}}
+		</ul>
+	</div>
 	{{> modals}}
 </template>

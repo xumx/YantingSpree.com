@@ -1,3 +1,38 @@
+Template.verifyPayment.helpers({
+	payments: function() {
+		return Payment.find({
+			verified: false
+		});
+	}
+});
+
+Template.verifyPayment.events({
+	'click a[name="verify-payment"]': function() {
+		Payment.update(this._id, {
+			verified: true
+		});
+
+		Order.update(this.order, {
+			$inc: {
+				status: 1
+			}
+		});
+		console.log('Payment verified');
+	},
+	'click a[name="reject-payment"]': function() {
+		Payment.remove(this._id);
+
+		Order.update(this.order, {
+			$inc: {
+				status: -1
+			}
+		});
+		console.log('Payment verified');
+	}
+});
+
+
+
 Template.orderManagement.rendered = function() {
 	$('table').tablecloth({
 		theme: "paper",
@@ -15,6 +50,14 @@ Template.orderManagement.helpers({
 				$not: 0
 			}
 		})
+	},
+	selectedOrder: function() {
+		return Order.findOne(Session.get('selectedOrder'));
+	},
+	itemStatusIcon: function(stage) {
+		if (this.status >= stage) {
+			return 'label-success';
+		}
 	},
 	spreeName: function(_id) {
 		var spree = Spree.findOne(_id);
@@ -38,17 +81,16 @@ Template.orderManagement.events({
 			$inc: {
 				status: -1
 			}
-		})
+		});
 	},
 	'click a.status-inc': function() {
 		Order.update(this._id, {
 			$inc: {
 				status: 1
 			}
-		})
+		});
 	},
 	'click a.email-update': function() {
-
 		var subject = "";
 
 		var body = "Dear Customer, <br>";
@@ -84,39 +126,170 @@ Template.orderManagement.events({
 
 		body += "<br>Have a nice day, <br>Yan Ting";
 
-		Meteor.call('sendMail', Meteor.users.findOne(this.user).profile.email, subject, body)
-	}
-});
-
-Template.verifyPayment.helpers({
-	payments: function() {
-		return Payment.find({
-			verified: false
-		});
-	}
-});
-
-Template.verifyPayment.events({
-	'click a[name="verify-payment"]': function() {
-		Payment.update(this._id, {
-			verified: true
-		});
-
-		Order.update(this.order, {
-			$inc: {
-				status: 1
+		bootbox.confirm(body, function(result) {
+			if (result) {
+				Meteor.call('sendMail', Meteor.users.findOne(this.user).profile.email, subject, body);
+				Meteor.Messages.sendSuccess('Email Sent!');
 			}
 		});
-		console.log('Payment verified');
 	},
-	'click a[name="reject-payment"]': function() {
-		Payment.remove(this._id);
+	'click a.select-order': function() {
+		Session.set('selectedOrder', this._id);
+	},
+	'click span.item-status-icon': function(event) {
+		var orderId = Session.get('selectedOrder');
 
-		Order.update(this.order, {
-			$inc: {
-				status: -1
+		var index = _.indexOf(_.pluck(Order.findOne(orderId).items, '_id'), this._id);
+		var modifier = {
+			$set: {}
+		};
+		var value = parseInt($(event.target).attr('name'));
+		modifier.$set['items.' + index + '.status'] = value;
+
+		Order.update(orderId, modifier);
+	}
+});
+
+
+
+Template.spreeManagement.helpers({});
+Template.spreeManagement.events({});
+
+
+
+Template.merchantManagement.helpers({
+	merchantsWithOpenSpree: function() {
+		return Spree.find({
+			'status': 'open'
+		}, {
+			transform: function(data) {
+				return data.merchant;
 			}
 		});
-		console.log('Payment verified');
+	},
+	allMerchants: function() {
+		return Merchant.find({}, {
+			sort: {
+				open: -1,
+				_id: 1
+			}
+		});
+	},
+	counter: function() {
+		var c = Spree.findOne({
+			merchant: this._id
+		}, {
+			sort: {
+				counter: -1
+			},
+			transform: function(data) {
+				return data.counter;
+			}
+		});
+
+		if (c) {
+			return c;
+		} else {
+			return 0;
+		}
+	}
+});
+
+Template.merchantManagement.events({
+	'click a[name=open]': function(event) {
+		Merchant.update(this._id, {
+			$set: {
+				open: true
+			}
+		});
+
+		var nextSequenceNo = Spree.findOne({
+			merchant: this._id
+		}, {
+			sort: {
+				counter: -1
+			},
+			transform: function(data) {
+				return data.counter + 1;
+			}
+		}) || 1;
+
+		Spree.insert({
+			merchant: this._id,
+			status: 'open',
+			startDate: new Date(),
+			endDate: new Date().addDays(7),
+			counter: nextSequenceNo,
+		});
+
+		setTimeout((function(ele) {
+			return function() {
+				console.log(ele.position().top);
+				var top = ele.position().top - 70;
+				$(window).scrollTop(top);
+			}
+		})($(event.target).closest('.well')), 50);
+
+	},
+	'click a[name=close]': function(event) {
+		Merchant.update(this._id, {
+			$set: {
+				open: false
+			}
+		});
+
+		var spree = Spree.findOne({
+			'merchant': this._id,
+			'status': 'open'
+		});
+
+		if (spree) {
+			Spree.update(spree._id, {
+				$set: {
+					status: 'close'
+				}
+			});
+		}
+	},
+	'click a[name=update]': function(event) {
+		var id = this._id;
+		var form = $(event.target).closest('form');
+
+
+		this._id = form.find('[name=_id]').val();
+		this.url = form.find('[name=url]').val();
+		this.banner = form.find('[name=banner]').val();
+		this.speed = form.find('[name=speed]').val();
+		this.shipping = form.find('[name=shipping]').val();
+		this.currency = form.find('[name=currency]').val();
+		this.cap = form.find('[name=cap]').val();
+		this.remarks = form.find('[name=remarks]').val();
+
+		console.log(this);
+		Merchant.update(id, this);
+	},
+	'click a[name=delete]': function(event) {
+		if (confirm("Confirm Delete Merchant")) {
+			Merchant.update(this._id, {
+				$set: {
+					open: false
+				}
+			});
+
+			var spree = Spree.findOne({
+				'merchant': this._id,
+				'status': 'open'
+			});
+
+			if (spree) {
+				Spree.update(spree._id, {
+					$set: {
+						status: 'close'
+					}
+				});
+			}
+
+			Merchant.remove(this._id);
+		}
 	}
 });

@@ -1,13 +1,11 @@
 <template name="exchange">
-
-  <!-- <div class="panel-heading">Exchange Rates</div> -->
-  <li class="nav-header">Exchange Rates</li>
-  <table class="table table-condensed">
+  <li class="nav-header hidden-phone">Exchange Rates</li>
+  <table class="table table-condensed hidden-phone">
     <thead>
-      <tr>
+<!--       <tr>
         <th>Currency</th>
         <th>Rate</th>
-      </tr>
+      </tr> -->
     </thead>
     <tbody>
       {{#each rates}}
@@ -15,15 +13,15 @@
         <td>{{currency}}</td>
 
         {{#if isInRole 'admin'}}
-        <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0" required></td>
+        <td>{{rate}}</td>
+        <!-- <td><input class="input-small" type="number" name="rate" step="any" value="{{rate}}" min="0" required></td> -->
         {{else}}
         <td>{{rate}}</td>
         {{/if}}
       </tr>
       {{/each}}
     </tbody>
-    <span class="muted">All rates are fixed</span>
+    
   </table>
-  
-  <!-- </div> -->
+  <small class="hidden-phone">All rates are fixed</small>
 </template>

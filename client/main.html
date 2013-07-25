@@ -1,16 +1,35 @@
 <head>
 	<title>YanTing Spree</title>
+
+	<script type="text/javascript">
+	//Uservoice
+	(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/OG7gbzHeWZA0aHl0Wkl7jg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
+
+	// UserVoice = window.UserVoice || [];
+	// UserVoice.push(['showTab', 'classic_widget', {
+	// 	mode: 'full',
+	// 	primary_color: '#cc6d00',
+	// 	link_color: '#007dbf',
+	// 	default_mode: 'feedback',
+	// 	forum_id: 216186,
+	// 	tab_label: 'Feedback & Support',
+	// 	tab_color: '#6cd1ea',
+	// 	tab_position: 'bottom-right',
+	// 	tab_inverted: false
+	// }]);
+
+</script>
 </head>
 <body>
-	{{> navbar}}
-	
-	<div class="container-fluid">
-		{{> meteorMessages}}
+	<div class="container-fluid-full">
 		<div class="row-fluid">
-			<div id="sidebar" class="span3">
+			<div id="sidebar-left" class="span2">
 				{{> sidebar}}
 			</div>
+
 			<div class="span9">
+				{{> navbar}}
+				{{> meteorMessages}}
 				{{renderPage}}  
 			</div>
 		</div>
@@ -19,4 +38,8 @@
 
 <template name="welcome">
 	{{> carousel}}
+</template>
+
+<template name="404">
+	<h1>Page not found</h1>
 </template>

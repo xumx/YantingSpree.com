@@ -65,26 +65,6 @@ Template.sidebar.helpers({
 	}
 })
 
-Template.sidebar.events({
-	'click #submit-contact-form': function(e) {
-		e.preventDefault();
-
-		var form = $('#contact-form');
-
-		var name = form.find('[name=name]').val();
-		var from = form.find('[name=email]').val();
-		var body = form.find('[name=body]').val();
-
-		console.log('Sending Email..');
-
-		var r = Meteor.call('sendMail', 'deepthought@gmail.com', '[Customer Enquiry]', body, from);//Replace with Yanting's email
-
-		$('#contact').modal('hide');
-		form[0].reset();
-		Meteor.Messages.sendSuccess('Thank you for contacting us! We will respond to you shortly');
-	}
-})
-
 Meteor.startup(function() {
 	Hooks.init();
 
@@ -99,7 +79,6 @@ Meteor.startup(function() {
 		Session.set('currentOrder', undefined);
 		Meteor.Router.to('/');
 	}
-
 
 	Deps.autorun(function() {
 		//Set Current Spree

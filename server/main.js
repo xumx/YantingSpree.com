@@ -54,3 +54,12 @@ new Meteor.Cron({
 		}
 	}
 });
+
+Accounts.onCreateUser(function(options, user) {
+
+	console.dir(options);
+	user.profile = {
+		"name": options.username
+	}
+	return user;
+});
