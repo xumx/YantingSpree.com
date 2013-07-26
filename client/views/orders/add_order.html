@@ -5,7 +5,7 @@
 				<h2>Preview</h2>
 			</div>
 			<div class="box-content">
-				<img id="scrapedItemThumbnail" src="http://www.forever21.com/images/zoom_main_productpg/27705049-05.jpg">
+				<img id="scrapedItemThumbnail">
 			</div>
 		</div>
 		<div class="span7 box">
@@ -17,7 +17,10 @@
 					<div class="control-group">
 						<label class="control-label">Item URL</label>
 						<div class="controls">
-							<input class="input-block-level" type="url" name="url" required placeholder="http://..."><span class="help-inline"><i id="scraperSpinner"></i></span>
+							<div class="input-append span11">
+								<input class="input-block-level" type="url" name="url" required placeholder="http://...">
+								<span class="add-on"><i id="scraperSpinner"></i></span>
+							</div>
 						</div>
 					</div>
 
@@ -47,6 +50,7 @@
 								<span class="add-on">{{getCurrency}}</span>
 								<input type="number" name="price" step="any" min="0" required placeholder="23.00">
 							</div>
+							<span class="help-inline" id="SGD"></span>
 							<input type="hidden" name="sgd" value="0.00">
 						</div>
 						<label class="control-label">Quantity</label>

@@ -1,3 +1,29 @@
+Template.admin2.events({
+	'click #dev': function() {
+
+		el = $('table')[0];
+		var body = document.body,
+			range, sel;
+		if (document.createRange && window.getSelection) {
+			range = document.createRange();
+			sel = window.getSelection();
+			sel.removeAllRanges();
+			try {
+				range.selectNodeContents(el);
+				sel.addRange(range);
+			} catch (e) {
+				range.selectNode(el);
+				sel.addRange(range);
+			}
+		} else if (body.createTextRange) {
+			range = body.createTextRange();
+			range.moveToElementText(el);
+			range.select();
+		}
+	}
+});
+
+
 Template.verifyPayment.helpers({
 	payments: function() {
 		return Payment.find({
@@ -30,8 +56,6 @@ Template.verifyPayment.events({
 		console.log('Payment verified');
 	}
 });
-
-
 
 Template.orderManagement.rendered = function() {
 	_.defer(function function_name(argument) {
@@ -97,43 +121,59 @@ Template.orderManagement.events({
 
 		var body = "Dear Customer, <br>";
 
-		switch (this.status) {
-			case 3:
-				subject += "[Payment Verified] status update from YantingSpree";
-				body += "Your payment has been confirmed. We will now place orders on your behalf";
-				break;
-			case 4:
-				subject += "[Order Placed] status update from YantingSpree";
-				body += "We have successfully placed your orders";
-				break;
-			case 5:
-				subject += "[Shipped from Merchant] status update from YantingSpree";
-				body += "Your items have been shipped out by " + Spree.findOne(_id).merchant;
-				break;
-
-				//CASE 7
-
-			case 6:
-				subject += "[Shipment arrived] status update from YantingSpree";
-				body += "Action required. Kindly go to www.yantingspree.com to submit your second payment." //TODO
-				break;
-			case 8:
-				subject += "[Payment Verified] status update from YantingSpree";
-				body += "Your payment has been confirmed. We will now package your items and ship it out within 48 hours.";
-				break;
-			case 9:
-				subject += "[Order Complete] status update from YantingSpree";
-				body += "Your package has been shipped out. You should receive it within the next few days."
+		if (this.status == 9) {
+			bootbox.prompt('Tracking Number?', function(tracking) {
+				createBody(tracking);
+			});
+		} else {
+			createBody()
 		}
 
-		body += "<br>Have a nice day, <br>Yan Ting";
+		function createBody(tracking) {
+			switch (this.status) {
+				case 3:
+					subject += "[Payment Verified] status update from YantingSpree";
+					body += "Your payment has been confirmed. We will now place orders on your behalf";
+					break;
+				case 4:
+					subject += "[Order Placed] status update from YantingSpree";
+					body += "We have successfully placed your orders";
+					break;
+				case 5:
+					subject += "[Shipped from Merchant] status update from YantingSpree";
+					body += "Your items have been shipped out by " + Spree.findOne(_id).merchant;
+					break;
 
-		bootbox.confirm(body, function(result) {
-			if (result) {
-				Meteor.call('sendMail', Meteor.users.findOne(this.user).profile.email, subject, body);
-				Meteor.Messages.sendSuccess('Email Sent!');
+					//CASE 7
+
+				case 6:
+					subject += "[Shipment arrived] status update from YantingSpree";
+					body += "Action required. Kindly go to www.yantingspree.com to submit your second payment." //TODO
+					break;
+				case 8:
+					subject += "[Payment Verified] status update from YantingSpree";
+					body += "Your payment has been confirmed. We will now package your items and ship it out within 48 hours.";
+					break;
+				case 9:
+					subject += "[Order Complete] status update from YantingSpree";
+					body += "Your package has been shipped out. You should receive it within the next few days."
+
+					if (tracking.length > 0) {
+						body += "<br><br>Your Tracking number is <b>" + tracking + "</b>";
+					}
+
+					break;
 			}
-		});
+
+			body += "<br><br>Have a nice day, <br>Yan Ting";
+
+			bootbox.confirm(body, function(result) {
+				if (result) {
+					Meteor.call('sendMail', Meteor.users.findOne(this.user).profile.email, subject, body);
+					Meteor.Messages.sendSuccess('Email Sent!');
+				}
+			});
+		}
 	},
 	'click a.select-order': function() {
 		Session.set('selectedOrder', this._id);

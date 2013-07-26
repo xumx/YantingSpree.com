@@ -1,0 +1,101 @@
+<template name="payment1">
+	<div style="text-align:right; ">
+		<b>Total Price:</b> {{sumPrice}} {{getCurrency}}<br>
+		<b>Exchange Rate:</b> X {{getExchangeRate getCurrency}}
+		<hr style="margin-top: 2px; margin-bottom: 5px;">
+		<b>Total Payment:</b> {{sumSGD}} SGD
+
+		<br><br>
+
+		{{#if stage 1}}
+		<a class="btn btn-info btn-block" id="checkout">Checkout</a>
+
+		<div id="payment-form" style="text-align:left;" class="hide">
+			<p>
+				Make your transfers to either <br>
+				<span>POSB Savings <b>228-21866-9</b> (prefered)</span> or <br>
+				<span>UOB TX <b>366-379-359-2</b> </span> <br>
+
+				Enter the transaction number below for verification
+			</p>
+			<input type="text" class="input-block-level" name="payment-amount" placeholder="${{sumSGD}} (Transfer Amount)">
+			<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
+			Bank Name: <input type="text" class="input-block-level" name="bank-name" placeholder="optional">
+			Account number: <input type="text" class="input-block-level" name="account-number" placeholder="optional">
+			Date of Transfer: <input type="date" class="input-block-level" name="date">
+			<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Verify Payment</a>
+		</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="payment2">
+	
+	<div class="row-fluid">
+		
+
+		<div class="span6">
+			<h3>Shipping Method:</h3>
+			<label class="radio">
+				<input type="radio" name="shippingMethod" id="shippingMethod1" value="option1" checked>
+				Normal Mail
+			</label>
+			<label class="radio">
+				<input type="radio" name="shippingMethod" id="shippingMethod2" value="option2">
+				Registered Mail
+			</label>
+		</div>
+
+		<div class="span6">
+			<h3>Extra Options:</h3>
+			<label class="checkbox">
+				<input type="checkbox" value="">
+				I want bubble wrap
+			</label>
+			<label class="checkbox">
+				<input type="checkbox" value="">
+				I want carton box
+			</label>
+		</div>
+	</div>
+
+
+	<div style="text-align:right;">
+
+		<!-- Calculate Cost -->
+		12 <br>
+		42 <br>
+		135 <br>
+		<hr style="margin-top: 2px; margin-bottom: 5px;">
+		<b>Total Shipping Cost:</b>  SGD
+	</div>
+
+	<div>
+		<legend>Shipping Address</legend>
+		<textarea>
+			{{currentUser.profile.address}}
+		</textarea>
+
+		<a href="/users/self" class="btn">Change Address</a>
+	</div>
+	
+	<br>
+	<br>
+
+	<div id="payment-form">
+		<p>
+			Make your transfers to either <br>
+			<span>POSB Savings <b>228-21866-9</b> (prefered)</span> or <br>
+			<span>UOB TX <b>366-379-359-2</b> </span> <br>
+
+			Enter the transaction number below for verification
+		</p>
+		
+		<input type="text" class="input-block-level" name="payment-amount" placeholder="Transfer Amount">
+		<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
+		<input type="text" class="input-block-level" name="bank-name" placeholder="Bank Name (optional)">
+		<input type="text" class="input-block-level" name="account-number" placeholder="Account number (optional)">
+		Date of Transfer: <input type="date" class="input-block-level" name="date">
+		<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Verify Payment</a>
+	</div>
+</template>

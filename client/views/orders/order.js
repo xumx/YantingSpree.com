@@ -8,62 +8,6 @@ Template.orderList.helpers({
 	}
 });
 
-Template.orderSummary.helpers({
-	stage: function(s) {
-		return (this.status == s);
-	},
-	sumPrice: function() {
-		if (this.items) {
-			return _.reduce(this.items, function(memo, item) {
-				return memo + item.price
-			}, 0).toFixed(2);
-		}
-	},
-	sumSGD: function() {
-		if (this.items) {
-			return _.reduce(this.items, function(memo, item) {
-				console.log(item.SGD)
-				return memo + item.SGD
-			}, 0).toFixed(2);
-		}
-	},
-	getCurrency: function() {
-		return Merchant.findOne(Spree.findOne(this.spree).merchant).currency;
-	},
-	getExchangeRate: function(currency) {
-		return Exchange.findOne({
-			currency: currency
-		}).rate;
-	}
-})
-
-Template.orderSummary.events({
-	'click #checkout': function() {
-		$('#payment-form').toggleClass('hide animated bounceInDown');
-	},
-	'click #make-payment': function() {
-		var payment = {
-			amount: $('input[name="payment-amount"]').val(),
-			transaction: $('input[name="payment-transaction-number"]').val(),
-			verified: false,
-			user: Meteor.userId(),
-			order: this._id
-		}
-
-		console.log(payment);
-
-		Payment.insert(payment);
-
-		Order.update(this._id, {
-			$inc: {
-				status: 1
-			}
-		});
-
-		Meteor.Messages.sendSuccess('Payment has been submitted for verification.');
-	}
-})
-
 Template.orderHistory.helpers({
 	history: function() {
 		return Order.find({
@@ -114,7 +58,7 @@ Template.addOrderItem.helpers({
 });
 
 Template.addOrderItem.events({
-	'click .box-header': function (e) {
+	'click .box-header': function(e) {
 		$(e.target).next().slideToggle();
 	},
 	'change input[name=url]': function(e) {
@@ -127,7 +71,7 @@ Template.addOrderItem.events({
 
 			if (result.thumbnail) {
 				$('#scrapedItemThumbnail').attr('src', result.thumbnail);
-				$('#scrapedItemThumbnail-box').toggleClass('hidden animated bounceInLeft')
+				$('#scrapedItemThumbnail-box').toggleClass('hide animated bounceInLeft');
 			}
 
 			if (result.name) {
@@ -136,6 +80,16 @@ Template.addOrderItem.events({
 
 			if (result.price) {
 				$('input[name=price]').val(result.price).css('color', '#78cd51');
+
+				var merc = Merchant.findOne(Session.get('currentMerchant'));
+				var exchange = Exchange.findOne({
+					currency: merc.currency
+				});
+
+
+				sgd = (Math.ceil(result.price * exchange.rate * 10) / 10).toFixed(2);
+				$('input[name=sgd]').val(sgd);
+				$('#SGD').text('SGD$' + sgd);
 			}
 
 			if (result.code) {

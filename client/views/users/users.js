@@ -76,6 +76,9 @@ Template.userCart.helpers({
 });
 
 Template.userCart.events({
+	'click .box-header': function(e) {
+		$(e.target).next().slideToggle();
+	},
 	'click a.delete-item': function(e) {
 		//Delete
 		e.preventDefault();
@@ -108,6 +111,21 @@ Template.userCart.events({
 			}
 		} else {
 			Meteor.Messages.sendError("This order is currently in progress. You cannot delete any item at this stage. For assistance, please email info@yantingspree.com")
+		}
+	},
+	'click button.close': function(e) {
+		var orderId = this._id;
+
+		e.preventDefault();
+
+		if (this.status === 1) {
+			bootbox.confirm('Are you sure you want to delete this order?', function(a) {
+				if (a) {
+					Order.remove(orderId);
+				}
+			});
+		} else {
+			Meteor.Messages.sendError("This order is currently in progress. You cannot delete it at this stage. For assistance, please email info@yantingspree.com")
 		}
 	}
 });
