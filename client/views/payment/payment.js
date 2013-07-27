@@ -31,7 +31,7 @@ Template.payment1.events({
 	'click a.checkout': function() {
 		$('#payment1-form').toggleClass('hide animated bounceInDown');
 	},
-	'click a.make-payment': function() {
+	'click a.make-payment': function(e) {
 		var form = $(e.target).closest('.box-content'),
 
 			payment = {
