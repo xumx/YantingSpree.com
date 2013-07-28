@@ -5,25 +5,40 @@
 		<hr style="margin-top: 2px; margin-bottom: 5px;">
 		<b>Total Payment:</b> {{sumSGD}} SGD
 
-		<br><br>
+		<br>
 
 		{{#if stage 1}}
 		<a class="btn btn-info btn-block checkout">Checkout</a>
 
-		<div id="payment1-form" style="text-align:left;" class="hide">
-			<p>
-				Make your transfers to either <br>
-				<span>POSB Savings <b>228-21866-9</b> (prefered)</span> or <br>
-				<span>UOB TX <b>366-379-359-2</b> </span> <br>
+		<div style="text-align:left;" class="hide paymentForm">
+			
+			Transferred to
+			<label class="radio">
+				<input type="radio" name="targetBank" value="POSB" checked>
+				POSB Savings <b>228-21866-9</b> (prefered)
+			</label>
+			<label class="radio">
+				<input type="radio" name="targetBank" value="UOB">
+				UOB TX <b>366-379-359-2</b>
+			</label>
 
-				Enter the transaction number below for verification
-			</p>
+			Enter the transaction number below for verification
+			
 			<input type="text" class="input-block-level" name="payment-amount" placeholder="${{sumSGD}} (Transfer Amount)">
 			<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
-			Bank Name: <input type="text" class="input-block-level" name="bank-name" placeholder="optional">
-			Account number: <input type="text" class="input-block-level" name="account-number" placeholder="optional">
+			
+			Transfer Method:
+			<label class="radio">
+				<input type="radio" name="paymentMethod" value="I-Bank" checked>
+				Internet Banking
+			</label>
+			<label class="radio">
+				<input type="radio" name="paymentMethod" value="ATM Transfer">
+				ATM Transfer
+			</label>
+
 			Date of Transfer: <input type="date" class="input-block-level" name="date">
-			<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Verify Payment</a>
+			<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Submit Payment</a>
 		</div>
 		{{/if}}
 	</div>
@@ -32,28 +47,30 @@
 <template name="payment2">
 	
 	<div class="row-fluid">
-		
-
 		<div class="span6">
 			<h3>Shipping Method:</h3>
 			<label class="radio">
-				<input type="radio" name="shippingMethod" id="shippingMethod1" value="option1" checked>
+				<input type="radio" name="shippingMethod" value="Normal Mail">
 				Normal Mail
 			</label>
 			<label class="radio">
-				<input type="radio" name="shippingMethod" id="shippingMethod2" value="option2">
+				<input type="radio" name="shippingMethod" value="Registered Mail">
 				Registered Mail
+			</label>
+			<label class="radio">
+				<input type="radio" name="shippingMethod" value="TA-Q-BIN">
+				TA-Q-BIN
 			</label>
 		</div>
 
 		<div class="span6">
 			<h3>Extra Options:</h3>
 			<label class="checkbox">
-				<input type="checkbox" value="">
+				<input type="checkbox" name="bubble" {{#if bubble}}checked{{/if}}>
 				I want bubble wrap
 			</label>
 			<label class="checkbox">
-				<input type="checkbox" value="">
+				<input type="checkbox" name="box" {{#if box}}checked{{/if}}>
 				I want carton box
 			</label>
 		</div>
@@ -62,40 +79,51 @@
 
 	<div style="text-align:right;">
 
-		<!-- Calculate Cost -->
-		12 <br>
-		42 <br>
-		135 <br>
+		{{shippingMethodCost}}
 		<hr style="margin-top: 2px; margin-bottom: 5px;">
-		<b>Total Shipping Cost:</b>  SGD
+		<b>Total Shipping Cost:</b> {{calculateAmount}}
 	</div>
 
 	<div>
 		<legend>Shipping Address</legend>
-		<textarea>
-			{{currentUser.profile.address}}
-		</textarea>
 
-		<a href="/users/self" class="btn">Change Address</a>
+		{{#if useAlternateShippingAddress}}
+		<textarea class="input-block-level" name="alternateShippingAddress" rows="4">{{alternateShippingAddress}}</textarea>
+		{{else}}
+		<textarea class="input-block-level" name="originalShippingAddress" disabled rows="4">{{currentUser.profile.address}}</textarea>
+		{{/if}}
+
+		<label class="checkbox">
+			<input type="checkbox" name="useAlternateShippingAddress" {{#if useAlternateShippingAddress}}checked{{/if}}>
+			Use alternate shipping address
+		</label>
 	</div>
-	
-	<br>
-	<br>
 
-	<div id="payment-form">
-		<p>
-			Make your transfers to either <br>
-			<span>POSB Savings <b>228-21866-9</b> (prefered)</span> or <br>
-			<span>UOB TX <b>366-379-359-2</b> </span> <br>
+	Transferred to
+	<label class="radio">
+		<input type="radio" name="targetBank" value="POSB" checked>
+		POSB Savings <b>228-21866-9</b> (prefered)
+	</label>
+	<label class="radio">
+		<input type="radio" name="targetBank" value="UOB">
+		UOB TX <b>366-379-359-2</b>
+	</label>
 
-			Enter the transaction number below for verification
-		</p>
-		
-		<input type="text" class="input-block-level" name="payment-amount" placeholder="Transfer Amount">
-		<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
-		<input type="text" class="input-block-level" name="bank-name" placeholder="Bank Name (optional)">
-		<input type="text" class="input-block-level" name="account-number" placeholder="Account number (optional)">
-		Date of Transfer: <input type="date" class="input-block-level" name="date">
-		<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Verify Payment</a>
-	</div>
+	Enter the transaction number below for verification
+
+	<input type="text" class="input-block-level" name="payment-amount" placeholder="${{sumSGD}} (Transfer Amount)">
+	<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
+
+	Transfer Method:
+	<label class="radio">
+		<input type="radio" name="paymentMethod" value="I-Bank" checked>
+		Internet Banking
+	</label>
+	<label class="radio">
+		<input type="radio" name="paymentMethod" value="ATM Transfer">
+		ATM Transfer
+	</label>
+
+	Date of Transfer: <input type="date" class="input-block-level" name="date">
+	<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Submit Payment</a>
 </template>

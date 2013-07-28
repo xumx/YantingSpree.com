@@ -7,7 +7,7 @@
 				<h2>
 					{{#getSpree spree}}
 					{{merchant}} #{{counter}}
-					<!-- End Date: {{dateFormat endDate}} -->
+					| Closing Date: {{endDate}}
 					{{/getSpree}} 
 				</h2>
 				{{#if stage 1}}
@@ -16,7 +16,7 @@
 			</div>
 			<div class="box-content">
 
-				<span>ID: <span class="label label-info">{{_id}}</span></span>
+				<span>Order ID: <span class="label label-info">{{int_id}}</span></span>
 				<span class="label label-success pull-right">{{getStatus}}</span>
 				<br><br>
 				<table class="table table-striped table-bordered table-condensed table-hover">
@@ -40,7 +40,9 @@
 							<td>{{color}}</td>
 							<td>${{SGD}}</td>
 							<td>
+								{{#if isPrepayment ../status}}
 								<a class="btn btn-danger delete-item"><i class="icon-trash icon-white"></i></a>
+								{{/if}}
 							</td>
 						</tr>
 
@@ -50,7 +52,7 @@
 				<small>Last Update: {{dateFormat lastUpdate format="Do MMMM, HH:mm"}}</small>
 			</div>
 		</div>
-		{{#if stage 1}}
+		{{#if stage 0}}
 		<div class="box span4">
 			<div class="box-header">
 				<h2>Payment 1 </h2>
@@ -61,7 +63,7 @@
 		</div>
 		{{/if}}
 
-		{{#if stage 6}}
+		{{#if stage 5}}
 		<div class="box span4">
 			<div class="box-header">
 				<h2>Payment 2 </h2>

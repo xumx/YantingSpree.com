@@ -1,4 +1,4 @@
-Template.admin2.events({
+Template.admin.events({
 	'click #dev': function() {
 
 		el = $('table')[0];
@@ -29,6 +29,9 @@ Template.verifyPayment.helpers({
 		return Payment.find({
 			verified: false
 		});
+	},
+	userName: function(_id) {
+		return Meteor.users.findOne(_id).profile.name;
 	}
 });
 
@@ -43,7 +46,6 @@ Template.verifyPayment.events({
 				status: 1
 			}
 		});
-		console.log('Payment verified');
 	},
 	'click a[name="reject-payment"]': function() {
 		Payment.remove(this._id);
@@ -53,7 +55,6 @@ Template.verifyPayment.events({
 				status: -1
 			}
 		});
-		console.log('Payment verified');
 	}
 });
 
@@ -73,7 +74,7 @@ Template.orderManagement.helpers({
 	orders: function() {
 		return Order.find({
 			status: {
-				$not: 0
+				$not: 10
 			}
 		})
 	},
@@ -96,7 +97,6 @@ Template.orderManagement.helpers({
 	userEmail: function(_id) {
 		return Meteor.users.findOne(_id).profile.email;
 	},
-
 	userName: function(_id) {
 		return Meteor.users.findOne(_id).profile.name;
 	},
@@ -121,51 +121,49 @@ Template.orderManagement.events({
 		});
 	},
 	'click a.email-update': function() {
-		var subject = "";
+		var subject = "",
+			body = "Dear Customer, <br>",
+			that = this;
 
-		var body = "Dear Customer, <br>";
-
-		if (this.status == 9) {
+		if (this.status == 8) {
 			bootbox.prompt('Tracking Number?', function(tracking) {
 				createBody(tracking);
 			});
 		} else {
-			createBody()
+			createBody();
 		}
 
 		function createBody(tracking) {
-			switch (this.status) {
-				case 3:
+			switch (that.status) {
+				case 2:
 					subject += "[Payment Verified] status update from YantingSpree";
 					body += "Your payment has been confirmed. We will now place orders on your behalf";
 					break;
-				case 4:
+				case 3:
 					subject += "[Order Placed] status update from YantingSpree";
 					body += "We have successfully placed your orders";
 					break;
-				case 5:
+				case 4:
 					subject += "[Shipped from Merchant] status update from YantingSpree";
-					body += "Your items have been shipped out by " + Spree.findOne(_id).merchant;
+					body += "Your items have been shipped out by " + Spree.findOne(that._id).merchant;
 					break;
+				case 5:
 
-					//CASE 7
 
-				case 6:
 					subject += "[Shipment arrived] status update from YantingSpree";
 					body += "Action required. Kindly go to www.yantingspree.com to submit your second payment." //TODO
+					//CASE 7
 					break;
-				case 8:
+				case 6:
 					subject += "[Payment Verified] status update from YantingSpree";
 					body += "Your payment has been confirmed. We will now package your items and ship it out within 48 hours.";
 					break;
-				case 9:
+				case 8:
 					subject += "[Order Complete] status update from YantingSpree";
 					body += "Your package has been shipped out. You should receive it within the next few days."
-
 					if (tracking.length > 0) {
 						body += "<br><br>Your Tracking number is <b>" + tracking + "</b>";
 					}
-
 					break;
 			}
 
@@ -173,7 +171,7 @@ Template.orderManagement.events({
 
 			bootbox.confirm(body, function(result) {
 				if (result) {
-					Meteor.call('sendMail', Meteor.users.findOne(this.user).profile.email, subject, body);
+					Meteor.call('sendMail', Meteor.users.findOne(that.user).profile.email, subject, body);
 					Meteor.Messages.sendSuccess('Email Sent!');
 				}
 			});
@@ -260,22 +258,16 @@ Template.merchantManagement.events({
 			}
 		}) || 1;
 
+		//Default end date is 7 days later, 11pm
+		var endDate = moment(new Date().addDays(7)).format('Do MMMM') + ' 11:00PM';
+
 		Spree.insert({
 			merchant: this._id,
 			status: 'open',
 			startDate: new Date(),
-			endDate: new Date().addDays(7),
+			endDate: endDate,
 			counter: nextSequenceNo,
 		});
-
-		setTimeout((function(ele) {
-			return function() {
-				console.log(ele.position().top);
-				var top = ele.position().top - 70;
-				$(window).scrollTop(top);
-			}
-		})($(event.target).closest('.well')), 50);
-
 	},
 	'click a[name=close]': function(event) {
 		Merchant.update(this._id, {
@@ -298,9 +290,8 @@ Template.merchantManagement.events({
 		}
 	},
 	'click a[name=update]': function(event) {
-		var id = this._id;
-		var form = $(event.target).closest('form');
-
+		var id = this._id,
+			form = $(event.target).parents('form');
 
 		this._id = form.find('[name=_id]').val();
 		this.url = form.find('[name=url]').val();

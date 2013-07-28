@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "basePackages": {
+      "npm": {},
       "cron": {},
       "roles": {},
       "router": {},
@@ -13,11 +14,19 @@
       "bootboxjs": {},
       "event-hooks": {},
       "animate-css": {},
-      "z-mongo-admin": {},
+      "z-mongo-admin": {
+        "git": "https://github.com/xumx/meteor-admin-ui",
+        "branch": "master"
+      },
       "flash-messages": {},
       "accounts-ui-bootstrap-dropdown": {}
     },
     "packages": {
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.1.4",
+        "commit": "68ab2b952ab21a5bbba879b37be9385ec8ff6d63"
+      },
       "cron": {
         "git": "https://github.com/alexsuslov/Meteor.cron.git",
         "tag": "v0.0.1",
@@ -54,9 +63,9 @@
         "commit": "993c626b204e596c41cda63cb3fbb0ca3aa5deea"
       },
       "z-mongo-admin": {
-        "git": "https://github.com/gterrono/meteor-admin-ui.git",
-        "tag": "v0.1.1",
-        "commit": "e43f000cbbab16ed4f67f95e5ca8b100235c07e7"
+        "git": "https://github.com/xumx/meteor-admin-ui",
+        "branch": "master",
+        "commit": "e3a4ded26a4a8d9c25f8c29b97213ed078eecb1e"
       },
       "flash-messages": {
         "git": "https://github.com/camilosw/flash-messages.git",
@@ -72,11 +81,6 @@
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
         "tag": "v1.3.5",
         "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
-      },
-      "spin": {
-        "git": "https://github.com/SachaG/meteor-spin.git",
-        "tag": "v0.2.0",
-        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
       }
     }
   }

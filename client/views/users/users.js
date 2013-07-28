@@ -58,8 +58,10 @@ Template.userProfile.events({
 Template.userCart.helpers({
 	orders: function() {
 		return Order.find({
-			user: Meteor.userId()
-			//TODO Check Status
+			user: Meteor.userId(),
+			status: {
+				$lt: 10
+			}
 		});
 	},
 	getStatus: function() {
@@ -70,6 +72,9 @@ Template.userCart.helpers({
 	},
 	stage: function(s) {
 		return (this.status === s);
+	},
+	isPrepayment: function(status) {
+		return (status === 0);
 	},
 	sumSGD: function() {
 		if (this.items) {
@@ -91,34 +96,26 @@ Template.userCart.events({
 		//Delete
 		e.preventDefault();
 
-		var order = Order.findOne({
-			'items._id': this._id
+		var orderId = order._id;
+
+		Order.update(orderId, {
+			$pull: {
+				items: {
+					'_id': this._id
+				}
+			}
 		});
 
-		if (order.status === 1) {
-			var orderId = order._id;
-
+		//If item list is empty, delete order
+		if (Order.findOne(orderId).items.length === 0) {
+			Order.remove(orderId);
+			Session.set('currentOrder', undefined);
+		} else {
 			Order.update(orderId, {
-				$pull: {
-					items: {
-						'_id': this._id
-					}
+				$set: {
+					lastUpdate: new Date()
 				}
 			});
-
-			//If item list is empty, delete order
-			if (Order.findOne(orderId).items.length === 0) {
-				Order.remove(orderId);
-				Session.set('currentOrder', undefined);
-			} else {
-				Order.update(orderId, {
-					$set: {
-						lastUpdate: new Date()
-					}
-				});
-			}
-		} else {
-			Meteor.Messages.sendError("This order is currently in progress. You cannot delete any item at this stage. For assistance, please email info@yantingspree.com")
 		}
 	},
 	'click button.close': function(e) {

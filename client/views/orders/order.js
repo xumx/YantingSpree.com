@@ -3,7 +3,7 @@ Template.orderList.helpers({
 		return Order.findOne({
 			user: Meteor.userId(),
 			spree: Session.get('currentSpree'),
-			status: 1
+			status: 0
 		});
 	}
 });
@@ -12,7 +12,7 @@ Template.orderHistory.helpers({
 	history: function() {
 		return Order.find({
 			status: {
-				$not: 1
+				$not: 0
 			},
 			spree: Session.get('currentSpree')
 		}, {
@@ -71,7 +71,7 @@ Template.addOrderItem.events({
 
 			if (result.thumbnail) {
 				$('#scrapedItemThumbnail').attr('src', result.thumbnail);
-				$('#scrapedItemThumbnail-box').toggleClass('hide animated bounceInLeft');
+				$('#scrapedItemThumbnail-box').removeClass('hide').addClass('animated bounceInLeft');
 			}
 
 			if (result.name) {
@@ -131,12 +131,23 @@ Template.addOrderItem.events({
 
 		var orderId = Session.get('currentOrder');
 		if (orderId === undefined) {
+
+			var nextInt_id = Order.findOne({}, {
+				sort: {
+					int_id: -1
+				},
+				transform: function(data) {
+					return data.int_id + 1;
+				}
+			}) || 12345;
+
 			orderId = Order.insert({
 				spree: Session.get('currentSpree'),
-				user: Meteor.userId(),
-				status: 1,
 				lastUpdate: new Date(),
-				items: [orderItem]
+				user: Meteor.userId(),
+				int_id: nextInt_id,
+				items: [orderItem],
+				status: 0
 			});
 		} else {
 			Order.update(orderId, {
@@ -151,5 +162,9 @@ Template.addOrderItem.events({
 				}
 			});
 		}
+
+		//Reset
+		form[0].reset();
+		$('#scrapedItemThumbnail-box').addClass('hide').removeClass('animated bounceInLeft');
 	}
 });

@@ -8,7 +8,7 @@ Accounts.ui.config({
 
 Meteor.Router.add({
 	'/': 'welcome',
-	'/admin2': 'admin2',
+	'/admin': 'admin',
 	'/users/self': 'userProfile',
 	'/users/cart': 'userCart',
 	'/users/all': 'manageUsers',
@@ -45,37 +45,39 @@ Meteor.Router.filters({
 });
 
 Meteor.Router.filter('checkLoggedIn', {
-	only: ['userProfile','userCart']
+	only: ['userProfile', 'userCart']
 });
 
 Meteor.Router.filter('checkAdmin', {
-	only: ['admin2', 'db_view', 'collection_view', 'document_view']
+	only: ['admin', 'db_view', 'collection_view', 'document_view']
 });
 
 //Global Helpers
-Template.sidebar.helpers({
-	merchantsWithOpenSpree: function() {
-		return Spree.find({
-			'status': 'open'
-		}, {
-			transform: function(data) {
-				return data.merchant;
-			}
-		});
-	}
-})
+Template.sidebar.merchantsWithOpenSpree = function() {
+	return Spree.find({
+		'status': 'open'
+	}, {
+		transform: function(data) {
+			return data.merchant;
+		}
+	});
+};
+
+Template.navbar.rendered = function() {
+	$('#login-buttons').children().removeClass('nav-collapse collapse in');
+};
 
 Meteor.startup(function() {
 	Hooks.init();
 
-	Hooks.onLoggedIn = function () {
+	Hooks.onLoggedIn = function() {
 		var profile = Meteor.user().profile;
-		if(!(profile && profile.email && profile.phone && profile.address)) {
+		if (!(profile && profile.email && profile.phone && profile.address)) {
 			Meteor.Router.to('/users/self');
 		}
 	}
 
-	Hooks.onLoggedOut = function () {
+	Hooks.onLoggedOut = function() {
 		Session.set('currentOrder', undefined);
 		Meteor.Router.to('/');
 	}
@@ -98,7 +100,7 @@ Meteor.startup(function() {
 		var id = Order.findOne({
 			spree: Session.get('currentSpree'),
 			user: Meteor.userId(),
-			status: 1 //TODO
+			status: 0
 		}, {
 			transform: function(data) {
 				Session.set('currentOrder', data._id);
@@ -112,4 +114,5 @@ Meteor.startup(function() {
 			Session.set('currentOrder', undefined);
 		}
 	});
+
 });

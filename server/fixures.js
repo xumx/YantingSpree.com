@@ -1,37 +1,15 @@
 console.time('loadData');
 
-var normalUser;
-
 if (Meteor.users.find().count() === 0) {
-	var users = [{
-		username: "user",
-		roles: []
-	}, {
-		username: "admin",
-		roles: ['admin']
-	}];
-
-	_.each(users, function(user) {
-		var id;
-
-		id = Accounts.createUser({
-			username: user.username,
-			password: "apple1",
-			profile: {
-				name: user.username
-			}
-		});
-
-		if (user.username == "user") {
-			normalUser = id;
-		}
-
-		console.log("Create ", id);
-
-		if (user.roles.length > 0) {
-			Roles.addUsersToRoles(id, user.roles);
+	var id = Accounts.createUser({
+		username: 'admin',
+		password: 'apple1',
+		profile: {
+			email: 'deepthought@gmail.com'
 		}
 	});
+
+	Roles.addUsersToRoles(id, 'admin');
 }
 
 if (Exchange.find().count() === 0) {
@@ -120,53 +98,5 @@ if (Merchant.find().count() === 0) {
 		open: false
 	});
 }
-
-
-if (Spree.find().count() === 0) {
-	var id = Spree.insert({
-		merchant: 'Forever 21',
-		status: 'close',
-		startDate: new Date('20 May 2013'),
-		endDate: new Date('30 May 2013'),
-		counter: 11,
-	});
-
-	var id = Spree.insert({
-		merchant: 'Forever 21',
-		status: 'open',
-		startDate: new Date('20 May 2013'),
-		endDate: new Date('30 May 2013'),
-		counter: 13,
-	});
-
-	Order.insert({
-		spree: id,
-		user: normalUser,
-		status: 1,
-		lastUpdate: new Date(),
-		items: [{
-			_id: Random.id(),
-			name: 'Forever Sexy Unforgettable Demi Top',
-			url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-			code: '',
-			size: '38C',
-			color: 'Coral Pink',
-			quantity: 1,
-			price: 24.20,
-			SGD: 40
-		}, {
-			_id: Random.id(),
-			name: 'Forever Top',
-			url: 'http://www.victoriassecret.com/swimwear/halter-top/unforgettable-demi-top-forever-sexy?ProductID=118695&CatalogueType=OLS&stop_mobi=yes',
-			code: '',
-			size: '32a',
-			color: 'Coral Blue',
-			quantity: 1,
-			price: 14,
-			SGD: 50
-		}]
-	});
-}
-
 
 console.timeEnd('loadData');

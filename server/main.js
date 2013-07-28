@@ -1,4 +1,4 @@
-var cheerio = Npm.require('cheerio');
+var cheerio = Meteor.require('cheerio');
 
 Meteor.startup(function() {
 	// createUserAdminRoles();

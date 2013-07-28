@@ -28,18 +28,20 @@ Template.payment1.helpers({
 });
 
 Template.payment1.events({
-	'click a.checkout': function() {
-		$('#payment1-form').toggleClass('hide animated bounceInDown');
+	'click a.checkout': function(event) {
+		$(event.target).siblings('.paymentForm').toggleClass('hide animated bounceInDown');
 	},
-	'click a.make-payment': function(e) {
-		var form = $(e.target).closest('.box-content'),
+	'click a.make-payment': function(event) {
+		event.preventDefault();
+
+		var form = $(event.target).parents('.paymentForm'),
 
 			payment = {
-				transaction: form.find('input[name="payment-transaction-number"]').val(),
-				account: form.find('input[name="account-number"]').val(),
-				amount: form.find('input[name="payment-amount"]').val(),
-				bank: form.find('input[name="bank-name"]').val(),
 				date: form.find('input[name="date"]').val(),
+				target: form.find('input[name=targetBank]:checked').val(),
+				method: form.find('input[name=paymentMethod]:checked').val(),
+				amount: form.find('input[name="payment-amount"]').val(),
+				transaction: form.find('input[name="payment-transaction-number"]').val(),
 				user: Meteor.userId(),
 				verified: false,
 				order: this._id
@@ -60,21 +62,104 @@ Template.payment1.events({
 });
 
 Template.payment2.helpers({
+	calculateAmount: function() {
+		var total = 0;
 
+		// total += actualCost
+		// total += handlingFee
+		// total += extraCosts
+
+		if (this.bubble) {
+			total += 1;
+		}
+
+		if (this.box) {
+			total += 1.2;
+		}
+
+		if (this.shippingMethod == 'Registered Mail') {
+			total += 2.14
+		} else if (this.shippingMethod == 'TA-Q-BIN') {
+			total += 1.14
+		} else if (this.shippingMethod == 'Normal Mail') {
+			total += 1.14
+		}
+
+		return 'SGD' + (Math.ceil(total * 100)/100).toFixed(2);
+	},
+	shippingMethodCost: function() {
+		var text = '';
+
+		if (this.bubble) {
+			text += 'Bubble Wrap - $1 <br/>';
+		}
+
+		if (this.box) {
+			text += 'Carton Box - $2 <br/>';
+		}
+
+		if (this.shippingMethod == 'Registered Mail') {
+			text += 'Registered Mail - $2.14';
+		} else if (this.shippingMethod == 'TA-Q-BIN') {
+			text += 'Registered Mail - $1.14';
+		} else if (this.shippingMethod == 'Normal Mail') {
+			text += 'Registered Mail - $1.14';
+		}
+
+		text += '<br/>';
+
+		return new Handlebars.SafeString(text);
+	}
 });
 
 Template.payment2.events({
-	'click a.make-payment': function(e) {
-		e.preventDefault();
+	'click input[name=shippingMethod]': function() {
+		Order.update(this._id, {
+			$set: {
+				shippingMethod: $("input[name=shippingMethod]:checked").val()
+			}
+		});
+	},
+	'click input[name=box]': function(event) {
+		Order.update(this._id, {
+			$set: {
+				box: $(event.target).is(':checked')
+			}
+		});
+	},
+	'click input[name=bubble]': function(event) {
+		Order.update(this._id, {
+			$set: {
+				bubble: $(event.target).is(':checked')
+			}
+		});
+	},
+	'change textarea[name=alternateShippingAddress]': function(event) {
+		var alternateShippingAddress = $(event.target).val();
+		Order.update(this._id, {
+			$set: {
+				alternateShippingAddress: alternateShippingAddress
+			}
+		});
+	},
+	'click input[name=useAlternateShippingAddress]': function(event) {
+		Order.update(this._id, {
+			$set: {
+				useAlternateShippingAddress: $(event.target).is(':checked')
+			}
+		});
+	},
+	'click a.make-payment': function(event) {
+		event.preventDefault();
 
-		var form = $(e.target).closest('.box-content'),
+		var form = $(event.target).parents('.box-content'),
 
 			payment = {
-				transaction: form.find('input[name="payment-transaction-number"]').val(),
-				account: form.find('input[name="account-number"]').val(),
-				amount: form.find('input[name="payment-amount"]').val(),
-				bank: form.find('input[name="bank-name"]').val(),
 				date: form.find('input[name="date"]').val(),
+				target: form.find('input[name=targetBank]:checked').val(),
+				method: form.find('input[name=paymentMethod]:checked').val(),
+				amount: form.find('input[name="payment-amount"]').val(),
+				transaction: form.find('input[name="payment-transaction-number"]').val(),
 				user: Meteor.userId(),
 				verified: false,
 				order: this._id

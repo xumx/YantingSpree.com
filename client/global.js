@@ -1,15 +1,15 @@
 statusList = [
-	'Archived', //0
-	'Prepayment', //1
-	'Payment 1 Submitted', //2
-	'Payment 1 Confirmed', //3
-	'Order Placed', //4
-	'Shipped from Merchant', //5
-	'Shipment Arrived', //6
-	'Payment 2 Submitted', //7
-	'Payment 2 Confirmed', //8
-	'Shipped to User', //9
-	'Completed' //10
+	'Prepayment', //0
+	'Payment 1 Submitted', //1
+	'Payment 1 Confirmed', //2
+	'Order Placed', //3
+	'Shipped from Merchant', //4
+	'Shipment Arrived', //5
+	'Payment 2 Submitted', //6
+	'Payment 2 Confirmed', //7
+	'Shipped to User', //8
+	'Completed', //9
+	'Archived'//10
 ];
 
 Handlebars.registerHelper('dateFormat', function(context, block) {
