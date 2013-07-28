@@ -90,22 +90,27 @@
 
 			<!-- Form Name -->
 			<legend>Edit Profile</legend>
+			
 
-			<!-- Profile Picture
- 			<div>
-				<img src="" class="img-polaroid">
-			</div> -->
-			<!-- Text input-->
+			{{#if currentUser.username}}
 			<div class="control-group">
-				<label class="control-label" for="profilename">Name</label>
+				<label class="control-label" for="profilename">Username</label>
 				<div class="controls">
-					<input id="profilename" name="profilename" type="text" class="input-block-level" required value="{{currentUser.profile.name}}">
+					<input type="text" disabled value="{{currentUser.username}}">
+				</div>
+			</div>
+			{{/if}}
+
+			<div class="control-group">
+				<label class="control-label" for="profilename">Full Name <span class="superscript">*</span></label>
+				<div class="controls">
+					<input id="profilename" name="profilename" type="text" class="input-block-level" placeholder="to be printed on the address label" required value="{{currentUser.profile.name}}">
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="control-group">
-				<label class="control-label" for="postalcode">Postal Code</label>
+				<label class="control-label" for="postalcode">Postal Code <span class="superscript">*</span></label>
 				<div class="controls">
 					<input id="postalcode" name="postalcode" type="text" placeholder="648921" class="input-block-level" required value="{{currentUser.profile.postalcode}}">
 					<input name="street" type="hidden">
@@ -122,7 +127,7 @@
 
 			<!-- Textarea -->
 			<div class="control-group">
-				<label class="control-label" for="address">Full Shipping Address</label>
+				<label class="control-label" for="address">Full Shipping Address <span class="superscript">*</span></label>
 				<div class="controls">                     
 					<textarea rows="4" id="address" name="address" class="input-block-level" required>{{currentUser.profile.address}}</textarea>
 				</div>
@@ -130,16 +135,16 @@
 
 			<!-- Text input-->
 			<div class="control-group">
-				<label class="control-label" for="phone">Phone Number</label>
+				<label class="control-label" for="phone">Phone Number <span class="superscript">*</span></label>
 				<div class="controls">
-					<input id="phone" name="phone" type="tel" autocomplete="on" placeholder="8288 8398" class="input-block-level" required="" value="{{currentUser.profile.phone}}">
+					<input id="phone" name="phone" type="tel" autocomplete="on" placeholder="82888398" class="input-block-level" required="" value="{{currentUser.profile.phone}}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="control-group">
-				<label class="control-label" for="email">Email Address</label>
+				<label class="control-label" for="email">Email Address <span class="superscript">*</span></label>
 				<div class="controls">
 					<input id="email" name="profile-email" type="email" placeholder="jane@gmail.com" class="input-block-level" required="" value="{{currentUser.profile.email}}">
 

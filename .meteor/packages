@@ -3,21 +3,20 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+http
+cron
 roles
+router
+momentjs
 insecure
+bootstrap
+bootboxjs
 underscore
+event-hooks
+animate-css
 accounts-base
+z-mongo-admin
+flash-messages
 accounts-password
 accounts-facebook
 accounts-ui-bootstrap-dropdown
-bootstrap
-flash-messages
-bootboxjs
-z-mongo-admin
-event-hooks
-momentjs
-animate-css
-observatory
-http
-cron
-router

@@ -87,7 +87,11 @@ Template.orderManagement.helpers({
 	},
 	spreeName: function(_id) {
 		var spree = Spree.findOne(_id);
-		return spree.merchant + ' #' + spree.counter;
+		if (spree) {
+			return spree.merchant + ' #' + spree.counter;
+		} else {
+			return "Error: Floating Order with no Spree attached: Likely cause (Deleted Spree from Data View";
+		}
 	},
 	userEmail: function(_id) {
 		return Meteor.users.findOne(_id).profile.email;

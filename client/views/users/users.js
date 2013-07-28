@@ -1,38 +1,46 @@
 Template.userProfile.events({
 	'keyup #postalcode': function(event) {
-		var postalcode = $(event.target).val();
+		var form, unitnumber, address, postalcode = $(event.target).val();
 
 		if (postalcode.length == 6) {
+			form = $(event.target).parents('form');
+			hiddenStreet = form.find('input[name=street]');
+			unitnumber = form.find('input[name="unitnumber"]');
+			address = form.find('textarea[name="address"]');
+
 			Meteor.call('resolvePostalCode', postalcode, function(err, street) {
 				if (!err) {
-					var addressText = postalcode + '\n';
-					addressText += street + ', ';
-					addressText += $('input[name="unitnumber"]').val();
+					var addressText = street + '\n';
+					addressText += unitnumber.val() + '\n';
+					addressText += postalcode + '\n';
 
-					$('textarea[name="address"]').val(addressText);
+					address.val(addressText);
+					hiddenStreet.val(street);
 				}
 			});
 		}
 	},
-	'keyup #unitnumber': function() {
-		var addressText = $('input[name="postalcode"]').val() + '\n';
-		addressText += $('input[name="street"]').val() + ', ';
-		addressText += $('input[name="unitnumber"]').val();
+	'keyup #unitnumber': function(event) {
+		var form = $(event.target).parents('form'),
+			addressText = form.find('input[name="street"]').val() + '\n';
+		addressText += form.find('input[name="unitnumber"]').val() + '\n';
+		addressText += form.find('input[name="postalcode"]').val();
 
-		$('textarea[name="address"]').text(addressText);
+		form.find('textarea[name="address"]').val(addressText);
 	},
 	'submit form': function(event) {
 		event.preventDefault();
 
-		var profile = {
-			postalcode: $('input[name="postalcode"]').val(),
-			unitnumber: $('input[name="unitnumber"]').val(),
-			address: $('textarea[name="address"]').val(),
-			phone: $('input[name="phone"]').val(),
-			bank: $('input[name="bank"]').val(),
-			email: $('input[name="profile-email"]').val(),
-			name: $('input[name="profilename"]').val(),
-		}
+		var form = $(event.target),
+			profile = {
+				postalcode: form.find('input[name="postalcode"]').val(),
+				unitnumber: form.find('input[name="unitnumber"]').val(),
+				address: form.find('textarea[name="address"]').val(),
+				phone: form.find('input[name="phone"]').val(),
+				bank: form.find('input[name="bank"]').val(),
+				email: form.find('input[name="profile-email"]').val(),
+				name: form.find('input[name="profilename"]').val(),
+			}
 
 		profile = _.extend(Meteor.user().profile, profile);
 		Meteor.users.update({

@@ -1,10 +1,14 @@
 {
-  "packages": {
-    "z-mongo-admin": {},
-    "event-hooks": {},
-    "momentjs": {},
-    "animate-css": {},
-    "observatory": {},
-    "cron": {}
-  }
+	"packages": {
+		"cron": {},
+		"roles": {},
+		"router": {},
+		"momentjs": {},
+		"bootboxjs": {},
+		"event-hooks": {},
+		"animate-css": {},
+		"z-mongo-admin": {},
+		"flash-messages": {},
+		"accounts-ui-bootstrap-dropdown": {}
+	}
 }

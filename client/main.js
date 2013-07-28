@@ -8,7 +8,6 @@ Accounts.ui.config({
 
 Meteor.Router.add({
 	'/': 'welcome',
-	'/admin':'admin',
 	'/admin2': 'admin2',
 	'/users/self': 'userProfile',
 	'/users/cart': 'userCart',

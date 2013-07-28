@@ -314,6 +314,12 @@ h6 {
 	border-radius: 0px;
 }
 
+.superscript {
+	vertical-align: super;
+	font-size: 80%;
+	color: red;
+}
+
 /* Header Section
 =================================================================== */
 .navbar {
