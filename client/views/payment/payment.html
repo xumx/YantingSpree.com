@@ -11,7 +11,7 @@
 
 		<div style="text-align:left;" class="hide paymentForm">
 			
-			Transferred to
+			<b>Transferred to</b>
 			<label class="radio">
 				<input type="radio" name="targetBank" value="POSB" checked>
 				POSB Savings <b>228-21866-9</b> (prefered)
@@ -26,7 +26,7 @@
 			<input type="text" class="input-block-level" name="payment-amount" placeholder="${{sumSGD}} (Transfer Amount)">
 			<input type="text" class="input-block-level" name="payment-transaction-number" placeholder="Transaction Reference Number">
 			
-			Transfer Method:
+			<b>Transfer Method</b>
 			<label class="radio">
 				<input type="radio" name="paymentMethod" value="I-Bank" checked>
 				Internet Banking
@@ -40,7 +40,7 @@
 
 
 			<div>
-				<legend>Shipping Address</legend>
+				<b>Shipping Address</b>
 
 				<textarea class="input-block-level" {{#unless useAlternateShippingAddress}}style="display: none;"{{/unless}} name="alternateShippingAddress" rows="4">{{alternateShippingAddress}}</textarea>
 				

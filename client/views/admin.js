@@ -23,8 +23,7 @@ Template.admin.events({
 	}
 });
 
-
-Template.verifyPayment.helpers({
+Template.paymentManagement.helpers({
 	payments: function() {
 		return Payment.find({
 			verified: false
@@ -35,7 +34,7 @@ Template.verifyPayment.helpers({
 	}
 });
 
-Template.verifyPayment.events({
+Template.paymentManagement.events({
 	'click a[name="verify-payment"]': function() {
 		Payment.update(this._id, {
 			verified: true
@@ -57,18 +56,6 @@ Template.verifyPayment.events({
 		});
 	}
 });
-
-Template.orderManagement.rendered = function() {
-	_.defer(function function_name(argument) {
-		$('table').tablecloth({
-			theme: "paper",
-			bordered: true,
-			condensed: true,
-			sortable: true,
-			clean: true
-		});
-	});
-};
 
 Template.orderManagement.helpers({
 	orders: function() {
@@ -194,17 +181,34 @@ Template.orderManagement.events({
 	}
 });
 
+Template.orderManagement.rendered = function() {
+	_.defer(function function_name(argument) {
+		$('table').tablecloth({
+			theme: "paper",
+			bordered: true,
+			condensed: true,
+			sortable: true,
+			clean: true
+		});
+	});
+};
+
 
 Template.spreeManagement.helpers({
 	allSpree: function() {
-		return Spree.find({});
+		return Spree.find({}, {
+			sort: {
+				merchant: 1,
+				counter: 1
+			}
+		});
 	},
 	numberOfOrders: function() {
 		return Order.find({
 			spree: this._id
 		}).count();
 	},
-	open: function () {
+	open: function() {
 		return (this.status === 'open');
 	}
 });
@@ -241,7 +245,6 @@ Template.spreeManagement.events({
 		});
 	}
 });
-
 
 Template.merchantManagement.helpers({
 	allMerchants: function() {
@@ -344,5 +347,17 @@ Template.merchantManagement.events({
 
 			Merchant.remove(this._id);
 		}
+	}
+});
+
+Template.userManagement.helpers({
+	users: function() {
+		return Meteor.users.find();
+	}
+});
+
+Template.userManagement.events({
+	'click a[name=impostor]': function() {
+		console.log(this._id);
 	}
 });
