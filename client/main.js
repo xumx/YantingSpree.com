@@ -3,7 +3,7 @@
 Meteor.subscribe('all');
 
 Accounts.ui.config({
-	passwordSignupFields: 'USERNAME_ONLY'
+	passwordSignupFields: 'USERNAME_AND_EMAIL'
 });
 
 Meteor.Router.add({

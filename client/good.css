@@ -243,11 +243,14 @@ h6 {
 
 #sidebar-left {
 	background: #81D8D0;
-	color: white;
 	min-width: 170px;
 	-webkit-box-shadow: 0 0 .8em .1em rgba(0,0,0,0.09);
 	-moz-box-shadow: 0 0 .8em .1em rgba(0,0,0,0.09);
 	box-shadow: 0 0 .8em .1em rgba(0,0,0,0.09);
+}
+
+#sidebar-left table {
+	color: white;
 }
 
 .brand {

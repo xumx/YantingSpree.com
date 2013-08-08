@@ -31,6 +31,9 @@ Template.payment1.events({
 	'click a.checkout': function(event) {
 		$(event.target).siblings('.paymentForm').toggleClass('hide animated bounceInDown');
 	},
+	'click input[name=useAlternateShippingAddress]': function(event) {
+		$(event.target).parents('.paymentForm').find('textarea').toggle();
+	},
 	'click a.make-payment': function(event) {
 		event.preventDefault();
 
@@ -50,6 +53,23 @@ Template.payment1.events({
 		console.log(payment);
 
 		Payment.insert(payment);
+
+		if (form.find('input[name=useAlternateShippingAddress]:checked').length > 0) {
+			Order.update(this._id, {
+				$set: {
+					useAlternateShippingAddress: $(event.target).is(':checked')
+				}
+			});
+
+			var altAddress = form.find('textarea[name=alternateShippingAddress]').val();
+			Order.update(this._id, {
+				$set: {
+					alternateShippingAddress: altAddress
+				}
+			});
+
+			Meteor.call('sendMail', "deepthought@gmail.com", "Order " + this.int_id + "has alternate shipping address", "Alternate Address: <br>" + altAddress);
+		}
 
 		Order.update(this._id, {
 			$inc: {
@@ -85,7 +105,7 @@ Template.payment2.helpers({
 			total += 1.14
 		}
 
-		return 'SGD' + (Math.ceil(total * 100)/100).toFixed(2);
+		return 'SGD' + (Math.ceil(total * 100) / 100).toFixed(2);
 	},
 	shippingMethodCost: function() {
 		var text = '';
@@ -131,21 +151,6 @@ Template.payment2.events({
 		Order.update(this._id, {
 			$set: {
 				bubble: $(event.target).is(':checked')
-			}
-		});
-	},
-	'change textarea[name=alternateShippingAddress]': function(event) {
-		var alternateShippingAddress = $(event.target).val();
-		Order.update(this._id, {
-			$set: {
-				alternateShippingAddress: alternateShippingAddress
-			}
-		});
-	},
-	'click input[name=useAlternateShippingAddress]': function(event) {
-		Order.update(this._id, {
-			$set: {
-				useAlternateShippingAddress: $(event.target).is(':checked')
 			}
 		});
 	},

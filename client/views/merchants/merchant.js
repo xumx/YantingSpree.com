@@ -43,6 +43,7 @@ Template.addMerchant.events({
 			_id: $(event.target).find('[name=_id]').val(),
 			url: $(event.target).find('[name=url]').val(),
 			banner: $(event.target).find('[name=banner]').val(),
+			thumbnail: $(event.target).find('[name=thumbnail]').val(),
 			speed: $(event.target).find('[name=speed]').val(),
 			shipping: $(event.target).find('[name=shipping]').val(),
 			currency: $(event.target).find('[name=currency]').val(),

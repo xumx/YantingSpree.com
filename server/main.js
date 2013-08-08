@@ -47,7 +47,7 @@ Meteor.methods({
 		}
 	},
 	fetchImage: function(url) {
-		var supportedSites = ['forever21.com', 'asos.com'];
+		var supportedSites = ['forever21.com', 'asos.com', 'newlook.com','armaniexchange.com'];
 		var matches = url.match(/^https?\:\/\/w*\.?([^\/:?#]+)(?:[\/:?#]|$)/i);
 		var domain = matches && matches[1];
 		var result = {};
@@ -70,6 +70,17 @@ Meteor.methods({
 					//Price in SGD?
 					result.price = parseFloat($('.product_price_details').text().match(/\d+\.?\d*/));
 					break;
+				case 'newlook.com':
+					result.thumbnail = $('#thumbs .li_thumb img').first().attr('src');
+					result.name = $('h1[itemprop=name]').text();
+					result.price = parseFloat($('[itemprop=price]').text().match(/\d+\.?\d*/));
+					result.code = $('[itemprop=productID]').text();
+					break;
+				case 'armaniexchange.com':
+					result.thumbnail = $('meta[property="og:image"]').attr('content').replace(/wid=.+/,'wid=1000');
+					result.name = $('.prdTxt h2').text();
+					result.price = parseFloat($('#prdName .price').text().match(/\d+\.?\d*/));
+					break;
 			}
 			return result;
 		} else {
@@ -88,11 +99,15 @@ new Meteor.Cron({
 	}
 });
 
-// Accounts.onCreateUser(function(options, user) {
+Accounts.onCreateUser(function(options, user) {
 
-// 	console.dir(options);
-// 	user.profile = {
-// 		"name": options.username
-// 	}
-// 	return user;
-// });
+	if (options.email) {
+		user.profile = {
+			"email": options.email
+		}
+	} else {
+		user.profile = {};
+	}
+
+	return user;
+});

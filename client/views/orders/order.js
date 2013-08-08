@@ -61,48 +61,49 @@ Template.addOrderItem.events({
 	'click .box-header': function(e) {
 		$(e.target).next().slideToggle();
 	},
-	'change input[name=url]': function(e) {
-
-		$('#scraperSpinner').toggleClass('icon-spin icon-refresh');
-		var url = $(e.target).val();
-		Meteor.call("fetchImage", url, function(error, result) {
+	'input input[name=url]': function(e) {
+		if (e.target.validity.valid) {
 			$('#scraperSpinner').toggleClass('icon-spin icon-refresh');
-			console.log(result);
+			var url = $(e.target).val();
+			Meteor.call("fetchImage", url, function(error, result) {
+				$('#scraperSpinner').toggleClass('icon-spin icon-refresh');
+				console.log(result);
 
-			if (result.thumbnail) {
-				$('#scrapedItemThumbnail').attr('src', result.thumbnail);
-				$('#scrapedItemThumbnail-box').removeClass('hide').addClass('animated bounceInLeft');
-			}
+				if (result.thumbnail) {
+					$('#scrapedItemThumbnail').attr('src', result.thumbnail);
+					$('#scrapedItemThumbnail-box').removeClass('hide').addClass('animated bounceInLeft');
+				}
 
-			if (result.name) {
-				$('input[name=name]').val(result.name).css('color', '#78cd51');
-			}
+				if (result.name) {
+					$('input[name=name]').val(result.name).css('color', '#78cd51');
+				}
 
-			if (result.price) {
-				$('input[name=price]').val(result.price).css('color', '#78cd51');
+				if (result.price) {
+					$('input[name=price]').val(result.price).css('color', '#78cd51');
 
-				var merc = Merchant.findOne(Session.get('currentMerchant'));
-				var exchange = Exchange.findOne({
-					currency: merc.currency
-				});
+					var merc = Merchant.findOne(Session.get('currentMerchant'));
+					var exchange = Exchange.findOne({
+						currency: merc.currency
+					});
 
 
-				sgd = (Math.ceil(result.price * exchange.rate * 10) / 10).toFixed(2);
-				$('input[name=sgd]').val(sgd);
-				$('#SGD').text('SGD$' + sgd);
-			}
+					sgd = (Math.ceil(result.price * exchange.rate * 10) / 10).toFixed(2);
+					$('input[name=sgd]').val(sgd);
+					$('#SGD').text('SGD$' + sgd);
+				}
 
-			if (result.code) {
-				$('input[name=code]').val(result.code).css('color', '#78cd51');
-			}
-		});
+				if (result.code) {
+					$('input[name=code]').val(result.code).css('color', '#78cd51');
+				}
+			});
+		}
 	},
-	'change input[name=price]': function(event) {
+	'input input[name=price]': function(event) {
 		var merc = Merchant.findOne(Session.get('currentMerchant'));
 		var exchange = Exchange.findOne({
 			currency: merc.currency
 		});
-		var sgd = $(event.target).val() * exchange.rate;
+		var sgd = +$(event.target).val() * exchange.rate;
 		sgd = (Math.ceil(sgd * 10) / 10).toFixed(2);
 		$('input[name=sgd]').val(sgd);
 		$('#SGD').text('SGD$' + sgd);
@@ -165,6 +166,7 @@ Template.addOrderItem.events({
 
 		//Reset
 		form[0].reset();
+		form.find('input').css('color', 'rgb(85, 85, 85)');
 		$('#scrapedItemThumbnail-box').addClass('hide').removeClass('animated bounceInLeft');
 	}
 });

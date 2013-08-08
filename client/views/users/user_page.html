@@ -114,7 +114,7 @@
 			<div class="control-group">
 				<label class="control-label" for="postalcode">Postal Code <span class="superscript">*</span></label>
 				<div class="controls">
-					<input id="postalcode" name="postalcode" type="text" placeholder="648921" class="input-block-level" required value="{{currentUser.profile.postalcode}}">
+					<input id="postalcode" name="postalcode" type="text" placeholder="648921" class="input-block-level" required pattern="\d{6}" value="{{currentUser.profile.postalcode}}">
 					<input name="street" type="hidden">
 				</div>
 			</div>
@@ -139,7 +139,7 @@
 			<div class="control-group">
 				<label class="control-label" for="phone">Phone Number <span class="superscript">*</span></label>
 				<div class="controls">
-					<input id="phone" name="phone" type="tel" autocomplete="on" placeholder="82888398" class="input-block-level" required="" value="{{currentUser.profile.phone}}">
+					<input id="phone" name="phone" type="tel" autocomplete="on" placeholder="82888398" class="input-block-level" required="" value="{{currentUser.profile.phone}}" pattern="\d{8}">
 
 				</div>
 			</div>

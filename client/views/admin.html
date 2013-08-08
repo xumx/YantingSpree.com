@@ -129,7 +129,43 @@
 </template>
 
 <template name="spreeManagement">
-	
+	<legend>Spree Management</legend>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Run #</th>
+				<th>Number of Orders</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each allSpree}}
+			<tr>
+				<td>
+					{{merchant}}
+				</td>
+				<td>
+					{{counter}}
+				</td>
+				<td>
+					{{numberOfOrders}}
+				</td>
+				<td>
+					{{status}}
+				</td>
+				<td>
+					{{#if open}}
+					<a class="btn btn-small btn-danger" name="close">close</a>
+					{{else}}
+					<a class="btn btn-small btn-warning" name="reopen">reopen</a>
+					{{/if}}
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
 </template>
 
 <template name="merchantManagement">
@@ -153,6 +189,12 @@
 				<label class="span4">Banner URL</label>
 				<div class="span8">
 					<input class="input-block-level" type="url" name="banner" value="{{banner}}" >
+				</div>
+			</div>
+			<div class="row-fluid">
+				<label class="span4">Thumbnail URL</label>
+				<div class="span8">
+					<input class="input-block-level" type="url" name="banner" value="{{thumbnail}}" >
 				</div>
 			</div>
 			<div class="row-fluid">
@@ -185,8 +227,6 @@
 					<textarea class="input-block-level" rows="3" name="remarks">{{remarks}}</textarea>
 				</div>
 			</div>
-
-			<b>Counter: #{{counter}}</b>
 
 			<div class="row-fluid">
 				<a type="button" class="btn btn-info span6" name="update"><span class="glyphicon glyphicon-pencil"></span> Update</a>

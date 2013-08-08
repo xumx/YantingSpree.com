@@ -1,4 +1,6 @@
 <template name="addOrderItem">
+	<legend>Add an Item</legend>
+	
 	<div class="row-fluid">
 		<div class="span5 box hide" id="scrapedItemThumbnail-box">
 			<div class="box-header">
@@ -48,7 +50,7 @@
 						<div class="controls">
 							<div class="input-prepend">
 								<span class="add-on">{{getCurrency}}</span>
-								<input type="number" name="price" step="any" min="0" required placeholder="23.00">
+								<input type="tel" name="price" required placeholder="23.00">
 							</div>
 							<span class="help-inline" id="SGD"></span>
 							<input type="hidden" name="sgd" value="0.00">

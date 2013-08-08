@@ -7,7 +7,6 @@
 
 		<br>
 
-		{{#if stage 1}}
 		<a class="btn btn-info btn-block checkout">Checkout</a>
 
 		<div style="text-align:left;" class="hide paymentForm">
@@ -38,9 +37,24 @@
 			</label>
 
 			Date of Transfer: <input type="date" class="input-block-level" name="date">
+
+
+			<div>
+				<legend>Shipping Address</legend>
+
+				<textarea class="input-block-level" {{#unless useAlternateShippingAddress}}style="display: none;"{{/unless}} name="alternateShippingAddress" rows="4">{{alternateShippingAddress}}</textarea>
+				
+				<textarea class="input-block-level" {{#if useAlternateShippingAddress}}style="display: none;"{{/if}} name="originalShippingAddress" disabled rows="4">{{currentUser.profile.address}}</textarea>
+				
+
+				<label class="checkbox">
+					<input type="checkbox" name="useAlternateShippingAddress" {{#if useAlternateShippingAddress}}checked{{/if}}>
+					Use alternate shipping address
+				</label>
+			</div>
 			<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Submit Payment</a>
 		</div>
-		{{/if}}
+
 	</div>
 </template>
 
@@ -76,27 +90,11 @@
 		</div>
 	</div>
 
-
 	<div style="text-align:right;">
 
 		{{shippingMethodCost}}
 		<hr style="margin-top: 2px; margin-bottom: 5px;">
 		<b>Total Shipping Cost:</b> {{calculateAmount}}
-	</div>
-
-	<div>
-		<legend>Shipping Address</legend>
-
-		{{#if useAlternateShippingAddress}}
-		<textarea class="input-block-level" name="alternateShippingAddress" rows="4">{{alternateShippingAddress}}</textarea>
-		{{else}}
-		<textarea class="input-block-level" name="originalShippingAddress" disabled rows="4">{{currentUser.profile.address}}</textarea>
-		{{/if}}
-
-		<label class="checkbox">
-			<input type="checkbox" name="useAlternateShippingAddress" {{#if useAlternateShippingAddress}}checked{{/if}}>
-			Use alternate shipping address
-		</label>
 	</div>
 
 	Transferred to

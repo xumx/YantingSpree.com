@@ -195,22 +195,55 @@ Template.orderManagement.events({
 });
 
 
+Template.spreeManagement.helpers({
+	allSpree: function() {
+		return Spree.find({});
+	},
+	numberOfOrders: function() {
+		return Order.find({
+			spree: this._id
+		}).count();
+	},
+	open: function () {
+		return (this.status === 'open');
+	}
+});
 
-Template.spreeManagement.helpers({});
-Template.spreeManagement.events({});
+Template.spreeManagement.events({
+	'click a[name=reopen]': function(event) {
+		Merchant.update(this.merchant, {
+			$set: {
+				open: true
+			}
+		});
 
+		//Default end date is 7 days later, 11pm
+		var endDate = moment(new Date().addDays(7)).format('Do MMMM') + ' 11:00PM';
 
-
-Template.merchantManagement.helpers({
-	merchantsWithOpenSpree: function() {
-		return Spree.find({
-			'status': 'open'
-		}, {
-			transform: function(data) {
-				return data.merchant;
+		Spree.update(this._id, {
+			$set: {
+				status: 'open',
+				endDate: endDate
 			}
 		});
 	},
+	'click a[name=close]': function(event) {
+		Merchant.update(this.merchant, {
+			$set: {
+				open: false
+			}
+		});
+
+		Spree.update(this._id, {
+			$set: {
+				status: 'close'
+			}
+		});
+	}
+});
+
+
+Template.merchantManagement.helpers({
 	allMerchants: function() {
 		return Merchant.find({}, {
 			sort: {
@@ -218,24 +251,6 @@ Template.merchantManagement.helpers({
 				_id: 1
 			}
 		});
-	},
-	counter: function() {
-		var c = Spree.findOne({
-			merchant: this._id
-		}, {
-			sort: {
-				counter: -1
-			},
-			transform: function(data) {
-				return data.counter;
-			}
-		});
-
-		if (c) {
-			return c;
-		} else {
-			return 0;
-		}
 	}
 });
 
@@ -296,6 +311,7 @@ Template.merchantManagement.events({
 		this._id = form.find('[name=_id]').val();
 		this.url = form.find('[name=url]').val();
 		this.banner = form.find('[name=banner]').val();
+		this.thumbnail = form.find('[name=thumbnail]').val();
 		this.speed = form.find('[name=speed]').val();
 		this.shipping = form.find('[name=shipping]').val();
 		this.currency = form.find('[name=currency]').val();

@@ -16,7 +16,7 @@ animate-css
 accounts-base
 z-mongo-admin
 flash-messages
-accounts-password
 accounts-facebook
 accounts-ui-bootstrap-dropdown
 npm
+accounts-password
