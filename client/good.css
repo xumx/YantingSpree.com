@@ -136,7 +136,7 @@ h6 {
 	color: #67c2ef;
 }
 .green {
-	color: #bdea74;
+	color: #bdea74 !important;
 }
 .darkGreen {
 	color: #78cd51;

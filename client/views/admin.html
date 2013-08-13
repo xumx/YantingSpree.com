@@ -51,6 +51,7 @@
 	<legend>Orders Management</legend>
 	
 	{{#if selectedOrder}}
+	<textarea>{{address selectedOrder}}</textarea>
 	<table>
 		<thead>
 			<tr>
@@ -97,6 +98,14 @@
 				<th class="span1">ID</th>
 				<th>Spree</th>
 				<th>User</th>
+				<th>Shipping Unit</th>
+				<th>Shipping Cost</th>
+				<th>Postage</th>
+				<th>Misc</th>
+				<th>Cost</th>
+				<th>Total</th>
+				<th>Paid</th>
+				<th>Top Up</th>
 				<th>Status</th>
 				<th>Action</th>
 			</tr>
@@ -108,13 +117,51 @@
 					<span class="visible-phone">details</span></a></td>
 					<td>{{spreeName spree}}</td>
 					<td><a href="mailto:{{userEmail user}}" target="_blank">{{userName user}}</a></td>
-					<td>{{statusName status}}</td>
+					
 					<td>
-						<a class="status-dec btn btn-small"><i class="icon-backward"></i></a>
-						<a class="status-inc btn btn-small"><i class="icon-forward"></i></a>
+						<input class="input-mini" type="text" value="{{shippingunit}}" name="shippingunit">
+					</td>
 
-						<a target="_blank" class="email-update btn btn-small"><i class="icon-envelope"></i></a>
-						<a href="mailto:{{userEmail user}}" class="btn btn-small" target="_blank"><i class="icon-edit"></i></a>
+					<td>
+						<input class="input-mini" type="text" value="{{shippingcost}}" name="shippingcost">
+					</td>
+
+					<td>
+						<input class="input-mini" type="text" value="{{postagecost}}" name="postagecost">
+					</td>
+
+					<td>
+						{{handlingfee}}
+					</td>
+
+					<td>{{cost}}</td>
+					<td>{{total shippingcost postagecost handlingfee cost}}</td>
+					<td>{{paid}}</td>
+					<td>{{topup shippingcost postagecost handlingfee cost paid}}</td>
+
+					<td>
+						<span class="label {{orderStatusIcon 0}}"><i class="icon-play"></i></span>
+						<span class="label {{orderStatusIcon 1}}">$</span>
+						
+						<span class="label {{orderStatusIcon 3}}"><i class="icon-shopping-cart"></i></span>
+						<span class="label {{orderStatusIcon 4}}"><i class="icon-plane"></i></span>
+						
+						<span class="label {{orderStatusIcon 6}}">$</span>
+
+						<span class="label {{orderStatusIcon 8}}"><i class="icon-gift"></i></span>
+						<span class="label {{orderStatusIcon 9}}"><i class="icon-ok"></i></span>
+					</td>
+					<td>
+						<a class="status-dec btn btn-mini"><i class="icon-backward"></i></a>
+						<a class="status-inc btn btn-mini"><i class="icon-forward"></i></a>
+
+						<a target="_blank" class="email-update btn btn-mini"><i class="icon-envelope"></i></a>
+						<a href="mailto:{{userEmail user}}" class="btn btn-mini" target="_blank"><i class="icon-edit"></i></a>
+
+						{{#if useAlternateShippingAddress}}
+						<a class="alt-address btn btn-danger btn-mini"><i class="icon-home"></i></a>
+						{{/if}}
+
 					</td>
 				</tr>
 
@@ -148,7 +195,7 @@
 						{{numberOfOrders}}
 					</td>
 					<td>
-						{{status}}
+						<span class="{{#if open}}darkGreen{{else}}red{{/if}}">{{status}}</span>
 					</td>
 					<td>
 						{{#if open}}

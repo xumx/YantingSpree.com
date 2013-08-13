@@ -23,6 +23,23 @@ Template.admin.events({
 	}
 });
 
+Template.paymentManagement.created = function() {
+	var that = this
+	_.defer(function() {
+		$(that.find('table')).tablecloth({
+			theme: "paper",
+			bordered: true,
+			condensed: true,
+			sortable: true,
+			clean: true
+		});
+	});
+};
+
+Template.paymentManagement.rendered = function() {
+	$(this.find('table')).trigger('update');
+};
+
 Template.paymentManagement.helpers({
 	payments: function() {
 		return Payment.find({
@@ -37,7 +54,9 @@ Template.paymentManagement.helpers({
 Template.paymentManagement.events({
 	'click a[name="verify-payment"]': function() {
 		Payment.update(this._id, {
-			verified: true
+			$set: {
+				verified: true
+			}
 		});
 
 		Order.update(this.order, {
@@ -57,6 +76,19 @@ Template.paymentManagement.events({
 	}
 });
 
+Template.orderManagement.rendered = function() {
+	var that = this
+	_.defer(function() {
+		$(that.findAll('table')).tablecloth({
+			theme: "paper",
+			bordered: true,
+			condensed: true,
+			sortable: true,
+			clean: true
+		}).trigger('update');
+	});
+};
+
 Template.orderManagement.helpers({
 	orders: function() {
 		return Order.find({
@@ -64,6 +96,15 @@ Template.orderManagement.helpers({
 				$not: 10
 			}
 		})
+	},
+	orderStatusIcon: function(stage) {
+		if ((this.status == 1 || this.status == 4 || this.status == 6) && this.status == stage) {
+			return 'label-warning';
+		} else if (this.status >= stage) {
+			return 'label-success';
+		} else {
+			return 'hidden';
+		}
 	},
 	selectedOrder: function() {
 		return Order.findOne(Session.get('selectedOrder'));
@@ -89,6 +130,49 @@ Template.orderManagement.helpers({
 	},
 	statusName: function(_id) {
 		return statusList[_id];
+	},
+	address: function(order) {
+		if (order.useAlternateShippingAddress) {
+			return order.alternateShippingAddress;
+		} else {
+			return Meteor.users.findOne(order.user).profile.address;
+		}
+	},
+	handlingfee: function() {
+		return 0.7;
+	},
+	cost: function() {
+		if (this.items) {
+			return _.reduce(this.items, function(memo, item) {
+				return memo + item.price
+			}, 0).toFixed(2);
+		}
+	},
+	total: function() {
+		return _.reduce(_.toArray(arguments), function(memo, ele) {
+			var i = parseFloat(ele);
+			if (isNaN(i)) {
+				return memo;
+			} else {
+				return memo + i;
+			}
+		}, 0);
+	},
+	paid: function() {
+		var verifiedPayments = Payment.find({
+			order: this._id,
+			verified: true
+		}).fetch();
+
+		var total = _.reduce(verifiedPayments, function(memo, data) {
+			return memo + parseFloat(data.amount);;
+		}, 0).toFixed(2);;
+
+		console.log(total);
+		return total;
+	},
+	topup: function(shippingcost, postagecost, handlingfee, cost, paid) {
+		return (parseFloat(shippingcost) + parseFloat(postagecost) + parseFloat(handlingfee) + parseFloat(cost) - parseFloat(paid)).toFixed(2);
 	}
 });
 
@@ -164,6 +248,9 @@ Template.orderManagement.events({
 			});
 		}
 	},
+	'click a.alt-address': function() {
+		bootbox.alert(this.alternateShippingAddress);
+	},
 	'click a.select-order': function() {
 		Session.set('selectedOrder', this._id);
 	},
@@ -178,12 +265,37 @@ Template.orderManagement.events({
 		modifier.$set['items.' + index + '.status'] = value;
 
 		Order.update(orderId, modifier);
+	},
+	'change input[name=shippingunit]': function(event) {
+		var value = parseFloat($(event.target).val());
+		Order.update(this._id, {
+			$set: {
+				shippingunit: value
+			}
+		});
+	},
+	'change input[name=shippingcost]': function(event) {
+		var value = parseFloat($(event.target).val());
+		Order.update(this._id, {
+			$set: {
+				shippingcost: value
+			}
+		});
+	},
+	'change input[name=postagecost]': function(event) {
+		var value = parseFloat($(event.target).val());
+		Order.update(this._id, {
+			$set: {
+				postagecost: value
+			}
+		});
 	}
 });
 
-Template.orderManagement.rendered = function() {
-	_.defer(function function_name(argument) {
-		$('table').tablecloth({
+Template.spreeManagement.created = function() {
+	var that = this
+	_.defer(function() {
+		$(that.find('table')).tablecloth({
 			theme: "paper",
 			bordered: true,
 			condensed: true,
@@ -193,6 +305,9 @@ Template.orderManagement.rendered = function() {
 	});
 };
 
+Template.spreeManagement.rendered = function() {
+	$(this.find('table')).trigger('update');
+};
 
 Template.spreeManagement.helpers({
 	allSpree: function() {
@@ -349,6 +464,23 @@ Template.merchantManagement.events({
 		}
 	}
 });
+
+Template.userManagement.created = function() {
+	var that = this
+	_.defer(function() {
+		$(that.find('table')).tablecloth({
+			theme: "paper",
+			bordered: true,
+			condensed: true,
+			sortable: true,
+			clean: true
+		});
+	});
+};
+
+Template.userManagement.rendered = function() {
+	$(this.find('table')).trigger('update');
+};
 
 Template.userManagement.helpers({
 	users: function() {

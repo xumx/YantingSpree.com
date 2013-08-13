@@ -57,7 +57,7 @@ Template.payment1.events({
 		if (form.find('input[name=useAlternateShippingAddress]:checked').length > 0) {
 			Order.update(this._id, {
 				$set: {
-					useAlternateShippingAddress: $(event.target).is(':checked')
+					useAlternateShippingAddress: true
 				}
 			});
 
