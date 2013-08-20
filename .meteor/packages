@@ -3,6 +3,7 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+npm
 http
 cron
 roles
@@ -17,6 +18,5 @@ accounts-base
 z-mongo-admin
 flash-messages
 accounts-facebook
-accounts-ui-bootstrap-dropdown
-npm
 accounts-password
+accounts-ui-bootstrap-dropdown
