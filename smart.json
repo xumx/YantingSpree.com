@@ -1,19 +1,20 @@
 {
-    "packages": {
-        "npm": {},
-        "cron": {},
-        "roles": {},
-        "router": {},
-        "momentjs": {},
-        "bootboxjs": {},
-        "event-hooks": {},
-        "animate-css": {},
-        "z-mongo-admin": {
-            "git": "https://github.com/xumx/meteor-admin-ui"
-        },
-        "flash-messages": {},
-        "accounts-ui-bootstrap-dropdown": {
-            "git": "https://github.com/mikpanko/meteor-accounts-ui-bootstrap-dropdown"
-        }
-    }
+  "packages": {
+    "npm": {},
+    "cron": {},
+    "roles": {},
+    "router": {},
+    "momentjs": {},
+    "bootboxjs": {},
+    "event-hooks": {},
+    "animate-css": {},
+    "z-mongo-admin": {
+      "git": "https://github.com/xumx/meteor-admin-ui"
+    },
+    "flash-messages": {},
+    "accounts-ui-bootstrap-dropdown": {
+      "git": "https://github.com/xumx/meteor-accounts-ui-bootstrap-dropdown"
+    },
+    "isotope": {}
+  }
 }

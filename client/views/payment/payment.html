@@ -53,6 +53,10 @@
 				</label>
 			</div>
 			<a class="btn btn-primary btn-block make-payment" style="margin-bottom: 10px;">Submit Payment</a>
+
+			{{#if canMerge this}}
+			<a class="btn btn-primary btn-block make-payment-merge" style="margin-bottom: 10px;">Submit Payment and Merge into Order #</a>
+			{{/if}}
 		</div>
 
 	</div>
@@ -64,15 +68,15 @@
 		<div class="span6">
 			<h3>Shipping Method:</h3>
 			<label class="radio">
-				<input type="radio" name="shippingMethod" value="Normal Mail">
+				<input type="radio" name="shippingMethod" value="Normal Mail" {{#if isNormalMail}}checked{{/if}}>
 				Normal Mail
 			</label>
 			<label class="radio">
-				<input type="radio" name="shippingMethod" value="Registered Mail">
+				<input type="radio" name="shippingMethod" value="Registered Mail" {{#if isRegistered}}checked{{/if}}>
 				Registered Mail
 			</label>
 			<label class="radio">
-				<input type="radio" name="shippingMethod" value="TA-Q-BIN">
+				<input type="radio" name="shippingMethod" value="TA-Q-BIN" {{#if isTAQBIN}}checked{{/if}}>
 				TA-Q-BIN
 			</label>
 		</div>
@@ -91,10 +95,13 @@
 	</div>
 
 	<div style="text-align:right;">
-
+		Item Cost: ${{cost}} <br>
+		Already Paid: ${{paid}} <br>
+		Shipping Cost: ${{shippingcost}} <br>
+		Postage Cost: ${{postagecost}} <br>
 		{{shippingMethodCost}}
 		<hr style="margin-top: 2px; margin-bottom: 5px;">
-		<b>Total Shipping Cost:</b> {{calculateAmount}}
+		<b>Total Shipping Cost:</b> {{total cost paid}}
 	</div>
 
 	Transferred to

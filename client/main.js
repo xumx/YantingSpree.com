@@ -67,6 +67,10 @@ Template.navbar.rendered = function() {
 	$('#login-buttons').children().removeClass('nav-collapse collapse in');
 };
 
+Template.sidebar.rendered = function() {
+	$('#sidebar-left').height($(document).height());
+};
+
 Meteor.startup(function() {
 	Hooks.init();
 
@@ -114,5 +118,8 @@ Meteor.startup(function() {
 			Session.set('currentOrder', undefined);
 		}
 	});
+
+	//Uservoice 
+	(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/OG7gbzHeWZA0aHl0Wkl7jg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
 
 });

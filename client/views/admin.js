@@ -79,13 +79,15 @@ Template.paymentManagement.events({
 Template.orderManagement.rendered = function() {
 	var that = this
 	_.defer(function() {
-		$(that.findAll('table')).tablecloth({
+		var table = $(that.findAll('table')).tablecloth({
 			theme: "paper",
 			bordered: true,
 			condensed: true,
 			sortable: true,
 			clean: true
-		}).trigger('update');
+		});
+
+		if (table) table.trigger('update');
 	});
 };
 
@@ -138,25 +140,35 @@ Template.orderManagement.helpers({
 			return Meteor.users.findOne(order.user).profile.address;
 		}
 	},
-	handlingfee: function() {
-		return 0.7;
-	},
 	cost: function() {
 		if (this.items) {
 			return _.reduce(this.items, function(memo, item) {
-				return memo + item.price
+				return memo + item.SGD
 			}, 0).toFixed(2);
 		}
 	},
-	total: function() {
-		return _.reduce(_.toArray(arguments), function(memo, ele) {
-			var i = parseFloat(ele);
-			if (isNaN(i)) {
-				return memo;
-			} else {
-				return memo + i;
-			}
-		}, 0);
+	total: function(cost) {
+		var total = 0;
+
+		total = this.shippingcost + this.postagecost + this.handlingfee + parseFloat(cost);
+
+		if (this.bubble) {
+			total += 1;
+		}
+
+		if (this.box) {
+			total += 1.2;
+		}
+
+		if (this.shippingMethod == 'Registered Mail') {
+			total += 2.14
+		} else if (this.shippingMethod == 'TA-Q-BIN') {
+			total += 1.14
+		} else if (this.shippingMethod == 'Normal Mail') {
+			total += 1.14
+		}
+
+		return (Math.ceil(total * 100) / 100).toFixed(2);
 	},
 	paid: function() {
 		var verifiedPayments = Payment.find({
@@ -168,11 +180,30 @@ Template.orderManagement.helpers({
 			return memo + parseFloat(data.amount);;
 		}, 0).toFixed(2);;
 
-		console.log(total);
 		return total;
 	},
-	topup: function(shippingcost, postagecost, handlingfee, cost, paid) {
-		return (parseFloat(shippingcost) + parseFloat(postagecost) + parseFloat(handlingfee) + parseFloat(cost) - parseFloat(paid)).toFixed(2);
+	topup: function(cost, paid) {
+		var total = 0;
+
+		total = this.shippingcost + this.postagecost + this.handlingfee + parseFloat(cost) - parseFloat(paid);
+
+		if (this.bubble) {
+			total += 1;
+		}
+
+		if (this.box) {
+			total += 1.2;
+		}
+
+		if (this.shippingMethod == 'Registered Mail') {
+			total += 2.14
+		} else if (this.shippingMethod == 'TA-Q-BIN') {
+			total += 1.14
+		} else if (this.shippingMethod == 'Normal Mail') {
+			total += 1.14
+		}
+
+		return (Math.ceil(total * 100) / 100).toFixed(2);
 	}
 });
 
@@ -423,21 +454,23 @@ Template.merchantManagement.events({
 		}
 	},
 	'click a[name=update]': function(event) {
-		var id = this._id,
-			form = $(event.target).parents('form');
+		var form = $(event.target).parents('form');
 
-		this._id = form.find('[name=_id]').val();
-		this.url = form.find('[name=url]').val();
-		this.banner = form.find('[name=banner]').val();
-		this.thumbnail = form.find('[name=thumbnail]').val();
-		this.speed = form.find('[name=speed]').val();
-		this.shipping = form.find('[name=shipping]').val();
-		this.currency = form.find('[name=currency]').val();
-		this.cap = form.find('[name=cap]').val();
-		this.remarks = form.find('[name=remarks]').val();
+		var data = {};
 
-		console.log(this);
-		Merchant.update(id, this);
+		data.url = form.find('[name=url]').val();
+		data.banner = form.find('[name=banner]').val();
+		data.thumbnail = form.find('[name=thumbnail]').val();
+		data.speed = form.find('[name=speed]').val();
+		data.shipping = form.find('[name=shipping]').val();
+		data.currency = form.find('[name=currency]').val();
+		data.cap = form.find('[name=cap]').val();
+		data.remarks = form.find('[name=remarks]').val();
+
+		console.log(data);
+		Merchant.update(this._id, {
+			$set: data
+		});
 	},
 	'click a[name=delete]': function(event) {
 		if (confirm("Confirm Delete Merchant")) {

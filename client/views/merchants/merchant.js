@@ -24,6 +24,42 @@ Template.merchantPage.helpers({
 	}
 });
 
+Template.merchantList.rendered = function() {
+	var option = {
+		itemSelector: '.item',
+		getSortData: {
+			popularity: function($elem) {
+				return parseFloat($elem.attr('popularity'));
+			}
+		}
+	};
+
+	$('#isotope').isotope(option);
+};
+
+Template.merchantList.events({
+	"click .filter-open": function() {
+		$('#isotope').isotope({
+			filter: '.open'
+		});
+	},
+	"click .filter-upcoming": function() {
+		$('#isotope').isotope({
+			filter: '.upcoming'
+		});
+	},
+	"click .filter-all": function() {
+		$('#isotope').isotope({
+			filter: ''
+		});
+	},
+	"click .sort-popularity": function() {
+		$('#container').isotope({
+			sortBy: 'popularity'
+		});
+	}
+});
+
 Template.merchantList.helpers({
 	allMerchants: function() {
 		return Merchant.find({}, {
@@ -32,6 +68,9 @@ Template.merchantList.helpers({
 				_id: 1
 			}
 		});
+	},
+	popularity: function () {
+		return Math.random();
 	}
 });
 

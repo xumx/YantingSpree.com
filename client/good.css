@@ -129,6 +129,13 @@ h6 {
 
 }
 
+/*
+#cfc1cd
+#d5b894
+#98724f
+#e8777d
+#cf97b1*/
+
 .blue {
 	color: #36a9e1;
 }
@@ -241,6 +248,11 @@ h6 {
 	clear: both;
 }
 
+#main-container {
+	padding-right: 2.564102564102564%;
+    *padding-right: 2.5109110747408616%;
+}
+
 #sidebar-left {
 	background: #81D8D0;
 	min-width: 170px;
@@ -251,6 +263,11 @@ h6 {
 
 #sidebar-left table {
 	color: white;
+}
+
+.merchant-banner {
+	max-height: 300px;
+	overflow: hidden;
 }
 
 .brand {

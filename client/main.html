@@ -1,19 +1,16 @@
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>YanTing Spree</title>
-
-	<script type="text/javascript">
-	//Uservoice
-	(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/OG7gbzHeWZA0aHl0Wkl7jg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-</script>
 </head>
+
 <body>
 	<div class="container-fluid-full">
 		<div class="row-fluid">
-			<div id="sidebar-left" class="span2">
+			<div id="sidebar-left" class="span3">
 				{{> sidebar}}
 			</div>
 
-			<div class="span9">
+			<div id="main-container" class="span9">
 				{{> navbar}}
 				{{> meteorMessages}}
 				{{renderPage}}  

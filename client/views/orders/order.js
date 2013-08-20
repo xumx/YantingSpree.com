@@ -148,6 +148,7 @@ Template.addOrderItem.events({
 				user: Meteor.userId(),
 				int_id: nextInt_id,
 				items: [orderItem],
+				handlingfee: 0.7,
 				status: 0
 			});
 		} else {
