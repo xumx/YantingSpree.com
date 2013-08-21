@@ -15,8 +15,10 @@ underscore
 event-hooks
 animate-css
 accounts-base
-z-mongo-admin
 flash-messages
 accounts-facebook
 accounts-password
 accounts-ui-bootstrap-dropdown
+meteor
+session
+standard-app-packages

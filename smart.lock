@@ -2,7 +2,7 @@
   "meteor": {
     "git": "https://github.com/meteor/meteor.git",
     "branch": "master",
-    "commit": "2e78d0d110443ac6fb9471e6be1c136f15f03fd2"
+    "commit": "d17795971cf2d55532bf7b9d00d0c925dec22014"
   },
   "dependencies": {
     "basePackages": {
@@ -20,15 +20,16 @@
       },
       "flash-messages": {},
       "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/mikpanko/meteor-accounts-ui-bootstrap-dropdown",
+        "git": "https://github.com/xumx/meteor-accounts-ui-bootstrap-dropdown",
         "branch": "master"
-      }
+      },
+      "isotope": {}
     },
     "packages": {
       "npm": {
         "git": "https://github.com/arunoda/meteor-npm.git",
-        "tag": "v0.1.4",
-        "commit": "68ab2b952ab21a5bbba879b37be9385ec8ff6d63"
+        "tag": "v0.2.2",
+        "commit": "ad83acff83385d5ea05997c8bbc2d7493ba4c04e"
       },
       "cron": {
         "git": "https://github.com/alexsuslov/Meteor.cron.git",
@@ -37,13 +38,13 @@
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
-        "tag": "v1.0.5",
-        "commit": "a6e0ce33f8dc69a816165c458b138c2acb30ad0e"
+        "tag": "v1.0.6",
+        "commit": "f81cbf7c765a4ed7e16a580c288db6f10a90856b"
       },
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.5.3",
-        "commit": "7bd3a1bdd1099625bb8b49406d9b8f961d6f4a17"
+        "tag": "v0.5.4",
+        "commit": "e40ee450a756b54a32ed67be4595772403256fb5"
       },
       "momentjs": {
         "git": "https://github.com/crapthings/meteor-momentjs.git",
@@ -52,13 +53,13 @@
       },
       "bootboxjs": {
         "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
-        "tag": "v3.2.0",
-        "commit": "6088b5b6ec13304457394cd358cbdc5f3def1a1c"
+        "tag": "v3.2.2",
+        "commit": "580adfebfa12b4d2186a80cec1109dab74ad6228"
       },
       "event-hooks": {
         "git": "https://github.com/BenjaminRH/meteor-event-hooks.git",
-        "tag": "v1.4.0",
-        "commit": "8d0daf1b84622104d3bcdd99fcf791cd08d3a222"
+        "tag": "v1.4.2",
+        "commit": "feb1df170a4fbfce5544115389496e298054eb90"
       },
       "animate-css": {
         "git": "https://github.com/nate-strauser/meteor-animate-css.git",
@@ -72,18 +73,28 @@
       },
       "flash-messages": {
         "git": "https://github.com/camilosw/flash-messages.git",
-        "tag": "v0.1.3.1",
-        "commit": "b4b02b1a21789b7d19350410e2f98d66a872a683"
+        "tag": "v0.2.1",
+        "commit": "62cf1ee531684808b91dbe3ff15e63f6d5af1c66"
       },
       "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/mikpanko/meteor-accounts-ui-bootstrap-dropdown",
+        "git": "https://github.com/xumx/meteor-accounts-ui-bootstrap-dropdown",
         "branch": "master",
-        "commit": "28add52ec78c5e2158e35abb434c2a7ebec92984"
+        "commit": "cd77423fd3a6332a3e1cb896636be40c03b804c0"
+      },
+      "isotope": {
+        "git": "https://github.com/digioak/meteor-isotope.git",
+        "tag": "v0.0.3",
+        "commit": "6fa8d0cd5ad50ea2292f2ce03ea619adc6c13c58"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
         "tag": "v1.3.5",
         "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
+      },
+      "HTML5-History-API": {
+        "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
+        "tag": "v4.0.0",
+        "commit": "dc4965f1424cfca625ec3fbea17eace03f8e32c5"
       }
     }
   }
