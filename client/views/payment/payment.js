@@ -96,7 +96,7 @@ Template.payment1.events({
 			}
 		});
 
-		Meteor.Messages.sendSuccess('Payment has been submitted for verification. =)');
+		FlashMessages.sendSuccess('Payment has been submitted for verification. =)');
 	},
 	'click a.make-payment-merge': function(event) {
 		event.preventDefault();
@@ -166,9 +166,9 @@ Template.payment1.events({
 			}
 		});
 
-		Meteor.Messages.sendSuccess('Orders has been Merged');
+		FlashMessages.sendSuccess('Orders has been Merged');
 		Meteor.call('sendMail', "deepthought@gmail.com", "Order #" + this.int_id + " has merged with #" + target.int_id);
-		Meteor.Messages.sendSuccess('Payment has been submitted for verification. =)');
+		FlashMessages.sendSuccess('Payment has been submitted for verification. =)');
 	}
 });
 
@@ -297,6 +297,6 @@ Template.payment2.events({
 			}
 		});
 
-		Meteor.Messages.sendSuccess('Payment has been submitted for verification. =)');
+		FlashMessages.sendSuccess('Payment has been submitted for verification. =)');
 	}
 });

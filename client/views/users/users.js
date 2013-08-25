@@ -51,7 +51,7 @@ Template.userProfile.events({
 			}
 		});
 
-		Meteor.Messages.sendSuccess('User Profile Saved');
+		FlashMessages.sendSuccess('User Profile Saved');
 	}
 });
 
@@ -130,7 +130,7 @@ Template.userCart.events({
 				}
 			});
 		} else {
-			Meteor.Messages.sendError("This order is currently in progress. You cannot delete it at this stage. For assistance, please email info@yantingspree.com")
+			FlashMessages.sendError("This order is currently in progress. You cannot delete it at this stage. For assistance, please email info@yantingspree.com")
 		}
 	}
 });

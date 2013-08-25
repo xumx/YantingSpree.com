@@ -69,7 +69,7 @@
       "z-mongo-admin": {
         "git": "https://github.com/xumx/meteor-admin-ui",
         "branch": "master",
-        "commit": "001a5668d1c7d559618914cc18a04ece026a22bd"
+        "commit": "58e8935de35517eade2a2415df1c13d5fd32cafc"
       },
       "flash-messages": {
         "git": "https://github.com/camilosw/flash-messages.git",
