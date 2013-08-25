@@ -22,3 +22,4 @@ accounts-ui-bootstrap-dropdown
 meteor
 session
 standard-app-packages
+z-mongo-admin

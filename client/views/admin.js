@@ -274,7 +274,7 @@ Template.orderManagement.events({
 			bootbox.confirm(body, function(result) {
 				if (result) {
 					Meteor.call('sendMail', Meteor.users.findOne(that.user).profile.email, subject, body);
-					Meteor.Messages.sendSuccess('Email Sent!');
+					FlashMessages.sendSuccess('Email Sent!');
 				}
 			});
 		}
