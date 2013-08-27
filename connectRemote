@@ -1,0 +1,11 @@
+spawn = require('child_process').spawn
+mongo = spawn 'meteor', ['mongo', '--url', 'yt.meteor.com'], stdio: [process.stdin, 'pipe', process.stderr]
+
+mongo.stdout.on 'data', (data) ->
+    data = data.toString()
+    m = data.match /mongodb:\/\/([^:]+):([^@]+)@([^:]+):27017\/([^\/]+)/
+    if m?
+        process.stdout.write "--username #{m[1]} --password #{m[2]} --host #{m[3]}"
+    else
+        if data == 'Password: '
+            process.stderr.write data
