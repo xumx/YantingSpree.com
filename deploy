@@ -1,0 +1,2 @@
+spawn = require('child_process').spawn
+spawn 'mrt', ['deploy','yt.meteor.com']

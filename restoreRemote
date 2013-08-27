@@ -5,7 +5,7 @@ mongo.stdout.on 'data', (data) ->
     data = data.toString()
     m = data.match /mongodb:\/\/([^:]+):([^@]+)@([^:]+):27017\/([^\/]+)/
     if m?
-        process.stdout.write "-u #{m[1]} -p #{m[2]} -h #{m[3]} -d #{m[4]}"
+        process.stdout.write "--username client --password #{m[2]} --host #{m[3]} --port 27017 --db yt_meteor_com --drop dump/yt_meteor_com/"
     else
         if data == 'Password: '
             process.stderr.write data
