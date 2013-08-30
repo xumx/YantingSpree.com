@@ -20,7 +20,32 @@
 </body>
 
 <template name="welcome">
-	{{> carousel}}
+	<div id="ri-grid" class="ri-grid ri-grid-size-3">
+		<img class="ri-loading-image" src="img/loading.gif"/>
+		<ul id="instafeed">
+			<li><img src="img/Slice-1.png"/></li>
+			<li><img src="img/Slice-2.png"/></li>
+			<li><img src="img/latest.jpg" /></li>
+			<li><img src="img/original.jpg" /></li>
+			<li><img src="img/easy.jpg" /></li>	
+			<li><a href="https://www.facebook.com/yantingspreesg" target="_blank"><img src="img/color-facebook-128.png" alt=""></a></li>
+			<!-- <li><a href="http://instagram.com/yantingspreesg" target="_blank"><img src="img/color-instagram-128.png" alt=""></a></li> -->
+			<li><a href="https://twitter.com/yantingspree" target="_blank"><img src="img/color-twitter-128.png" alt=""></a></li>
+			<li><a href="mailto:yanting_spree@hotmail.com"><img src="img/color-forwardtofriend-128.png" alt=""></a></li>
+		</ul>
+	</div>
+
+	<div class="iso">
+		{{#each news}}
+		<div class="news-container text-center">
+			<h6>{{description}}</h6>
+			<a href="{{link}}"><img src="{{thumbnail}}" alt=""></a>
+			<br>
+			<a href="{{link}}">{{linkText}}</a>
+		</div>
+		{{/each}}	
+	</div>
+	
 </template>
 
 <template name="404">

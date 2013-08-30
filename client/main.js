@@ -9,6 +9,14 @@ Accounts.ui.config({
 Meteor.Router.add({
 	'/': 'welcome',
 	'/admin': 'admin',
+
+	'/admin/payment': 'paymentManagement',
+	'/admin/order': 'orderManagement',
+	'/admin/spree': 'spreeManagement',
+	'/admin/merchant': 'merchantManagement',
+	'/admin/news': 'newsManagement',
+	'/admin/user': 'userManagement',
+
 	'/users/self': 'userProfile',
 	'/users/cart': 'userCart',
 	'/users/all': 'manageUsers',
@@ -49,7 +57,7 @@ Meteor.Router.filter('checkLoggedIn', {
 });
 
 Meteor.Router.filter('checkAdmin', {
-	only: ['admin', 'db_view', 'collection_view', 'document_view']
+	only: ['admin', 'paymentManagement', 'orderManagement', 'spreeManagement', 'merchantManagement', 'userManagement', 'db_view', 'collection_view', 'document_view']
 });
 
 //Global Helpers
@@ -67,9 +75,18 @@ Template.navbar.rendered = function() {
 	$('#login-buttons').children().removeClass('nav-collapse collapse in');
 };
 
-Template.sidebar.rendered = function() {
-	$('#sidebar-left').height($(document).height());
-};
+// Template.sidebar.created = function() {
+// 	var recalc = _.throttle(function() {
+// 		console.log('recalc');
+// 		$('#sidebar-left').trigger("sticky_kit:recalc");
+// 	}, 1000);
+
+// 	$('#sidebar-left .collapse').on('hide', recalc);
+
+// 	_.delay(function() {
+// 		$('#sidebar-left').stick_in_parent();
+// 	}, 1000);
+// };
 
 Meteor.startup(function() {
 	Hooks.init();
@@ -120,6 +137,12 @@ Meteor.startup(function() {
 	});
 
 	//Uservoice 
-	(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/OG7gbzHeWZA0aHl0Wkl7jg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-
+	(function() {
+		var uv = document.createElement('script');
+		uv.type = 'text/javascript';
+		uv.async = true;
+		uv.src = '//widget.uservoice.com/OG7gbzHeWZA0aHl0Wkl7jg.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(uv, s)
+	})();
 });

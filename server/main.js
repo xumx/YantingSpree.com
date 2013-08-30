@@ -6,11 +6,16 @@ Meteor.startup(function() {
 
 		if (Roles.userIsInRole(this.userId, ['admin'])) {
 
-			return [Exchange.find(), Spree.find(), Merchant.find(), Order.find(), Payment.find()]
+			return [Exchange.find(), Spree.find(), Merchant.find(), Order.find(), News.find(), Payment.find()]
 
 		} else {
 
-			return [Exchange.find(), Spree.find(), Merchant.find(), Order.find({
+			return [Exchange.find(), Spree.find(), Merchant.find(), News.find({}, {
+				sort: {
+					date: 1
+				},
+				limit: 15
+			}), Order.find({
 				user: this.userId
 			}), Payment.find({
 				user: this.userId
@@ -47,7 +52,7 @@ Meteor.methods({
 		}
 	},
 	fetchImage: function(url) {
-		var supportedSites = ['forever21.com', 'asos.com', 'newlook.com','armaniexchange.com'];
+		var supportedSites = ['forever21.com', 'asos.com', 'newlook.com', 'armaniexchange.com'];
 		var matches = url.match(/^https?\:\/\/w*\.?([^\/:?#]+)(?:[\/:?#]|$)/i);
 		var domain = matches && matches[1];
 		var result = {};
@@ -77,7 +82,7 @@ Meteor.methods({
 					result.code = $('[itemprop=productID]').text();
 					break;
 				case 'armaniexchange.com':
-					result.thumbnail = $('meta[property="og:image"]').attr('content').replace(/wid=.+/,'wid=1000');
+					result.thumbnail = $('meta[property="og:image"]').attr('content').replace(/wid=.+/, 'wid=1000');
 					result.name = $('.prdTxt h2').text();
 					result.price = parseFloat($('#prdName .price').text().match(/\d+\.?\d*/));
 					break;

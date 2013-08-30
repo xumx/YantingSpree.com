@@ -6,7 +6,18 @@
 			<ul class="nav pull-right">
 				{{#if isInRole 'admin'}}
 				<li><a href="/data">Data View</a></li>
-				<li><a href="/admin" ><i class="icon-adjust"></i><span class="hidden-phone">Admin Panel</span></a></li>
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-adjust"></i><span class="hidden-phone">Admin Panel</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/admin/payment">Payment Management</a></li>
+						<li><a href="/admin/order">Order Management</a></li>
+						<li><a href="/admin/spree">Spree Management</a></li>
+						<li><a href="/admin/merchant">Merchant Management</a></li>
+						<li><a href="/admin/news">News Management</a></li>
+						<li><a href="/admin/user">User Management</a></li>
+					</ul>				
+				</li>
 				{{/if}}
 				<li><a href="{{userProfilePath}}"><i class="icon-user"></i> <span class="hidden-phone">My Profile</span></a></li>
 				<li><a href="{{userCartPath}}"><i class="icon-shopping-cart"></i> <span class="hidden-phone">Shopping Cart</span></a></li>

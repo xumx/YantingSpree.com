@@ -6,9 +6,18 @@
 .no-space [class*="span"] {
 	margin-left: 0;
 }
+
 .noMarginLeft {
 	margin-left: 0px !important;
 }
+
+.news-container{
+	padding:15px;
+	/*max-width: 240px;*/
+	/*background-color: #cf97b1;*/
+	/*border-radius: 3px;*/
+}
+
 
 body {
 	background: #fffcef;
@@ -43,9 +52,34 @@ h5 {
 	font-size: 13px;
 	line-height: 13px;
 }
+
+
 h6 {
-	font-size: 12px;
-	line-height: 12px;
+	font-size: 28px;
+	line-height: 28px;
+}
+
+
+@media screen and (max-width: 640px) { 	
+	h6 {
+		font-size: 20px;
+		line-height: 20px;
+	}
+}
+
+@media (max-width: 767px) {
+	body {
+		padding-right: 2.564102564102564%;
+		*padding-right: 2.5109110747408616%;
+
+		padding-left: 2.564102564102564%;
+		*padding-left: 2.5109110747408616%;
+	}
+
+	#main-container {
+		padding-right: 0%;
+		*padding-right: 0%;
+	}
 }
 
 .well {
@@ -250,7 +284,7 @@ h6 {
 
 #main-container {
 	padding-right: 2.564102564102564%;
-    *padding-right: 2.5109110747408616%;
+	*padding-right: 2.5109110747408616%;
 }
 
 #sidebar-left {
@@ -518,89 +552,141 @@ input[type="file"],
 
 .label,
 .badge {
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  padding: 3px 6px;
-  border: none;
-  text-shadow: none;
+	font-family: 'Lato', sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	padding: 3px 6px;
+	border: none;
+	text-shadow: none;
 }
 .label {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
 }
 .label-important,
 .badge-important,
 .label-important[href],
 .badge-important[href] {
-  background: #ff5454;
+	background: #ff5454;
 }
 .label-warning,
 .badge-warning,
 .label-warning[href],
 .badge-warning[href] {
-  background: #fabb3d;
+	background: #fabb3d;
 }
 .label-success,
 .badge-success,
 .label-success[href],
 .badge-success[href] {
-  background: #78cd51;
+	background: #78cd51;
 }
 .label-info,
 .badge-info,
 .label-info[href],
 .badge-info[href] {
-  background: #67c2ef;
+	background: #67c2ef;
 }
 
 /*animate loading*/
 .icon-spin {
-  display: inline-block;
-  -moz-animation: spin 2s infinite linear;
-  -o-animation: spin 2s infinite linear;
-  -webkit-animation: spin 2s infinite linear;
-  animation: spin 2s infinite linear;
+	display: inline-block;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	-webkit-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
 }
 
 @-moz-keyframes spin {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-  100% {
-    -moz-transform: rotate(359deg);
-  }
+	0% {
+		-moz-transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(359deg);
+	}
 }
 @-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-  }
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+	}
 }
 @-o-keyframes spin {
-  0% {
-    -o-transform: rotate(0deg);
-  }
-  100% {
-    -o-transform: rotate(359deg);
-  }
+	0% {
+		-o-transform: rotate(0deg);
+	}
+	100% {
+		-o-transform: rotate(359deg);
+	}
 }
 @-ms-keyframes spin {
-  0% {
-    -ms-transform: rotate(0deg);
-  }
-  100% {
-    -ms-transform: rotate(359deg);
-  }
+	0% {
+		-ms-transform: rotate(0deg);
+	}
+	100% {
+		-ms-transform: rotate(359deg);
+	}
 }
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(359deg);
+	}
 }
+
+
+/**** Isotope Filtering ****/
+
+.isotope-item {
+	z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+	pointer-events: none;
+	z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+	-webkit-transition-duration: 0.8s;
+	-moz-transition-duration: 0.8s;
+	-ms-transition-duration: 0.8s;
+	-o-transition-duration: 0.8s;
+	transition-duration: 0.8s;
+}
+
+.isotope {
+	-webkit-transition-property: height, width;
+	-moz-transition-property: height, width;
+	-ms-transition-property: height, width;
+	-o-transition-property: height, width;
+	transition-property: height, width;
+}
+
+.isotope .isotope-item {
+	-webkit-transition-property: -webkit-transform, opacity;
+	-moz-transition-property:    -moz-transform, opacity;
+	-ms-transition-property:     -ms-transform, opacity;
+	-o-transition-property:      -o-transform, opacity;
+	transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+	-webkit-transition-duration: 0s;
+	-moz-transition-duration: 0s;
+	-ms-transition-duration: 0s;
+	-o-transition-duration: 0s;
+	transition-duration: 0s;
+}
+

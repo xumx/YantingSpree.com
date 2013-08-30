@@ -526,3 +526,21 @@ Template.userManagement.events({
 		console.log(this._id);
 	}
 });
+
+Template.newsManagement.events({
+	'submit form': function(event) {
+		event.preventDefault();
+
+		var article = {
+			link: $(event.target).find('[name=link]').val(),
+			linkText: $(event.target).find('[name=linkText]').val(),
+			thumbnail: $(event.target).find('[name=thumbnail]').val(),
+			description: $(event.target).find('[name=description]').val(),
+			date: new Date()
+		}
+
+		News.insert(article);
+
+		$(event.target).parent('form').get(0).reset();
+	}
+});

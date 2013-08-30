@@ -12,6 +12,43 @@
 	{{/if}}
 </template>
 
+<template name="newsManagement">
+	<legend>Add a new News element</legend>
+
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="span3 control-label">Link</label>
+			<div class="span6 controls">
+				<input class="input-block-level" type="url" name="link" placeholder="http://...">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="span3 control-label">Link Text</label>
+			<div class="span6 controls">
+				<input class="input-block-level" type="text" name="linkText" placeholder="eg. send your orders here">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="span3 control-label">Thumbnail URL</label>
+			<div class="span6 controls">
+				<input class="input-block-level" type="url" name="thumbnail" placeholder="http://.../thumbnail.jpg">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="span3 control-label">Description</label>
+			<div class="span6 controls">
+				<textarea class="input-block-level" rows="5" name="description"></textarea>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="span4 offset4">
+				<button type="submit" class="btn btn-primary btn-block">Add News</button>
+			</div>
+		</div>
+	</form>
+</template>
+
 <template name="paymentManagement">
 	<legend>Payment Verification</legend>
 	<table class="table table-striped table-bordered table-hover table-condensed">
