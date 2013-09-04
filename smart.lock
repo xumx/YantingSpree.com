@@ -1,9 +1,5 @@
 {
-  "meteor": {
-    "git": "https://github.com/meteor/meteor.git",
-    "branch": "master",
-    "commit": "d17795971cf2d55532bf7b9d00d0c925dec22014"
-  },
+  "meteor": {},
   "dependencies": {
     "basePackages": {
       "npm": {},
@@ -48,8 +44,8 @@
       },
       "momentjs": {
         "git": "https://github.com/crapthings/meteor-momentjs.git",
-        "tag": "v2.1.0",
-        "commit": "f421f51c2cb40093374a83adb932937da2f991d3"
+        "tag": "v2.1.0.2",
+        "commit": "59a762e297082eea8b8cae00374c2b7ac6f89529"
       },
       "bootboxjs": {
         "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
@@ -58,13 +54,13 @@
       },
       "event-hooks": {
         "git": "https://github.com/BenjaminRH/meteor-event-hooks.git",
-        "tag": "v1.4.2",
-        "commit": "feb1df170a4fbfce5544115389496e298054eb90"
+        "tag": "v1.4.3",
+        "commit": "ba4f3d7887748458618d29615492906f0c88d31c"
       },
       "animate-css": {
         "git": "https://github.com/nate-strauser/meteor-animate-css.git",
-        "tag": "v0.1.0",
-        "commit": "993c626b204e596c41cda63cb3fbb0ca3aa5deea"
+        "tag": "v0.1.1",
+        "commit": "72fa1668847ca1a7c8ce9da04fad843a28efc0af"
       },
       "z-mongo-admin": {
         "git": "https://github.com/xumx/meteor-admin-ui",

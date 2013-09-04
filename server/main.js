@@ -12,7 +12,7 @@ Meteor.startup(function() {
 
 			return [Exchange.find(), Spree.find(), Merchant.find(), News.find({}, {
 				sort: {
-					date: 1
+					date: -1
 				},
 				limit: 15
 			}), Order.find({
